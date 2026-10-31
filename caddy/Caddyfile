@@ -1,0 +1,31 @@
+{
+	email {$ACME_EMAIL}
+}
+
+(seguranca) {
+	encode zstd gzip
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		X-Frame-Options "SAMEORIGIN"
+		-Server
+	}
+}
+
+# Domínio sem www -> www
+{$DOMAIN} {
+	redir https://www.{$DOMAIN}{uri} permanent
+}
+
+# Site / página do livro
+www.{$DOMAIN} {
+	import seguranca
+	reverse_proxy site:80
+}
+
+# App / autoavaliação
+app.{$DOMAIN} {
+	import seguranca
+	reverse_proxy app:80
+}
