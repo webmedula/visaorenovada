@@ -57,4 +57,4 @@ docker compose up --build
 
 ## Pendências de conteúdo
 
-Os exercícios do app são exemplos de práticas de relaxamento visual e devem ser ajustados ao conteúdo do livro (`services/app/public/assets/exercicios.js`). Na página do site, os itens marcados em amarelo são exemplos: preço, link do checkout (`data-checkout`), autor, depoimentos, capítulos/bônus e CNPJ. Também faltam as páginas de política de privacidade e termos de uso.
+Os exercícios e o plano de 7 dias do app vêm do livro (Capítulo 4 e Bônus 1) e ficam em `services/app/public/assets/exercicios.js`. Na página do site, os itens marcados em amarelo ainda são exemplos: preço, link do checkout (`data-checkout`), autor, depoimentos, capítulos/bônus e CNPJ. Falta também a foto do autor e as páginas de política de privacidade e termos de uso. O endereço impresso no livro, `www.visaorenovada.com.br/bonus2`, redireciona para a autoavaliação no app.

@@ -97,6 +97,8 @@ button.btn{appearance:none}
 .scene.dir-circle .dot{animation:moveCircle var(--spd,8s) linear infinite}
 .scene.dir-eight .dot{animation:moveEight var(--spd,8s) ease-in-out infinite}
 .scene.dir-diag .dot{animation:moveDiag var(--spd,4s) ease-in-out infinite}
+.scene.dir-diag2 .dot{animation:moveDiag2 var(--spd,4s) ease-in-out infinite}
+.scene.dir-tri .dot{animation:moveTri var(--spd,9s) ease-in-out infinite}
 .scene.breathe .dot{width:60px;height:60px;animation:breathe var(--spd,8s) ease-in-out infinite}
 .scene.nearfar .dot{animation:nearfar var(--spd,6s) ease-in-out infinite}
 .scene.blink .dot{width:120px;height:60px;border-radius:50%;background:#f7efe0;box-shadow:none;animation:blink var(--spd,3s) ease-in-out infinite}
@@ -106,6 +108,8 @@ button.btn{appearance:none}
 @keyframes moveH{0%,100%{left:12%}50%{left:88%}}
 @keyframes moveV{0%,100%{top:12%}50%{top:88%}}
 @keyframes moveDiag{0%,100%{left:15%;top:15%}50%{left:85%;top:85%}}
+@keyframes moveDiag2{0%,100%{left:85%;top:15%}50%{left:15%;top:85%}}
+@keyframes moveTri{0%,100%{left:50%;top:15%}33%{left:85%;top:80%}66%{left:15%;top:80%}}
 @keyframes moveCircle{from{transform:rotate(0deg) translateX(110px) rotate(0deg) translate(-50%,-50%)}to{transform:rotate(360deg) translateX(110px) rotate(-360deg) translate(-50%,-50%)}}
 @keyframes moveEight{0%{left:50%;top:50%}12.5%{left:80%;top:25%}25%{left:50%;top:50%}37.5%{left:20%;top:75%}50%{left:50%;top:50%}62.5%{left:20%;top:25%}75%{left:50%;top:50%}87.5%{left:80%;top:75%}100%{left:50%;top:50%}}
 @keyframes breathe{0%,100%{transform:translate(-50%,-50%) scale(.6);opacity:.7}50%{transform:translate(-50%,-50%) scale(1.8);opacity:1}}

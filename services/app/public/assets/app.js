@@ -3,6 +3,8 @@
   'use strict';
   const EX = window.VR_EXERCICIOS || [];
   const PLANO = window.VR_PLANO || [];
+  const GRUPOS = window.VR_GRUPOS || [];
+  const NDIAS = PLANO.length;
   const byId = Object.fromEntries(EX.map(e => [e.id, e]));
   const $ = (s, r = document) => r.querySelector(s);
   const app = $('#app');
@@ -38,7 +40,7 @@
   }
   function diaAtual() {
     if (!S.inicioPlano) return null;
-    const n = Math.min(S.diasConcluidos.length + 1, 21);
+    const n = Math.min(S.diasConcluidos.length + 1, NDIAS);
     return PLANO[n - 1];
   }
 
@@ -86,12 +88,12 @@
       const faltam = sugeridos.filter(e => !feitos.includes(e.id));
       return `
         <section class="hero-card">
-          <span class="chip gold">${dia ? `Dia ${dia.dia} de 21` : 'Bem-vindo(a)'}</span>
+          <span class="chip gold">${dia ? `Dia ${dia.dia} de ${NDIAS} · ${esc(dia.foco)}` : 'Bem-vindo(a)'}</span>
           <h2 style="margin-top:12px">${faltam.length ? (dia ? 'Sua prática de hoje' : 'Que tal começar com 4 minutos?') : 'Prática de hoje concluída 🎉'}</h2>
           <p>${dia ? esc(dia.dica) : 'Exercícios curtos e guiados para aliviar o cansaço visual. Comece por onde quiser.'}</p>
           <div class="row" style="margin-top:18px">
             ${faltam.length ? `<button class="btn btn-primary" data-ex="${faltam[0].id}">▶ Iniciar ${esc(faltam[0].nome)}</button>` : ''}
-            ${!dia ? '<a class="btn btn-ghost" style="border-color:#cfe4de;color:#fff" href="#plano">Ver o plano de 21 dias</a>' : ''}
+            ${!dia ? '<a class="btn btn-ghost" style="border-color:#cfe4de;color:#fff" href="#plano">Ver o plano de 7 dias</a>' : ''}
           </div>
           <div class="streak" title="Dias seguidos de prática">${Array.from({ length: 7 }, (_, i) => `<span class="${i < Math.min(seq, 7) ? 'on' : ''}"></span>`).join('')}<small style="margin-left:6px;color:#cfe4de">${seq} ${seq === 1 ? 'dia seguido' : 'dias seguidos'}</small></div>
         </section>
@@ -105,7 +107,7 @@
             <h3>⏱️ Lembrete 20-20-20</h3><p>A cada 20 minutos, 20 segundos olhando para algo a 6 metros. Deixe o cronômetro aberto enquanto trabalha.</p>
           </a>
           <a class="card" href="/avaliacao" style="text-decoration:none;color:inherit">
-            <h3>📋 Autoavaliação</h3><p>Refaça o teste de conforto visual e compare com o resultado anterior.</p>
+            <h3>📋 Autoavaliação (Bônus 2)</h3><p>Responda à autoavaliação visual e receba uma leitura do seu perfil com orientações práticas.</p>
           </a>
         </div>`;
     },
@@ -113,44 +115,46 @@
     exercicios() {
       return `
         <div class="page-head">
-          <h1>Exercícios <span class="ph-tag">exemplos: ajustar ao livro</span></h1>
-          <p class="lead">Rotinas guiadas de 2 a 4 minutos. Escolha pelo que você está sentindo agora.</p>
+          <h1>Guia prático de exercícios</h1>
+          <p class="lead">Os exercícios do Capítulo 4 do livro, guiados passo a passo. Escolha pelo que você está sentindo agora.</p>
         </div>
-        <div class="grid">${EX.map(e => exCard(e)).join('')}</div>`;
+        ${GRUPOS.map((g, i) => `
+          <h2 class="${i ? 'mt' : ''}" style="font-size:1.3rem;margin-bottom:4px">${i + 1}. ${esc(g.nome)}</h2>
+          <p class="small mb">${esc(g.desc)}</p>
+          <div class="grid">${EX.filter(e => e.grupo === g.id).map(e => exCard(e)).join('')}</div>`).join('')}`;
     },
 
     plano() {
       if (!S.inicioPlano) {
         return `
           <div class="page-head">
-            <h1>Plano de 21 dias</h1>
-            <p class="lead">Três semanas de prática guiada para transformar os cuidados com os olhos em hábito. Cada dia leva de 5 a 8 minutos.</p>
+            <span class="chip gold">Bônus 1 do livro</span>
+            <h1 style="margin-top:10px">Seu plano de 7 dias para uma Visão Renovada</h1>
+            <p class="lead">Uma semana de prática guiada, com um foco por dia e uma dica extra de hábito. Cada dia leva de 5 a 10 minutos.</p>
           </div>
-          <div class="grid grid-3">
-            <div class="card"><h3>Semana 1 · Base</h3><p>Piscar, descanso no escuro e pausas. Você aprende o básico e ajusta o ambiente.</p></div>
-            <div class="card"><h3>Semana 2 · Mobilidade</h3><p>Foco perto e longe e movimentos oculares entram na rotina.</p></div>
-            <div class="card"><h3>Semana 3 · Hábito</h3><p>Rotina completa e mais olhar ao horizonte, para fixar o costume.</p></div>
+          <div class="grid grid-2">
+            ${PLANO.map(p => `<div class="card"><span class="chip">Dia ${p.dia}</span><h3 style="margin-top:8px">${esc(p.foco)}</h3><p>${p.ex.map(id => byId[id] ? byId[id].nome : id).join(', ')}.</p></div>`).join('')}
           </div>
           <div class="mt center"><button class="btn btn-primary" id="comecar-plano">Começar o plano hoje</button>
-          <p class="small mt">Seu progresso fica salvo neste navegador. O plano avança um dia a cada prática concluída.</p></div>`;
+          <p class="small mt">Seu progresso fica salvo neste navegador. O plano avança um dia a cada prática concluída, e você pode repetir a semana quantas vezes quiser.</p></div>`;
       }
       const atual = diaAtual();
-      const semanas = [1, 2, 3].map(w => `
-        <div class="week-title">Semana ${w}</div>
-        <div class="days">${PLANO.filter(p => p.semana === w).map(p => {
+      const semanas = `
+        <div class="week-title">Sua semana${S.semanas ? ` · ${S.semanas + 1}ª rodada` : ''}</div>
+        <div class="days">${PLANO.map(p => {
           const done = S.diasConcluidos.includes(p.dia), today = atual && atual.dia === p.dia;
-          return `<div class="day ${done ? 'done' : ''} ${today ? 'today' : ''} ${!done && !today ? 'lock' : ''}" title="Dia ${p.dia}">${done ? '✓' : p.dia}</div>`;
-        }).join('')}</div>`).join('');
-      const concluido = S.diasConcluidos.length >= 21;
+          return `<div class="day ${done ? 'done' : ''} ${today ? 'today' : ''} ${!done && !today ? 'lock' : ''}" title="Dia ${p.dia}: ${esc(p.foco)}">${done ? '✓' : p.dia}</div>`;
+        }).join('')}</div>`;
+      const concluido = S.diasConcluidos.length >= NDIAS;
       return `
         <div class="page-head">
-          <span class="chip">${S.diasConcluidos.length} de 21 dias concluídos</span>
-          <h1 style="margin-top:10px">${concluido ? 'Plano concluído! 🎉' : `Dia ${atual.dia}: ${atual.ex.map(id => byId[id] ? byId[id].nome : id).join(' + ')}`}</h1>
-          <p class="lead">${concluido ? 'Você completou os 21 dias. Continue com os exercícios livres ou recomece o plano.' : esc(atual.dica)}</p>
+          <span class="chip">${S.diasConcluidos.length} de ${NDIAS} dias concluídos</span>
+          <h1 style="margin-top:10px">${concluido ? 'Semana concluída! 🎉' : `Dia ${atual.dia}: ${esc(atual.foco)}`}</h1>
+          <p class="lead">${concluido ? 'Você completou os 7 dias do plano. Como sugere o livro, revise seu progresso e planeje a próxima semana: repita o plano ou siga com os exercícios livres.' : esc(atual.dica)}</p>
         </div>
         ${concluido ? '' : `<div class="grid">${atual.ex.map(id => byId[id]).filter(Boolean).map(e => exCard(e, { curto: true })).join('')}</div>`}
         ${semanas}
-        <p class="small mt"><button class="linkbtn" id="reiniciar-plano">Reiniciar o plano</button></p>`;
+        <p class="small mt">${concluido ? '<button class="btn btn-primary" id="repetir-plano">Repetir a semana</button>' : '<button class="linkbtn" id="reiniciar-plano">Reiniciar o plano</button>'}</p>`;
     },
 
     pausas() {
@@ -235,7 +239,7 @@
   function iniciarTimer() { clearInterval(PL.t); PL.t = setInterval(() => { if (PL.paused) return; PL.rest--; if (PL.rest <= 0) proximoPasso(); else atualizarContador(); }, 1000); }
   function proximoPasso() {
     PL.i++;
-    if (PL.i >= PL.ex.steps.length) { clearInterval(PL.t); beep(); marcarFeito(PL.ex.id); renderConclusao(); return; }
+    if (PL.i >= PL.ex.steps.length) { clearInterval(PL.t); beep(); const antes = diaAtual(); marcarFeito(PL.ex.id); renderConclusao(antes); return; }
     beep(); PL.rest = PL.ex.steps[PL.i].s; renderPlayer();
   }
   function atualizarContador() {
@@ -263,15 +267,15 @@
         <button class="btn btn-ghost" data-act="pular">Pular passo →</button>
       </div>`;
   }
-  function renderConclusao() {
-    const ex = PL.ex, dia = diaAtual();
-    const concluiuDia = dia && S.diasConcluidos.includes(dia.dia) && dia.ex.includes(ex.id);
+  function renderConclusao(dia) {
+    const ex = PL.ex;
+    const concluiuDia = dia && dia.ex.includes(ex.id) && S.diasConcluidos.includes(dia.dia) && S.diasConcluidos[S.diasConcluidos.length - 1] === dia.dia;
     player.innerHTML = `
       <div class="player-top"><h2>Concluído</h2><button class="player-close" aria-label="Fechar" data-act="fechar">✕</button></div>
       <div class="stage">
         <div class="celebrate">🎉</div>
         <h3>${esc(ex.nome)} feito!</h3>
-        <p>${concluiuDia ? `Você concluiu o dia ${dia.dia} do plano. Até amanhã!` : 'Perceba como seus olhos estão agora. Pequenas pausas, grande diferença.'}</p>
+        <p>${concluiuDia ? (dia.dia >= NDIAS ? 'Você concluiu a semana inteira do plano. Parabéns!' : `Você concluiu o dia ${dia.dia} do plano. Até amanhã!`) : 'Perceba como seus olhos estão agora. Pequenas pausas, grande diferença.'}</p>
         <p class="small" style="color:#9fbfb8">${esc(ex.beneficio)}</p>
       </div>
       <div class="player-actions">
@@ -303,6 +307,7 @@
     const id = e.target.id;
     if (id === 'comecar-plano') { S.inicioPlano = hoje(); save(S); render(); toast('Plano iniciado. Bom começo!'); }
     else if (id === 'reiniciar-plano') { S.inicioPlano = hoje(); S.diasConcluidos = []; save(S); render(); toast('Plano reiniciado.'); }
+    else if (id === 'repetir-plano') { S.inicioPlano = hoje(); S.diasConcluidos = []; S.semanas = (S.semanas || 0) + 1; save(S); render(); toast('Nova semana iniciada. Bom começo!'); }
     else if (id === 'pausa-toggle') pausaToggle();
     else if (id === 'pausa-reset') pausaReset();
   });
