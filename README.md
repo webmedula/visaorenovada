@@ -11,7 +11,8 @@ Código do site (www) e do app (autoavaliação). Cada um é um serviço separad
 
 ```
 services/site/public/   HTML e JS do site (página do livro)
-services/app/public/    HTML e JS do app (autoavaliação)
+services/app/public/    app: exercícios guiados, plano de 21 dias, pausas 20-20-20 e autoavaliação (/avaliacao)
+services/app/public/assets/exercicios.js   conteúdo dos exercícios e do plano (edite aqui para ajustar ao livro)
 shared/                 CSS e logo usados pelos dois (copiados para /assets no build)
 docker-compose.yml      só para testar localmente
 ```
@@ -56,4 +57,4 @@ docker compose up --build
 
 ## Pendências de conteúdo
 
-Os itens marcados em amarelo na página são exemplos: preço, link do checkout (`data-checkout`), autor, depoimentos, capítulos/bônus e CNPJ. Também faltam as páginas de política de privacidade e termos de uso.
+Os exercícios do app são exemplos de práticas de relaxamento visual e devem ser ajustados ao conteúdo do livro (`services/app/public/assets/exercicios.js`). Na página do site, os itens marcados em amarelo são exemplos: preço, link do checkout (`data-checkout`), autor, depoimentos, capítulos/bônus e CNPJ. Também faltam as páginas de política de privacidade e termos de uso.

@@ -1,89 +1,314 @@
-(function(){
-  const QUESTIONS = [
-    {q:"Quantas horas por dia você passa em frente a telas (somando computador, celular e TV)?", key:"tempo",
-     o:["Menos de 4 horas","De 4 a 6 horas","De 6 a 9 horas","Mais de 9 horas"]},
-    {q:"Com que frequência você faz pausas para tirar os olhos da tela?", key:"pausas",
-     o:["A cada 20 a 30 minutos","Mais ou menos a cada hora","Só de vez em quando","Quase nunca"]},
-    {q:"Seus olhos ficam secos, ardendo ou vermelhos durante ou depois do uso de telas?", key:"secura",
-     o:["Nunca","Raramente","Algumas vezes por semana","Quase todos os dias"]},
-    {q:"Você sente a visão embaçada ou dificuldade de focar no fim do dia?", key:"foco",
-     o:["Nunca","Raramente","Algumas vezes por semana","Quase todos os dias"]},
-    {q:"Você tem dor de cabeça ou peso na testa depois de muito tempo de tela?", key:"cabeca",
-     o:["Nunca","Raramente","Algumas vezes por semana","Quase todos os dias"]},
-    {q:"Qual a distância entre seus olhos e a tela do computador?", key:"distancia",
-     o:["Mais ou menos um braço (50 a 70 cm)","Um pouco menos que um braço","Bem perto (menos de 40 cm)","Não sei / uso mais o celular, bem perto do rosto"]},
-    {q:"Como é a iluminação quando você usa telas?", key:"luz",
-     o:["Ambiente bem iluminado, sem reflexo na tela","Às vezes tem reflexo ou luz forte atrás","Costumo usar telas com pouca luz","Uso muito no escuro, inclusive na cama"]},
-    {q:"Quando foi sua última consulta com oftalmologista?", key:"consulta",
-     o:["Há menos de 1 ano","Entre 1 e 2 anos","Há mais de 2 anos","Nunca fui ou não lembro"]}
-  ];
-  const TIPS = {
-    tempo:{t:"Reduza a carga de tela onde der",d:"Troque parte das tarefas por áudio ou papel e evite telas na última hora antes de dormir."},
-    pausas:{t:"Use a regra 20-20-20",d:"A cada 20 minutos, olhe para algo a cerca de 6 metros de distância por 20 segundos. Um lembrete no celular ajuda a criar o hábito."},
-    secura:{t:"Pisque de propósito",d:"Diante da tela piscamos menos. Faça séries de piscadas completas e lentas, beba água e evite vento ou ar-condicionado direto no rosto."},
-    foco:{t:"Relaxe o foco ao longo do dia",d:"Alterne o olhar entre um ponto perto e um ponto longe por alguns minutos. Isso ajuda a soltar a tensão do foco prolongado."},
-    cabeca:{t:"Ajuste brilho e tamanho da letra",d:"Deixe o brilho da tela parecido com o do ambiente e aumente a fonte para não forçar a vista. Se a dor for frequente, converse com um médico."},
-    distancia:{t:"Afaste a tela",d:"Mantenha o monitor a cerca de um braço de distância e com o topo na altura dos olhos ou um pouco abaixo. No celular, evite segurar muito perto do rosto."},
-    luz:{t:"Cuide da iluminação",d:"Evite usar telas no escuro e posicione o monitor de lado para janelas, sem reflexos. Luz ambiente suave reduz o esforço visual."},
-    consulta:{t:"Agende uma consulta",d:"Um exame com oftalmologista verifica se você precisa de óculos ou de ajuste no grau, o que faz grande diferença no conforto."}
-  };
-  const el = document.getElementById('quiz');
-  let step = -1, answers = [];
+/* App Visão Renovada: rotas, estado local e player de exercícios guiados. */
+(function () {
+  'use strict';
+  const EX = window.VR_EXERCICIOS || [];
+  const PLANO = window.VR_PLANO || [];
+  const byId = Object.fromEntries(EX.map(e => [e.id, e]));
+  const $ = (s, r = document) => r.querySelector(s);
+  const app = $('#app');
+  const player = $('#player');
 
-  function intro(){
-    el.innerHTML = `
-      <h3 style="font-family:Inter,sans-serif;font-weight:600;font-size:1.3rem;margin-bottom:10px">Autoavaliação de conforto visual</h3>
-      <ul class="intro-list" style="text-align:left">
-        <li>8 perguntas de múltipla escolha</li>
-        <li>Resultado imediato com dicas para a sua rotina</li>
-        <li>Ferramenta educativa, não é diagnóstico médico</li>
-      </ul>
-      <button class="btn btn-primary" id="start">Começar agora</button>`;
-    document.getElementById('start').onclick = ()=>{step=0;render(true)};
+  /* ---------- Estado (fica só no navegador da pessoa) ---------- */
+  const KEY = 'vr-estado-v1';
+  const hoje = () => new Date().toISOString().slice(0, 10);
+  function load() {
+    try { return Object.assign({ feitos: {}, inicioPlano: null, diasConcluidos: [] }, JSON.parse(localStorage.getItem(KEY) || '{}')); }
+    catch { return { feitos: {}, inicioPlano: null, diasConcluidos: [] }; }
+  }
+  function save(s) { try { localStorage.setItem(KEY, JSON.stringify(s)); } catch { /* modo privado etc. */ } }
+  let S = load();
+
+  function feitosHoje() { return S.feitos[hoje()] || []; }
+  function marcarFeito(id) {
+    const d = hoje();
+    S.feitos[d] = Array.from(new Set([...(S.feitos[d] || []), id]));
+    // conclui o dia do plano se todos os exercícios do dia foram feitos
+    const dia = diaAtual();
+    if (dia && dia.ex.every(x => S.feitos[d].includes(x)) && !S.diasConcluidos.includes(dia.dia)) S.diasConcluidos.push(dia.dia);
+    save(S);
+  }
+  function diasSeguidos() {
+    let n = 0; const dt = new Date();
+    for (;;) {
+      const k = dt.toISOString().slice(0, 10);
+      if ((S.feitos[k] || []).length) { n++; dt.setDate(dt.getDate() - 1); } else break;
+      if (n > 365) break;
+    }
+    return n;
+  }
+  function diaAtual() {
+    if (!S.inicioPlano) return null;
+    const n = Math.min(S.diasConcluidos.length + 1, 21);
+    return PLANO[n - 1];
   }
 
-  function render(focus){
-    if(step<0) return intro();
-    if(step>=QUESTIONS.length) return result();
-    const Q = QUESTIONS[step];
-    el.innerHTML = `
-      <div class="quiz-top"><span>Pergunta ${step+1} de ${QUESTIONS.length}</span><span>${Math.round(step/QUESTIONS.length*100)}%</span></div>
-      <div class="bar"><i style="width:${step/QUESTIONS.length*100}%"></i></div>
-      <div class="q" style="text-align:left"><h3 id="qt" tabindex="-1">${Q.q}</h3>
-        <div class="opts" role="group" aria-labelledby="qt">${Q.o.map((o,i)=>`<button class="opt" data-v="${i}">${o}</button>`).join('')}</div>
-      </div>
-      <div class="quiz-nav">${step>0?'<button class="linkbtn" id="back">← Voltar</button>':'<span></span>'}<span></span></div>`;
-    el.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{answers[step]=+b.dataset.v;step++;render(true)});
-    const back=document.getElementById('back'); if(back) back.onclick=()=>{step--;render(true)};
-    if(focus) document.getElementById('qt').focus({preventScroll:true});
+  /* ---------- Utilidades ---------- */
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const fmt = sec => `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, '0')}`;
+  const total = ex => ex.steps.reduce((a, b) => a + b.s, 0);
+  let toastT;
+  function toast(msg) {
+    let t = $('.toast'); if (!t) { t = document.createElement('div'); t.className = 'toast'; document.body.appendChild(t); }
+    t.textContent = msg; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('show'), 2600);
+  }
+  function beep() {
+    try {
+      const ctx = beep.ctx || (beep.ctx = new (window.AudioContext || window.webkitAudioContext)());
+      const o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = 'sine'; o.frequency.value = 660; g.gain.value = 0.0001;
+      o.connect(g); g.connect(ctx.destination); o.start();
+      g.gain.exponentialRampToValueAtTime(0.2, ctx.currentTime + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.5);
+      o.stop(ctx.currentTime + 0.55);
+    } catch { /* sem áudio */ }
   }
 
-  function result(){
-    const total = answers.reduce((a,b)=>a+b,0), max = QUESTIONS.length*3, pct = total/max;
-    let lv,cls,txt;
-    if(pct<.3){lv="Conforto visual bom";cls="lv-ok";txt="Seus hábitos já ajudam bastante. Alguns ajustes podem deixar seus olhos ainda mais descansados."}
-    else if(pct<.6){lv="Sinais de cansaço visual";cls="lv-mid";txt="Sua rotina está cobrando um preço dos seus olhos. A boa notícia é que mudanças simples costumam trazer alívio rápido."}
-    else {lv="Seus olhos pedem atenção";cls="lv-high";txt="Você tem vários sinais de fadiga visual digital. Vale ajustar a rotina já e conversar com um oftalmologista."}
-    const ranked = QUESTIONS.map((Q,i)=>({k:Q.key,v:answers[i]})).filter(x=>x.v>=2).sort((a,b)=>b.v-a.v).slice(0,3);
-    const tips = (ranked.length?ranked:[{k:'pausas'},{k:'secura'}]).map(x=>TIPS[x.k]);
-    const symptomHigh = answers[3]===3 || answers[4]===3;
-    el.innerHTML = `
-      <div style="text-align:left">
-        <span class="result-level ${cls}">${lv}</span>
-        <h3 style="font-family:Inter,sans-serif;font-weight:600;font-size:1.35rem">${txt}</h3>
-        <div class="gauge" aria-hidden="true"><small>Bom</small><div class="track"><span class="dot" style="left:0%"></span></div><small>Atenção</small></div>
-        <p style="font-weight:600;margin-bottom:6px">Suas ${tips.length} prioridades:</p>
-        <div class="tips">${tips.map(t=>`<div class="tip"><b>${t.t}</b>${t.d}</div>`).join('')}</div>
-        <div class="result-cta">
-          <div><b>Quer o passo a passo completo?</b><br><span style="color:var(--muted);font-size:.95rem">O livro traz o plano de 21 dias, os exercícios e o checklist do ambiente.</span></div>
-          <a class="btn btn-primary" href="https://www.visaorenovada.com.br/#oferta">Conhecer o livro</a>
+  function exCard(ex, opts = {}) {
+    const done = feitosHoje().includes(ex.id);
+    return `
+      <div class="card ex-item ${done ? 'is-done' : ''}" role="button" tabindex="0" data-ex="${ex.id}" aria-label="Iniciar ${esc(ex.nome)}">
+        <div class="ico" aria-hidden="true">${ex.ico}</div>
+        <div class="meta">
+          <div class="row space" style="gap:6px"><h3 style="margin:0">${esc(ex.nome)}</h3>${done ? '<span class="done">✓ feito hoje</span>' : ''}</div>
+          <p>${esc(opts.curto ? ex.tag : ex.resumo)} · <b>${ex.min} min</b></p>
         </div>
-        ${symptomHigh?`<div class="redflag"><b>Atenção:</b> sintomas que aparecem quase todos os dias merecem avaliação de um oftalmologista, principalmente se forem novos ou estiverem piorando.</div>`:''}
-        <p style="margin-top:18px;font-size:.85rem;color:var(--muted)">Resultado educativo, baseado apenas nas suas respostas. Não é diagnóstico. <button class="linkbtn" id="redo">Refazer a autoavaliação</button></p>
+        <span class="btn btn-primary" style="padding:10px 16px;font-size:.9rem;flex:none">Iniciar</span>
       </div>`;
-    requestAnimationFrame(()=>requestAnimationFrame(()=>{el.querySelector('.dot').style.left=(pct*100)+'%'}));
-    document.getElementById('redo').onclick=()=>{answers=[];step=0;render(true)};
   }
-  intro();
 
+  /* ---------- Telas ---------- */
+  const views = {
+    inicio() {
+      const dia = diaAtual();
+      const feitos = feitosHoje();
+      const seq = diasSeguidos();
+      const sugeridos = dia ? dia.ex.map(id => byId[id]).filter(Boolean) : [byId['piscar'], byId['olhar-longe']].filter(Boolean);
+      const faltam = sugeridos.filter(e => !feitos.includes(e.id));
+      return `
+        <section class="hero-card">
+          <span class="chip gold">${dia ? `Dia ${dia.dia} de 21` : 'Bem-vindo(a)'}</span>
+          <h2 style="margin-top:12px">${faltam.length ? (dia ? 'Sua prática de hoje' : 'Que tal começar com 4 minutos?') : 'Prática de hoje concluída 🎉'}</h2>
+          <p>${dia ? esc(dia.dica) : 'Exercícios curtos e guiados para aliviar o cansaço visual. Comece por onde quiser.'}</p>
+          <div class="row" style="margin-top:18px">
+            ${faltam.length ? `<button class="btn btn-primary" data-ex="${faltam[0].id}">▶ Iniciar ${esc(faltam[0].nome)}</button>` : ''}
+            ${!dia ? '<a class="btn btn-ghost" style="border-color:#cfe4de;color:#fff" href="#plano">Ver o plano de 21 dias</a>' : ''}
+          </div>
+          <div class="streak" title="Dias seguidos de prática">${Array.from({ length: 7 }, (_, i) => `<span class="${i < Math.min(seq, 7) ? 'on' : ''}"></span>`).join('')}<small style="margin-left:6px;color:#cfe4de">${seq} ${seq === 1 ? 'dia seguido' : 'dias seguidos'}</small></div>
+        </section>
+
+        <h2 class="mt" style="font-size:1.35rem">${dia ? 'Exercícios de hoje' : 'Sugestões para começar'}</h2>
+        <div class="grid">${sugeridos.map(e => exCard(e)).join('')}</div>
+
+        <h2 class="mt" style="font-size:1.35rem">Pausa rápida</h2>
+        <div class="grid grid-2">
+          <a class="card" href="#pausas" style="text-decoration:none;color:inherit">
+            <h3>⏱️ Lembrete 20-20-20</h3><p>A cada 20 minutos, 20 segundos olhando para algo a 6 metros. Deixe o cronômetro aberto enquanto trabalha.</p>
+          </a>
+          <a class="card" href="/avaliacao" style="text-decoration:none;color:inherit">
+            <h3>📋 Autoavaliação</h3><p>Refaça o teste de conforto visual e compare com o resultado anterior.</p>
+          </a>
+        </div>`;
+    },
+
+    exercicios() {
+      return `
+        <div class="page-head">
+          <h1>Exercícios <span class="ph-tag">exemplos: ajustar ao livro</span></h1>
+          <p class="lead">Rotinas guiadas de 2 a 4 minutos. Escolha pelo que você está sentindo agora.</p>
+        </div>
+        <div class="grid">${EX.map(e => exCard(e)).join('')}</div>`;
+    },
+
+    plano() {
+      if (!S.inicioPlano) {
+        return `
+          <div class="page-head">
+            <h1>Plano de 21 dias</h1>
+            <p class="lead">Três semanas de prática guiada para transformar os cuidados com os olhos em hábito. Cada dia leva de 5 a 8 minutos.</p>
+          </div>
+          <div class="grid grid-3">
+            <div class="card"><h3>Semana 1 · Base</h3><p>Piscar, descanso no escuro e pausas. Você aprende o básico e ajusta o ambiente.</p></div>
+            <div class="card"><h3>Semana 2 · Mobilidade</h3><p>Foco perto e longe e movimentos oculares entram na rotina.</p></div>
+            <div class="card"><h3>Semana 3 · Hábito</h3><p>Rotina completa e mais olhar ao horizonte, para fixar o costume.</p></div>
+          </div>
+          <div class="mt center"><button class="btn btn-primary" id="comecar-plano">Começar o plano hoje</button>
+          <p class="small mt">Seu progresso fica salvo neste navegador. O plano avança um dia a cada prática concluída.</p></div>`;
+      }
+      const atual = diaAtual();
+      const semanas = [1, 2, 3].map(w => `
+        <div class="week-title">Semana ${w}</div>
+        <div class="days">${PLANO.filter(p => p.semana === w).map(p => {
+          const done = S.diasConcluidos.includes(p.dia), today = atual && atual.dia === p.dia;
+          return `<div class="day ${done ? 'done' : ''} ${today ? 'today' : ''} ${!done && !today ? 'lock' : ''}" title="Dia ${p.dia}">${done ? '✓' : p.dia}</div>`;
+        }).join('')}</div>`).join('');
+      const concluido = S.diasConcluidos.length >= 21;
+      return `
+        <div class="page-head">
+          <span class="chip">${S.diasConcluidos.length} de 21 dias concluídos</span>
+          <h1 style="margin-top:10px">${concluido ? 'Plano concluído! 🎉' : `Dia ${atual.dia}: ${atual.ex.map(id => byId[id] ? byId[id].nome : id).join(' + ')}`}</h1>
+          <p class="lead">${concluido ? 'Você completou os 21 dias. Continue com os exercícios livres ou recomece o plano.' : esc(atual.dica)}</p>
+        </div>
+        ${concluido ? '' : `<div class="grid">${atual.ex.map(id => byId[id]).filter(Boolean).map(e => exCard(e, { curto: true })).join('')}</div>`}
+        ${semanas}
+        <p class="small mt"><button class="linkbtn" id="reiniciar-plano">Reiniciar o plano</button></p>`;
+    },
+
+    pausas() {
+      return `
+        <div class="page-head">
+          <h1>Pausas 20-20-20</h1>
+          <p class="lead">Deixe esta tela aberta enquanto trabalha. A cada 20 minutos ela avisa: olhe para algo a 6 metros por 20 segundos.</p>
+        </div>
+        <div class="card center" id="pausa-card">
+          <div class="ring">
+            <svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="52"/><circle class="fg" id="ring-fg" cx="60" cy="60" r="52" stroke-dasharray="326.7" stroke-dashoffset="0"/></svg>
+            <div class="lbl"><div><div class="timer-big" id="pausa-tempo">20:00</div><small id="pausa-fase">até a próxima pausa</small></div></div>
+          </div>
+          <div class="row" style="justify-content:center">
+            <button class="btn btn-primary" id="pausa-toggle">Iniciar</button>
+            <button class="btn btn-ghost" id="pausa-reset">Zerar</button>
+          </div>
+          <p class="small mt" id="pausa-notif"></p>
+        </div>
+        <div class="grid grid-2 mt">
+          <div class="card"><h3>Por que 20-20-20?</h3><p>Focar perto por muito tempo cansa o músculo do foco e reduz o piscar. Olhar longe por 20 segundos relaxa os dois.</p></div>
+          <div class="card"><h3>Dica</h3><p>Aproveite a pausa para piscar devagar e beber um gole de água. Se puder, levante-se.</p></div>
+        </div>`;
+    }
+  };
+
+  /* ---------- Pausas: cronômetro ---------- */
+  const P = { on: false, fase: 'trabalho', rest: 20 * 60, t: null };
+  const TRAB = 20 * 60, PAUSA = 20;
+  function pausaTick() {
+    P.rest--;
+    if (P.rest <= 0) {
+      beep();
+      if (P.fase === 'trabalho') { P.fase = 'pausa'; P.rest = PAUSA; notificar('Hora da pausa 👀', 'Olhe para algo a 6 metros por 20 segundos.'); }
+      else { P.fase = 'trabalho'; P.rest = TRAB; }
+    }
+    pausaRender();
+  }
+  function pausaRender() {
+    const tempo = $('#pausa-tempo'); if (!tempo) return;
+    tempo.textContent = fmt(P.rest);
+    $('#pausa-fase').textContent = P.fase === 'trabalho' ? 'até a próxima pausa' : 'olhe para longe!';
+    const tot = P.fase === 'trabalho' ? TRAB : PAUSA;
+    $('#ring-fg').style.strokeDashoffset = (326.7 * (1 - P.rest / tot)).toFixed(1);
+    $('#ring-fg').style.stroke = P.fase === 'trabalho' ? 'var(--brand-2)' : 'var(--accent)';
+    $('#pausa-toggle').textContent = P.on ? 'Pausar' : (P.rest === TRAB && P.fase === 'trabalho' ? 'Iniciar' : 'Continuar');
+  }
+  function pausaToggle() {
+    P.on = !P.on;
+    if (P.on) { P.t = setInterval(pausaTick, 1000); pedirNotificacao(); } else clearInterval(P.t);
+    pausaRender();
+  }
+  function pausaReset() { clearInterval(P.t); Object.assign(P, { on: false, fase: 'trabalho', rest: TRAB }); pausaRender(); }
+  function pedirNotificacao() {
+    if (!('Notification' in window)) return;
+    if (Notification.permission === 'default') Notification.requestPermission().then(() => notifStatus());
+    notifStatus();
+  }
+  function notifStatus() {
+    const el = $('#pausa-notif'); if (!el) return;
+    if (!('Notification' in window)) el.textContent = 'Seu navegador não mostra notificações; mantenha esta aba visível para ouvir o aviso.';
+    else if (Notification.permission === 'granted') el.textContent = 'Você será avisado(a) por notificação e som, mesmo em outra aba.';
+    else if (Notification.permission === 'denied') el.textContent = 'Notificações bloqueadas. O aviso será só por som nesta aba.';
+    else el.textContent = 'Ao iniciar, o navegador pedirá permissão para avisar você em outra aba.';
+  }
+  function notificar(t, b) {
+    try { if ('Notification' in window && Notification.permission === 'granted') new Notification(t, { body: b, icon: '/assets/logo.svg' }); } catch { /* ignora */ }
+  }
+
+  /* ---------- Player de exercício guiado ---------- */
+  const PL = { ex: null, i: 0, rest: 0, t: null, paused: false };
+  function abrirPlayer(id) {
+    const ex = byId[id]; if (!ex) return;
+    Object.assign(PL, { ex, i: 0, rest: ex.steps[0].s, paused: false });
+    player.hidden = false; document.body.style.overflow = 'hidden';
+    renderPlayer(); iniciarTimer();
+    try { beep.ctx && beep.ctx.resume(); } catch { /* ignora */ }
+  }
+  function fecharPlayer() {
+    clearInterval(PL.t); player.hidden = true; document.body.style.overflow = ''; PL.ex = null;
+  }
+  function iniciarTimer() { clearInterval(PL.t); PL.t = setInterval(() => { if (PL.paused) return; PL.rest--; if (PL.rest <= 0) proximoPasso(); else atualizarContador(); }, 1000); }
+  function proximoPasso() {
+    PL.i++;
+    if (PL.i >= PL.ex.steps.length) { clearInterval(PL.t); beep(); marcarFeito(PL.ex.id); renderConclusao(); return; }
+    beep(); PL.rest = PL.ex.steps[PL.i].s; renderPlayer();
+  }
+  function atualizarContador() {
+    const c = $('.count', player); if (c) c.textContent = fmt(PL.rest);
+    const st = PL.ex.steps[PL.i];
+    const b = player.querySelectorAll('.player-steps i b')[PL.i]; if (b) b.style.width = ((1 - PL.rest / st.s) * 100) + '%';
+  }
+  function renderPlayer() {
+    const ex = PL.ex, st = ex.steps[PL.i];
+    player.innerHTML = `
+      <div class="player-top">
+        <h2>${ex.ico} ${esc(ex.nome)}</h2>
+        <button class="player-close" aria-label="Fechar exercício" data-act="fechar">✕</button>
+      </div>
+      <div class="player-steps" aria-hidden="true">${ex.steps.map((s, i) => `<i class="${i < PL.i ? 'done' : ''}"><b></b></i>`).join('')}</div>
+      <div class="small" style="color:#9fbfb8">Passo ${PL.i + 1} de ${ex.steps.length}</div>
+      <div class="stage">
+        ${st.scene ? `<div class="scene ${st.scene}" style="--spd:${st.spd || '4s'}" aria-hidden="true"><div class="dot"></div></div>` : ''}
+        <h3>${esc(st.t)}</h3>
+        <p>${esc(st.d)}</p>
+        <div class="count" aria-label="Tempo restante do passo">${fmt(PL.rest)}</div>
+      </div>
+      <div class="player-actions">
+        <button class="btn btn-ghost" data-act="pausar">${PL.paused ? '▶ Continuar' : '❚❚ Pausar'}</button>
+        <button class="btn btn-ghost" data-act="pular">Pular passo →</button>
+      </div>`;
+  }
+  function renderConclusao() {
+    const ex = PL.ex, dia = diaAtual();
+    const concluiuDia = dia && S.diasConcluidos.includes(dia.dia) && dia.ex.includes(ex.id);
+    player.innerHTML = `
+      <div class="player-top"><h2>Concluído</h2><button class="player-close" aria-label="Fechar" data-act="fechar">✕</button></div>
+      <div class="stage">
+        <div class="celebrate">🎉</div>
+        <h3>${esc(ex.nome)} feito!</h3>
+        <p>${concluiuDia ? `Você concluiu o dia ${dia.dia} do plano. Até amanhã!` : 'Perceba como seus olhos estão agora. Pequenas pausas, grande diferença.'}</p>
+        <p class="small" style="color:#9fbfb8">${esc(ex.beneficio)}</p>
+      </div>
+      <div class="player-actions">
+        <button class="btn btn-primary" data-act="fechar">Voltar</button>
+        <button class="btn btn-ghost" data-act="repetir">Repetir</button>
+      </div>`;
+  }
+  player.addEventListener('click', e => {
+    const b = e.target.closest('[data-act]'); if (!b) return;
+    const a = b.dataset.act;
+    if (a === 'fechar') { fecharPlayer(); render(); }
+    else if (a === 'pausar') { PL.paused = !PL.paused; b.textContent = PL.paused ? '▶ Continuar' : '❚❚ Pausar'; }
+    else if (a === 'pular') { proximoPasso(); }
+    else if (a === 'repetir') { abrirPlayer(PL.ex.id); }
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !player.hidden) { fecharPlayer(); render(); } });
+
+  /* ---------- Rotas ---------- */
+  function rota() { const h = (location.hash || '#inicio').slice(1); return views[h] ? h : 'inicio'; }
+  function render() {
+    const r = rota();
+    app.innerHTML = views[r]();
+    document.querySelectorAll('[data-nav]').forEach(a => { if (a.dataset.nav === r) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+    if (r === 'pausas') { pausaRender(); notifStatus(); }
+    window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+  }
+  app.addEventListener('click', e => {
+    const ex = e.target.closest('[data-ex]'); if (ex) { abrirPlayer(ex.dataset.ex); return; }
+    const id = e.target.id;
+    if (id === 'comecar-plano') { S.inicioPlano = hoje(); save(S); render(); toast('Plano iniciado. Bom começo!'); }
+    else if (id === 'reiniciar-plano') { S.inicioPlano = hoje(); S.diasConcluidos = []; save(S); render(); toast('Plano reiniciado.'); }
+    else if (id === 'pausa-toggle') pausaToggle();
+    else if (id === 'pausa-reset') pausaReset();
+  });
+  app.addEventListener('keydown', e => {
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[data-ex][role=button]')) { e.preventDefault(); abrirPlayer(e.target.dataset.ex); }
+  });
+  window.addEventListener('hashchange', render);
+  render();
 })();

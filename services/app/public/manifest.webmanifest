@@ -1,0 +1,13 @@
+{
+  "name": "Visão Renovada",
+  "short_name": "Visão Renovada",
+  "description": "Exercícios guiados e plano de 21 dias para olhos cansados de tela.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7f4ee",
+  "theme_color": "#0f5c5a",
+  "lang": "pt-BR",
+  "icons": [
+    { "src": "/assets/logo.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

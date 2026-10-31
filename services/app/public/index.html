@@ -2,57 +2,60 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Autoavaliação de conforto visual | Visão Renovada</title>
-<meta name="description" content="Descubra em 2 minutos como seus hábitos de tela afetam o conforto dos seus olhos. Autoavaliação educativa e gratuita, com dicas personalizadas.">
-<meta property="og:title" content="Autoavaliação de conforto visual | Visão Renovada">
-<meta property="og:description" content="8 perguntas, resultado na hora e dicas para a sua rotina. Grátis.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Visão Renovada | Exercícios guiados para olhos cansados</title>
+<meta name="description" content="Pratique os exercícios do Método Visão Renovada com rotinas guiadas de poucos minutos, plano de 21 dias e lembretes de pausa.">
+<meta property="og:title" content="Visão Renovada | Exercícios guiados">
+<meta property="og:description" content="Rotinas guiadas de poucos minutos, plano de 21 dias e lembretes de pausa para olhos cansados de tela.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://app.visaorenovada.com.br/">
 <link rel="canonical" href="https://app.visaorenovada.com.br/">
+<meta name="theme-color" content="#0f5c5a">
 <link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/logo.svg">
+<link rel="manifest" href="/manifest.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/base.css">
-<style>
-body{min-height:100vh;display:flex;flex-direction:column}
-main{flex:1}
-.app-hero{padding:48px 0 72px}
-.app-hero .quiz{margin-top:28px}
-</style>
+<link rel="stylesheet" href="/assets/app.css">
 </head>
 <body>
 <header>
   <div class="wrap nav">
-    <a class="logo" href="https://www.visaorenovada.com.br/" aria-label="Visão Renovada, site principal">
+    <a class="logo" href="#inicio" aria-label="Visão Renovada, início">
       <img src="/assets/logo.svg" width="30" height="30" alt="">
       Visão Renovada
     </a>
-    <nav class="nav-links">
-      <a href="https://www.visaorenovada.com.br/#metodo">O método</a>
-      <a class="btn btn-dark" href="https://www.visaorenovada.com.br/#oferta">Conhecer o livro</a>
+    <nav class="nav-links app-nav" aria-label="Seções do app">
+      <a href="#inicio" data-nav="inicio">Hoje</a>
+      <a href="#exercicios" data-nav="exercicios">Exercícios</a>
+      <a href="#plano" data-nav="plano">Plano 21 dias</a>
+      <a href="#pausas" data-nav="pausas">Pausas</a>
+      <a class="btn btn-dark" href="/avaliacao">Autoavaliação</a>
     </nav>
   </div>
 </header>
 
-<main>
-<section class="band app-hero">
-  <div class="wrap center">
-    <span class="eyebrow" style="color:#f3c77e">Grátis · 2 minutos</span>
-    <h1 style="color:#fff">Como está o conforto dos seus olhos?</h1>
-    <p class="lead">Responda 8 perguntas rápidas sobre sua rotina e receba na hora um resultado com dicas personalizadas. Nenhum dado é enviado ou salvo.</p>
-    <div class="quiz" id="quiz" aria-live="polite"></div>
-  </div>
-</section>
-</main>
+<main id="app" class="wrap app-main" aria-live="polite"></main>
 
-<footer style="padding:32px 0">
+<nav class="tabbar" aria-label="Navegação principal">
+  <a href="#inicio" data-nav="inicio"><span class="ico">☀️</span>Hoje</a>
+  <a href="#exercicios" data-nav="exercicios"><span class="ico">👁️</span>Exercícios</a>
+  <a href="#plano" data-nav="plano"><span class="ico">📅</span>Plano</a>
+  <a href="#pausas" data-nav="pausas"><span class="ico">⏱️</span>Pausas</a>
+</nav>
+
+<footer class="app-footer">
   <div class="wrap">
-    <p class="disclaimer" style="margin:0;border:0;padding:0"><b>Aviso importante:</b> esta autoavaliação é educativa e não substitui consulta, diagnóstico ou tratamento com oftalmologista. Se você tiver perda súbita de visão, dor forte no olho, flashes de luz, muitas “moscas volantes” novas ou visão dupla, procure atendimento médico imediatamente.</p>
-    <p style="margin:16px 0 0;font-size:.82rem"><a href="https://www.visaorenovada.com.br/">visaorenovada.com.br</a> · <a href="https://www.visaorenovada.com.br/privacidade">Política de privacidade</a></p>
+    <p class="disclaimer" style="margin:0;border:0;padding:0"><b>Aviso importante:</b> os exercícios são práticas de conforto e relaxamento visual. Eles não tratam doenças, não corrigem grau e não substituem consulta com oftalmologista. Pare se sentir dor ou tontura. Se tiver perda súbita de visão, dor forte no olho, flashes de luz, muitas “moscas volantes” novas ou visão dupla, procure atendimento médico imediatamente.</p>
+    <p style="margin:16px 0 0;font-size:.82rem"><a href="https://www.visaorenovada.com.br/">visaorenovada.com.br</a> · <a href="https://www.visaorenovada.com.br/#oferta">Conhecer o livro</a> · <a href="https://www.visaorenovada.com.br/privacidade">Política de privacidade</a></p>
   </div>
 </footer>
+
+<div class="player" id="player" hidden></div>
+
+<script src="/assets/exercicios.js" defer></script>
 <script src="/assets/app.js" defer></script>
 </body>
 </html>
