@@ -1,40 +1,18 @@
+# Apenas para testar no seu computador.
+# Em produção, cada serviço roda como um App separado no Easypanel (veja o README).
 name: visaorenovada
 
 services:
-  caddy:
-    image: caddy:2-alpine
-    restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-      - "443:443/udp"
-    environment:
-      DOMAIN: ${DOMAIN:?defina DOMAIN no .env}
-      ACME_EMAIL: ${ACME_EMAIL:?defina ACME_EMAIL no .env}
-    volumes:
-      - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
-      - caddy_data:/data
-      - caddy_config:/config
-    depends_on:
-      - site
-      - app
-
   site:
     build:
       context: .
       dockerfile: services/site/Dockerfile
-    restart: unless-stopped
-    expose:
-      - "80"
+    ports:
+      - "8081:80"
 
   app:
     build:
       context: .
       dockerfile: services/app/Dockerfile
-    restart: unless-stopped
-    expose:
-      - "80"
-
-volumes:
-  caddy_data:
-  caddy_config:
+    ports:
+      - "8082:80"
