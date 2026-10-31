@@ -1,56 +1,57 @@
 # Visão Renovada
 
-Código do site (www) e do app (autoavaliação), prontos para rodar em uma VPS com Docker.
+Código do site (www) e do app (autoavaliação). Cada um é um serviço separado, publicado na VPS pelo **Easypanel**.
 
 ## Serviços
 
-| Serviço | Endereço | O que é |
+| Serviço | Domínio | Dockerfile | Porta |
+|---|---|---|---|
+| `site` | www.visaorenovada.com.br (+ visaorenovada.com.br, que redireciona para www) | `services/site/Dockerfile` | 80 |
+| `app` | app.visaorenovada.com.br | `services/app/Dockerfile` | 80 |
+
+```
+services/site/public/   HTML e JS do site (página do livro)
+services/app/public/    HTML e JS do app (autoavaliação)
+shared/                 CSS e logo usados pelos dois (copiados para /assets no build)
+docker-compose.yml      só para testar localmente
+```
+
+O HTTPS e o roteamento dos domínios ficam com o Easypanel.
+
+## 1. DNS
+
+No painel onde o domínio está registrado (Registro.br, Cloudflare, etc.), crie três registros **A** apontando para o IP da VPS `31.97.87.68`:
+
+| Nome | Tipo | Valor |
 |---|---|---|
-| `site` | https://www.visaorenovada.com.br | Página de vendas do livro (estático, nginx) |
-| `app` | https://app.visaorenovada.com.br | Autoavaliação de conforto visual (estático, nginx) |
-| `caddy` | portas 80 e 443 | Proxy reverso com HTTPS automático (Let's Encrypt) |
+| `@` (visaorenovada.com.br) | A | 31.97.87.68 |
+| `www` | A | 31.97.87.68 |
+| `app` | A | 31.97.87.68 |
 
-O domínio sem `www` redireciona para `www`.
+Se o domínio estiver na Cloudflare, deixe o proxy (nuvem laranja) **desligado** até o certificado ser emitido.
 
-```
-caddy/Caddyfile            rotas e HTTPS
-services/site/public/      HTML e JS do site
-services/app/public/       HTML e JS do app
-shared/                    CSS e logo usados pelos dois (copiados para /assets no build)
-docker-compose.yml         sobe tudo
-deploy.sh                  atualiza a VPS (git pull + rebuild)
-```
+## 2. Easypanel
 
-## Colocar no ar (primeira vez)
+1. **Create Project** com o nome `visaorenovada`.
+2. Dentro do projeto, **+ Service → App** com o nome `site`:
+   - **Source → GitHub**: owner `webmedula`, repository `visaorenovada`, branch `main`, build path `/`.
+     (Se o Easypanel não listar o repositório, conecte sua conta do GitHub em Settings → GitHub.)
+   - **Build → Dockerfile**, arquivo `services/site/Dockerfile`.
+   - **Domains**: adicione `www.visaorenovada.com.br` e `visaorenovada.com.br`, ambos com HTTPS ligado e porta `80`.
+   - Clique em **Deploy**.
+3. Repita para um App chamado `app`:
+   - mesmo repositório e branch, build path `/`
+   - Dockerfile `services/app/Dockerfile`
+   - domínio `app.visaorenovada.com.br`, porta `80`
+4. Opcional: ative **Auto Deploy** em cada App para publicar sozinho a cada push no `main`.
 
-1. **DNS**: no registro do domínio, crie registros `A` apontando para o IP da VPS:
-   `visaorenovada.com.br`, `www.visaorenovada.com.br` e `app.visaorenovada.com.br`.
-2. **VPS** (Ubuntu/Debian): instale o Docker
-   ```sh
-   curl -fsSL https://get.docker.com | sh
-   ```
-   Libere as portas 80 e 443 no firewall. Se outro servidor web (Apache, nginx do painel, etc.) já usa essas portas, ele precisa ser parado ou o Caddy precisa sair do compose.
-3. **Código**:
-   ```sh
-   git clone <url-do-repositorio> /opt/visaorenovada
-   cd /opt/visaorenovada
-   cp .env.example .env   # edite o e-mail
-   docker compose up -d --build
-   ```
-4. Em 1 a 2 minutos o Caddy emite os certificados. Acompanhe com `docker compose logs -f caddy`.
-
-## Atualizar
-
-```sh
-cd /opt/visaorenovada && ./deploy.sh
-```
+Se o site antigo (WordPress) e o app antigo (Lovable) ainda usam esses domínios em outro lugar, remova os domínios de lá antes, ou mude o DNS só quando o Easypanel estiver pronto.
 
 ## Testar localmente
 
 ```sh
-docker compose build
-docker compose run --rm -p 8081:80 site   # http://localhost:8081
-docker compose run --rm -p 8082:80 app    # http://localhost:8082
+docker compose up --build
+# site: http://localhost:8081   app: http://localhost:8082
 ```
 
 ## Pendências de conteúdo
