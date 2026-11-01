@@ -72,7 +72,7 @@ button.btn{appearance:none}
 .ring .lbl small{display:block;color:var(--muted);font-size:.85rem;margin-top:4px}
 
 /* Player (exercício guiado em tela cheia) */
-.player{position:fixed;inset:0;z-index:60;background:#0b2f2e;color:#eef6f3;display:flex;flex-direction:column;padding:calc(14px + env(safe-area-inset-top)) 18px calc(18px + env(safe-area-inset-bottom))}
+.player{position:fixed;inset:0;z-index:60;background:#0b2f2e;color:#eef6f3;display:flex;flex-direction:column;padding:calc(14px + env(safe-area-inset-top)) 18px calc(18px + env(safe-area-inset-bottom));overflow-y:auto}
 .player[hidden]{display:none}
 .player-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
 .player-top h2{color:#fff;font-size:1.15rem;margin:0;font-family:Inter,sans-serif;font-weight:600}
@@ -81,16 +81,16 @@ button.btn{appearance:none}
 .player-steps i{flex:1;height:5px;border-radius:99px;background:rgba(255,255,255,.18);overflow:hidden;position:relative}
 .player-steps i b{position:absolute;inset:0;width:0;background:var(--accent)}
 .player-steps i.done b{width:100%}
-.stage{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:18px;min-height:0}
-.stage h3{color:#fff;font-size:clamp(1.3rem,4.5vw,1.9rem);font-family:Fraunces,serif;max-width:28ch}
-.stage p{color:#cfe4de;max-width:40ch;font-size:1.02rem}
-.stage .count{font-family:Fraunces,serif;font-size:clamp(2.6rem,10vw,4rem);font-weight:700;color:var(--accent);line-height:1;font-variant-numeric:tabular-nums}
-.player-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+.stage{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:clamp(8px,2vh,18px);min-height:0;padding:8px 0}
+.stage h3{color:#fff;font-size:clamp(1.2rem,3.5vh,1.9rem);font-family:Fraunces,serif;max-width:28ch;margin:0}
+.stage p{color:#cfe4de;max-width:44ch;font-size:clamp(.9rem,2.2vh,1.02rem);margin:0}
+.stage .count{font-family:Fraunces,serif;font-size:clamp(2rem,7vh,4rem);font-weight:700;color:var(--accent);line-height:1;font-variant-numeric:tabular-nums}
+.player-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:8px;flex:none}
 .player-actions .btn-ghost{border-color:rgba(255,255,255,.4);color:#fff}
 .player-actions .btn-ghost:hover{background:rgba(255,255,255,.1)}
 
 /* Cena animada dos exercícios */
-.scene{width:min(320px,80vw);aspect-ratio:1;position:relative;border-radius:50%;background:radial-gradient(circle at 50% 45%,rgba(255,255,255,.08),rgba(255,255,255,.02) 70%);border:1px solid rgba(255,255,255,.12)}
+.scene{width:min(320px,80vw,38vh);aspect-ratio:1;flex:none;container-type:size;position:relative;border-radius:50%;background:radial-gradient(circle at 50% 45%,rgba(255,255,255,.08),rgba(255,255,255,.02) 70%);border:1px solid rgba(255,255,255,.12)}
 .scene .dot{position:absolute;width:30px;height:30px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 10px rgba(232,163,61,.25),0 0 30px rgba(232,163,61,.6);left:50%;top:50%;transform:translate(-50%,-50%)}
 .scene.dir-h .dot{animation:moveH var(--spd,4s) ease-in-out infinite}
 .scene.dir-v .dot{animation:moveV var(--spd,4s) ease-in-out infinite}
@@ -110,7 +110,7 @@ button.btn{appearance:none}
 @keyframes moveDiag{0%,100%{left:15%;top:15%}50%{left:85%;top:85%}}
 @keyframes moveDiag2{0%,100%{left:85%;top:15%}50%{left:15%;top:85%}}
 @keyframes moveTri{0%,100%{left:50%;top:15%}33%{left:85%;top:80%}66%{left:15%;top:80%}}
-@keyframes moveCircle{from{transform:rotate(0deg) translateX(110px) rotate(0deg) translate(-50%,-50%)}to{transform:rotate(360deg) translateX(110px) rotate(-360deg) translate(-50%,-50%)}}
+@keyframes moveCircle{from{transform:translate(-50%,-50%) rotate(0deg) translateX(36cqmin)}to{transform:translate(-50%,-50%) rotate(360deg) translateX(36cqmin)}}
 @keyframes moveEight{0%{left:50%;top:50%}12.5%{left:80%;top:25%}25%{left:50%;top:50%}37.5%{left:20%;top:75%}50%{left:50%;top:50%}62.5%{left:20%;top:25%}75%{left:50%;top:50%}87.5%{left:80%;top:75%}100%{left:50%;top:50%}}
 @keyframes breathe{0%,100%{transform:translate(-50%,-50%) scale(.6);opacity:.7}50%{transform:translate(-50%,-50%) scale(1.8);opacity:1}}
 @keyframes nearfar{0%,100%{transform:translate(-50%,-50%) scale(1.6);filter:blur(0)}50%{transform:translate(-50%,-50%) scale(.35);filter:blur(1px)}}
