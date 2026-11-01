@@ -157,6 +157,55 @@
         <p class="small mt">${concluido ? '<button class="btn btn-primary" id="repetir-plano">Repetir a semana</button>' : '<button class="linkbtn" id="reiniciar-plano">Reiniciar o plano</button>'}</p>`;
     },
 
+    receitas() {
+      if (!R.dados) {
+        return `
+          <div class="page-head">
+            <span class="chip gold">Conteúdo exclusivo</span>
+            <h1 style="margin-top:10px">Cozinha Visão Renovada</h1>
+            <p class="lead">50 receitas, um cardápio de 30 dias e listas de compras semanais com os alimentos que fazem bem aos olhos. Área exclusiva para quem adquiriu o ebook de receitas.</p>
+          </div>
+          <div class="grid grid-2">
+            <form class="card" id="receitas-form" autocomplete="off">
+              <h3>Já tem o ebook?</h3>
+              <p class="mb">Digite o código de acesso que você recebeu na compra.</p>
+              <label class="small" for="receitas-codigo">Código de acesso</label>
+              <input id="receitas-codigo" class="input" type="text" inputmode="text" autocapitalize="characters" placeholder="Ex.: VR-2026-XXXX" required>
+              <p class="small" id="receitas-erro" style="color:var(--warn);min-height:1.2em;margin:6px 0 10px"></p>
+              <button class="btn btn-primary" type="submit" id="receitas-entrar">Acessar receitas</button>
+            </form>
+            <div class="card">
+              <h3>Ainda não tem?</h3>
+              <p class="mb">O ebook complementa o livro: 50 receitas novas de café da manhã, almoço e jantar, lanches e sucos, um mês inteiro planejado e 4 listas de compras. Dá para ler aqui no app ou baixar o PDF.</p>
+              <a class="btn btn-ghost" href="https://www.visaorenovada.com.br/#receitas">Quero o ebook de receitas</a>
+            </div>
+          </div>`;
+      }
+      const d = R.dados, aba = R.aba || 'receitas';
+      const porId = Object.fromEntries((d.receitas || []).map(r => [r.id, r]));
+      const abas = [['receitas', 'Receitas'], ['cardapio', 'Cardápio 30 dias'], ['compras', 'Listas de compras'], ['guia', 'Guia dos nutrientes']];
+      let corpo = '';
+      if (aba === 'receitas') corpo = receitasLista(d);
+      else if (aba === 'cardapio') corpo = receitasCardapio(d, porId);
+      else if (aba === 'compras') corpo = receitasCompras(d);
+      else corpo = receitasGuia(d);
+      return `
+        <div class="page-head">
+          <span class="chip gold">${esc(d.subtitulo || 'Ebook de receitas')}</span>
+          <h1 style="margin-top:10px">${esc(d.titulo)}</h1>
+          <p class="lead">${esc(d.introducao || '')}</p>
+          <div class="row mt">
+            ${d.pdf ? `<button class="btn btn-primary" id="receitas-pdf">⬇ Baixar o ebook em PDF</button>` : `<span class="chip gray">PDF em breve</span>`}
+            <button class="linkbtn" id="receitas-sair">Sair da área exclusiva</button>
+          </div>
+        </div>
+        <div class="row mb subtabs" role="tablist" aria-label="Seções do ebook">
+          ${abas.map(([id, nome]) => `<button class="chip-btn ${aba === id ? 'on' : ''}" role="tab" aria-selected="${aba === id}" data-aba="${id}">${nome}</button>`).join('')}
+        </div>
+        ${corpo}
+        <p class="small mt">${esc(d.aviso || '')}</p>`;
+    },
+
     pausas() {
       return `
         <div class="page-head">
@@ -180,6 +229,147 @@
         </div>`;
     }
   };
+
+
+  /* ---------- Receitas: blocos da área exclusiva ---------- */
+  function receitaMeta(r) {
+    const tempo = r.tempo || (r.tempo_min ? `${r.tempo_min} min` : '');
+    const rend = r.rendimento || (r.porcoes ? `${r.porcoes} ${r.porcoes > 1 ? 'porções' : 'porção'}` : '');
+    return [tempo ? `⏱ ${esc(tempo)}` : '', rend ? `🍽 ${esc(rend)}` : '', r.dificuldade ? esc(r.dificuldade) : ''].filter(Boolean).join(' · ');
+  }
+  function receitaCard(r, aberta) {
+    return `
+      <details class="card receita" id="r-${esc(r.id)}" ${aberta ? 'open' : ''}>
+        <summary>
+          <div>
+            <h3 style="margin:0">${r.numero ? `<span class="num">${r.numero}.</span> ` : ''}${esc(r.nome)}</h3>
+            <p class="small" style="margin:4px 0 0">${receitaMeta(r)}</p>
+          </div>
+          <span class="chev" aria-hidden="true">›</span>
+        </summary>
+        <div class="receita-body">
+          <div>
+            <h4>Ingredientes</h4>
+            <ul>${(r.ingredientes || []).map(i => `<li>${esc(i)}</li>`).join('')}</ul>
+          </div>
+          <div>
+            <h4>Modo de preparo</h4>
+            <ol>${(r.preparo || []).map(i => `<li>${esc(i)}</li>`).join('')}</ol>
+            ${r.dica ? `<p class="small"><b>Dica:</b> ${esc(r.dica)}</p>` : ''}
+          </div>
+          <div class="beneficio">
+            <b>Por que faz bem aos olhos</b>
+            <p style="margin:4px 0 8px">${esc(r.beneficios || '')}</p>
+            <div class="row" style="gap:6px">${(r.nutrientes || []).map(n => `<span class="chip">${esc(n)}</span>`).join('')}</div>
+            ${r.pagina_pdf ? `<p class="small" style="margin:8px 0 0">No PDF: página ${r.pagina_pdf}</p>` : ''}
+          </div>
+        </div>
+      </details>`;
+  }
+  function receitasLista(d) {
+    const cat = R.cat || 'todas';
+    const lista = d.receitas.filter(r => cat === 'todas' || r.categoria === cat);
+    const catAtual = (d.categorias || []).find(c => c.id === cat);
+    return `
+      <div class="row mb" role="tablist" aria-label="Categorias">
+        <button class="chip-btn ${cat === 'todas' ? 'on' : ''}" data-cat="todas">Todas (${d.receitas.length})</button>
+        ${(d.categorias || []).map(c => `<button class="chip-btn ${cat === c.id ? 'on' : ''}" data-cat="${esc(c.id)}">${esc(c.nome)} (${d.receitas.filter(r => r.categoria === c.id).length})</button>`).join('')}
+      </div>
+      ${catAtual && catAtual.descricao ? `<p class="small mb" style="max-width:62ch">${esc(catAtual.descricao)}</p>` : ''}
+      <div class="grid">${lista.map(r => receitaCard(r, false)).join('')}</div>`;
+  }
+  function receitasCardapio(d, porId) {
+    const sem = R.semana || 1;
+    const dias = (d.cardapio || []).filter(c => c.semana === sem);
+    const semanas = [...new Set((d.cardapio || []).map(c => c.semana))];
+    const link = (id) => id && porId[id] ? `<a href="#receitas" data-receita="${esc(id)}">${esc(porId[id].nome)}</a>` : '';
+    const linha = (rot, id, txt) => (id || txt) ? `<div class="ref"><span class="rot">${rot}</span><span>${id ? link(id) : esc(txt || '')}</span></div>` : '';
+    return `
+      <p class="mb" style="max-width:62ch">Um mês planejado: café, almoço, lanche, bebida e jantar. Toque no nome do prato para abrir a receita. Nos dias de sobras, o jantar aproveita o almoço da véspera.</p>
+      <div class="row mb" role="tablist" aria-label="Semanas">
+        ${semanas.map(n => `<button class="chip-btn ${sem === n ? 'on' : ''}" data-semana="${n}">Semana ${n}</button>`).join('')}
+      </div>
+      <div class="grid grid-2">
+        ${dias.map(c => `
+          <div class="card dia-card">
+            <h3 style="margin:0 0 8px">Dia ${c.dia}</h3>
+            ${linha('Café', c.cafe)}${linha('Almoço', c.almoco)}${linha('Lanche', c.lanche)}${linha('Bebida', c.bebida)}${linha('Jantar', c.jantar, c.jantar_texto)}
+          </div>`).join('')}
+      </div>`;
+  }
+  function receitasCompras(d) {
+    const sem = R.semana || 1;
+    const lista = (d.listas_compras || []).find(l => l.semana === sem) || (d.listas_compras || [])[0];
+    if (!lista) return '<p>Listas de compras não disponíveis.</p>';
+    return `
+      <p class="mb" style="max-width:62ch">Lista organizada por seção do mercado. Marque o que já tem em casa; as marcações ficam salvas neste aparelho.</p>
+      <div class="row mb" role="tablist" aria-label="Semanas">
+        ${(d.listas_compras || []).map(l => `<button class="chip-btn ${sem === l.semana ? 'on' : ''}" data-semana="${l.semana}">Semana ${l.semana} <small>(dias ${l.dias[0]} a ${l.dias[1]})</small></button>`).join('')}
+      </div>
+      <div class="grid grid-2">
+        ${(lista.secoes || []).map(sec => `
+          <div class="card">
+            <h3 style="margin:0 0 8px">${esc(sec.nome)}</h3>
+            <ul class="checklist">
+              ${(sec.itens || []).map(it => { const k = `${sem}|${sec.nome}|${it.item}`; const on = !!R.marcados[k]; return `<li><label><input type="checkbox" data-compra="${esc(k)}" ${on ? 'checked' : ''}> <span class="${on ? 'done' : ''}">${esc(it.item)}</span>${it.receitas ? `<small> · ${it.receitas} receita${it.receitas > 1 ? 's' : ''}</small>` : ''}</label></li>`; }).join('')}
+            </ul>
+          </div>`).join('')}
+      </div>`;
+  }
+  function receitasGuia(d) {
+    return `
+      <h2 style="margin:0 0 10px">Os nutrientes do olhar</h2>
+      <div class="grid grid-2 mb">
+        ${(d.nutrientes || []).map(n => `
+          <div class="card" style="border-left:4px solid ${/^#[0-9a-f]{3,8}$/i.test(n.cor || '') ? n.cor : 'var(--brand)'}">
+            <h3 style="margin:0 0 6px">${esc(n.nome)}</h3>
+            <p style="margin:0 0 8px">${esc(n.funcao || '')}</p>
+            ${n.onde_encontrar ? `<p class="small" style="margin:0"><b>Onde encontrar:</b> ${esc(n.onde_encontrar)}</p>` : ''}
+          </div>`).join('')}
+      </div>
+      ${(d.regras || []).length ? `<h2 style="margin:18px 0 10px">Regras simples da cozinha que cuida dos olhos</h2>
+      <div class="grid grid-2">
+        ${d.regras.map(r => `<div class="card"><h3 style="margin:0 0 6px">${esc(r.titulo)}</h3><p style="margin:0">${esc(r.texto)}</p></div>`).join('')}
+      </div>` : ''}`;
+  }
+  /* ---------- Receitas: acesso por código (HTTP Basic no nginx) ---------- */
+  const R = { dados: null, cat: 'todas', codigo: null, aba: 'receitas', semana: 1, marcados: {} };
+  try { R.marcados = JSON.parse(localStorage.getItem('vr-compras') || '{}') || {}; } catch { R.marcados = {}; }
+  const RKEY = 'vr-receitas-codigo';
+  try { R.codigo = sessionStorage.getItem(RKEY) || localStorage.getItem(RKEY); } catch { /* sem storage */ }
+  function authHeader(codigo) { return { Authorization: 'Basic ' + btoa(unescape(encodeURIComponent('leitor:' + codigo))) }; }
+  async function carregarReceitas(codigo) {
+    const res = await fetch('/receitas/receitas.json', { headers: authHeader(codigo), credentials: 'omit', cache: 'no-store' });
+    if (res.status === 401 || res.status === 403) throw new Error('codigo');
+    if (!res.ok) throw new Error('rede');
+    return res.json();
+  }
+  async function entrarReceitas(codigo, lembrar) {
+    const btn = $('#receitas-entrar'), erro = $('#receitas-erro');
+    if (btn) { btn.disabled = true; btn.textContent = 'Verificando...'; }
+    try {
+      R.dados = await carregarReceitas(codigo); R.codigo = codigo;
+      try { (lembrar ? localStorage : sessionStorage).setItem(RKEY, codigo); } catch { /* ignora */ }
+      render();
+    } catch (e) {
+      if (btn) { btn.disabled = false; btn.textContent = 'Acessar receitas'; }
+      if (erro) erro.textContent = e.message === 'codigo' ? 'Código não reconhecido. Confira o e-mail da compra.' : 'Não foi possível carregar agora. Tente de novo em instantes.';
+    }
+  }
+  async function baixarPdf() {
+    const d = R.dados; if (!d || !d.pdf) return;
+    const btn = $('#receitas-pdf'); if (btn) { btn.disabled = true; btn.textContent = 'Preparando PDF...'; }
+    try {
+      const res = await fetch('/receitas/' + d.pdf, { headers: authHeader(R.codigo), credentials: 'omit' });
+      if (!res.ok) throw new Error();
+      const blob = new Blob([await res.arrayBuffer()], { type: 'application/pdf' }), url = URL.createObjectURL(blob);
+      const nome = (d.titulo || 'receitas').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^\w ]+/g, '').trim().replace(/\s+/g, '-') + '.pdf';
+      const a = document.createElement('a'); a.href = url; a.setAttribute('download', nome); a.rel = 'noopener';
+      document.body.appendChild(a); a.click(); setTimeout(() => { a.remove(); URL.revokeObjectURL(url); }, 10000);
+    } catch { toast('Não foi possível baixar o PDF agora.'); }
+    if (btn) { btn.disabled = false; btn.textContent = '⬇ Baixar o ebook em PDF'; }
+  }
+  function sairReceitas() { R.dados = null; R.codigo = null; try { sessionStorage.removeItem(RKEY); localStorage.removeItem(RKEY); } catch { /* ignora */ } render(); }
 
   /* ---------- Pausas: cronômetro ---------- */
   const P = { on: false, fase: 'trabalho', rest: 20 * 60, t: null };
@@ -300,6 +490,7 @@
     app.innerHTML = views[r]();
     document.querySelectorAll('[data-nav]').forEach(a => { if (a.dataset.nav === r) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
     if (r === 'pausas') { pausaRender(); notifStatus(); }
+    if (r === 'receitas' && !R.dados && R.codigo) { carregarReceitas(R.codigo).then(d => { R.dados = d; if (rota() === 'receitas') render(); }).catch(() => { R.codigo = null; }); }
     window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
   }
   app.addEventListener('click', e => {
@@ -310,6 +501,25 @@
     else if (id === 'repetir-plano') { S.inicioPlano = hoje(); S.diasConcluidos = []; S.semanas = (S.semanas || 0) + 1; save(S); render(); toast('Nova semana iniciada. Bom começo!'); }
     else if (id === 'pausa-toggle') pausaToggle();
     else if (id === 'pausa-reset') pausaReset();
+    else if (id === 'receitas-pdf') baixarPdf();
+    else if (id === 'receitas-sair') sairReceitas();
+    else if (e.target.closest('[data-cat]')) { R.cat = e.target.closest('[data-cat]').dataset.cat; render(); }
+    else if (e.target.closest('[data-aba]')) { R.aba = e.target.closest('[data-aba]').dataset.aba; render(); }
+    else if (e.target.closest('[data-semana]')) { R.semana = +e.target.closest('[data-semana]').dataset.semana; render(); }
+    else if (e.target.closest('[data-receita]')) {
+      e.preventDefault(); const rid = e.target.closest('[data-receita]').dataset.receita;
+      R.aba = 'receitas'; R.cat = 'todas'; render();
+      const el = document.getElementById('r-' + rid); if (el) { el.open = true; el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    }
+  });
+  app.addEventListener('change', e => {
+    const cb = e.target.closest('[data-compra]'); if (!cb) return;
+    const k = cb.dataset.compra; if (cb.checked) R.marcados[k] = 1; else delete R.marcados[k];
+    try { localStorage.setItem('vr-compras', JSON.stringify(R.marcados)); } catch { /* ignora */ }
+    const sp = cb.nextElementSibling; if (sp) sp.classList.toggle('done', cb.checked);
+  });
+  app.addEventListener('submit', e => {
+    if (e.target.id === 'receitas-form') { e.preventDefault(); const v = $('#receitas-codigo').value.trim(); if (v) entrarReceitas(v, true); }
   });
   app.addEventListener('keydown', e => {
     if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[data-ex][role=button]')) { e.preventDefault(); abrirPlayer(e.target.dataset.ex); }
