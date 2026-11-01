@@ -177,7 +177,7 @@
             <div class="card">
               <h3>Ainda não tem?</h3>
               <p class="mb">O ebook complementa o livro: 50 receitas novas de café da manhã, almoço e jantar, lanches e sucos, um mês inteiro planejado e 4 listas de compras. Dá para ler aqui no app ou baixar o PDF.</p>
-              <a class="btn btn-ghost" href="https://www.visaorenovada.com.br/#receitas">Quero o ebook de receitas</a>
+              <a class="btn btn-ghost" href="https://www.visaorenovada.com.br/receitas/">Quero o ebook de receitas</a>
             </div>
           </div>`;
       }
