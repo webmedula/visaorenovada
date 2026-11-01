@@ -1,0 +1,124 @@
+{
+  "titulo": "Receitas Anti-Fadiga Ocular",
+  "subtitulo": "Bônus 3 do livro Visão Renovada",
+  "autor": "Dr. Ethan Cole",
+  "versao": "2026-11-01",
+  "introducao": "Uma alimentação rica em antioxidantes e nutrientes específicos é um pilar importante da saúde ocular. Cinco receitas fáceis de preparar para ajudar a nutrir os olhos de dentro para fora.",
+  "pdf": "",
+  "categorias": [
+    { "id": "bebidas", "nome": "Bebidas" },
+    { "id": "refeicoes", "nome": "Refeições" },
+    { "id": "lanches", "nome": "Lanches" }
+  ],
+  "receitas": [
+    {
+      "id": "smoothie-visao-power",
+      "nome": "Smoothie “Visão Power”",
+      "categoria": "bebidas",
+      "tempo_min": 5,
+      "porcoes": 1,
+      "dificuldade": "fácil",
+      "ingredientes": [
+        "1 xícara de espinafre fresco",
+        "1/2 xícara de mirtilos (blueberry)",
+        "1/2 cenoura pequena",
+        "1/2 banana congelada",
+        "1 colher de sopa de sementes de chia",
+        "1 xícara de água de coco ou leite vegetal"
+      ],
+      "preparo": [
+        "Bata todos os ingredientes no liquidificador até obter uma mistura homogênea.",
+        "Sirva imediatamente."
+      ],
+      "beneficios": "Rica em vitamina A, luteína e antioxidantes, nutrientes associados à proteção da retina e ao combate ao estresse oxidativo.",
+      "nutrientes": ["vitamina A", "luteína", "antioxidantes"]
+    },
+    {
+      "id": "salada-olhos-brilhantes",
+      "nome": "Salada “Olhos Brilhantes”",
+      "categoria": "refeicoes",
+      "tempo_min": 20,
+      "porcoes": 2,
+      "dificuldade": "fácil",
+      "ingredientes": [
+        "Folhas verdes escuras, como rúcula, agrião e couve",
+        "Salmão grelhado",
+        "Tomates cereja cortados ao meio",
+        "Pepino em rodelas",
+        "Nozes picadas",
+        "Molho de azeite extravirgem, limão, sal e pimenta-do-reino"
+      ],
+      "preparo": [
+        "Monte a salada com as folhas, o salmão, os tomates, o pepino e as nozes.",
+        "Regue com o molho e sirva."
+      ],
+      "beneficios": "O salmão fornece ômega-3, enquanto o tomate e as folhas verdes acrescentam antioxidantes importantes para o conforto ocular.",
+      "nutrientes": ["ômega-3", "antioxidantes"]
+    },
+    {
+      "id": "omelete-foco-total",
+      "nome": "Omelete “Foco Total”",
+      "categoria": "refeicoes",
+      "tempo_min": 15,
+      "porcoes": 1,
+      "dificuldade": "fácil",
+      "ingredientes": [
+        "2 ovos grandes",
+        "1/4 de xícara de pimentão vermelho picado",
+        "1/4 de xícara de cebola picada",
+        "1/4 de xícara de queijo cottage ou ricota",
+        "Sal e pimenta a gosto"
+      ],
+      "preparo": [
+        "Bata os ovos com sal e pimenta.",
+        "Refogue o pimentão e a cebola, adicione os ovos e cozinhe.",
+        "Quando estiver quase pronto, acrescente o queijo, dobre a omelete e sirva."
+      ],
+      "beneficios": "A gema do ovo é fonte de luteína e zeaxantina, enquanto o pimentão vermelho contribui com vitamina C.",
+      "nutrientes": ["luteína", "zeaxantina", "vitamina C"]
+    },
+    {
+      "id": "suco-verde-detox-visual",
+      "nome": "Suco Verde “Detox Visual”",
+      "categoria": "bebidas",
+      "tempo_min": 5,
+      "porcoes": 1,
+      "dificuldade": "fácil",
+      "ingredientes": [
+        "1 maçã verde",
+        "1 folha de couve",
+        "1/2 pepino",
+        "Suco de 1/2 limão",
+        "Gengibre a gosto",
+        "1 copo de água"
+      ],
+      "preparo": [
+        "Bata todos os ingredientes no liquidificador.",
+        "Coe se preferir, mas o ideal é consumir com as fibras. Beba fresco."
+      ],
+      "beneficios": "Rico em vitaminas e minerais que ajudam a combater inflamações e a manter a hidratação ocular.",
+      "nutrientes": ["vitaminas", "minerais", "hidratação"]
+    },
+    {
+      "id": "mix-sementes-olhar-afiado",
+      "nome": "Mix de Sementes “Olhar Afiado”",
+      "categoria": "lanches",
+      "tempo_min": 5,
+      "porcoes": 8,
+      "dificuldade": "fácil",
+      "ingredientes": [
+        "1/4 de xícara de sementes de abóbora",
+        "1/4 de xícara de sementes de girassol",
+        "1/4 de xícara de amêndoas",
+        "1/4 de xícara de nozes"
+      ],
+      "preparo": [
+        "Misture todas as sementes e armazene em um pote hermético.",
+        "Consuma uma colher de sopa como lanche ou adicione a iogurtes e saladas."
+      ],
+      "beneficios": "Reúne fontes de vitamina E, zinco e ômega-3, nutrientes associados à proteção das células oculares e à saúde da retina.",
+      "nutrientes": ["vitamina E", "zinco", "ômega-3"]
+    }
+  ],
+  "aviso": "Conteúdo educativo. Não substitui orientação de médico ou nutricionista. Em caso de alergias, restrições alimentares ou condições de saúde, consulte um profissional."
+}

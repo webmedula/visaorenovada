@@ -157,6 +157,77 @@
         <p class="small mt">${concluido ? '<button class="btn btn-primary" id="repetir-plano">Repetir a semana</button>' : '<button class="linkbtn" id="reiniciar-plano">Reiniciar o plano</button>'}</p>`;
     },
 
+    receitas() {
+      if (!R.dados) {
+        return `
+          <div class="page-head">
+            <span class="chip gold">Conteúdo exclusivo</span>
+            <h1 style="margin-top:10px">Receitas para a saúde dos olhos</h1>
+            <p class="lead">Receitas práticas, ricas em luteína, ômega-3 e antioxidantes, para nutrir a visão de dentro para fora. Área exclusiva para quem adquiriu o ebook de receitas.</p>
+          </div>
+          <div class="grid grid-2">
+            <form class="card" id="receitas-form" autocomplete="off">
+              <h3>Já tem o ebook?</h3>
+              <p class="mb">Digite o código de acesso que você recebeu na compra.</p>
+              <label class="small" for="receitas-codigo">Código de acesso</label>
+              <input id="receitas-codigo" class="input" type="text" inputmode="text" autocapitalize="characters" placeholder="Ex.: VR-2026-XXXX" required>
+              <p class="small" id="receitas-erro" style="color:var(--warn);min-height:1.2em;margin:6px 0 10px"></p>
+              <button class="btn btn-primary" type="submit" id="receitas-entrar">Acessar receitas</button>
+            </form>
+            <div class="card">
+              <h3>Ainda não tem?</h3>
+              <p class="mb">O ebook reúne receitas fáceis do Dr. Ethan Cole, com os nutrientes que mais importam para os olhos, e pode ser lido aqui no app ou baixado em PDF.</p>
+              <a class="btn btn-ghost" href="https://www.visaorenovada.com.br/#receitas">Quero o ebook de receitas</a>
+            </div>
+          </div>`;
+      }
+      const d = R.dados, cat = R.cat || 'todas';
+      const lista = d.receitas.filter(r => cat === 'todas' || r.categoria === cat);
+      return `
+        <div class="page-head">
+          <span class="chip gold">${esc(d.subtitulo || 'Ebook de receitas')}</span>
+          <h1 style="margin-top:10px">${esc(d.titulo)}</h1>
+          <p class="lead">${esc(d.introducao || '')}</p>
+          <div class="row mt">
+            ${d.pdf ? `<button class="btn btn-primary" id="receitas-pdf">⬇ Baixar o ebook em PDF</button>` : `<span class="chip gray">PDF em breve</span>`}
+            <button class="linkbtn" id="receitas-sair">Sair da área exclusiva</button>
+          </div>
+        </div>
+        <div class="row mb" role="tablist" aria-label="Categorias">
+          <button class="chip-btn ${cat === 'todas' ? 'on' : ''}" data-cat="todas">Todas (${d.receitas.length})</button>
+          ${(d.categorias || []).map(c => `<button class="chip-btn ${cat === c.id ? 'on' : ''}" data-cat="${esc(c.id)}">${esc(c.nome)} (${d.receitas.filter(r => r.categoria === c.id).length})</button>`).join('')}
+        </div>
+        <div class="grid">
+          ${lista.map(r => `
+            <details class="card receita" id="r-${esc(r.id)}">
+              <summary>
+                <div>
+                  <h3 style="margin:0">${esc(r.nome)}</h3>
+                  <p class="small" style="margin:4px 0 0">${[r.tempo_min ? `⏱ ${r.tempo_min} min` : '', r.porcoes ? `🍽 ${r.porcoes} ${r.porcoes > 1 ? 'porções' : 'porção'}` : '', r.dificuldade ? esc(r.dificuldade) : ''].filter(Boolean).join(' · ')}</p>
+                </div>
+                <span class="chev" aria-hidden="true">›</span>
+              </summary>
+              <div class="receita-body">
+                <div>
+                  <h4>Ingredientes</h4>
+                  <ul>${(r.ingredientes || []).map(i => `<li>${esc(i)}</li>`).join('')}</ul>
+                </div>
+                <div>
+                  <h4>Modo de preparo</h4>
+                  <ol>${(r.preparo || []).map(i => `<li>${esc(i)}</li>`).join('')}</ol>
+                  ${r.dica ? `<p class="small"><b>Dica:</b> ${esc(r.dica)}</p>` : ''}
+                </div>
+                <div class="beneficio">
+                  <b>Por que faz bem aos olhos</b>
+                  <p style="margin:4px 0 8px">${esc(r.beneficios || '')}</p>
+                  <div class="row" style="gap:6px">${(r.nutrientes || []).map(n => `<span class="chip">${esc(n)}</span>`).join('')}</div>
+                </div>
+              </div>
+            </details>`).join('')}
+        </div>
+        <p class="small mt">${esc(d.aviso || '')}</p>`;
+    },
+
     pausas() {
       return `
         <div class="page-head">
@@ -180,6 +251,43 @@
         </div>`;
     }
   };
+
+  /* ---------- Receitas: acesso por código (HTTP Basic no nginx) ---------- */
+  const R = { dados: null, cat: 'todas', codigo: null };
+  const RKEY = 'vr-receitas-codigo';
+  try { R.codigo = sessionStorage.getItem(RKEY) || localStorage.getItem(RKEY); } catch { /* sem storage */ }
+  function authHeader(codigo) { return { Authorization: 'Basic ' + btoa(unescape(encodeURIComponent('leitor:' + codigo))) }; }
+  async function carregarReceitas(codigo) {
+    const res = await fetch('/receitas/receitas.json', { headers: authHeader(codigo), credentials: 'omit', cache: 'no-store' });
+    if (res.status === 401 || res.status === 403) throw new Error('codigo');
+    if (!res.ok) throw new Error('rede');
+    return res.json();
+  }
+  async function entrarReceitas(codigo, lembrar) {
+    const btn = $('#receitas-entrar'), erro = $('#receitas-erro');
+    if (btn) { btn.disabled = true; btn.textContent = 'Verificando...'; }
+    try {
+      R.dados = await carregarReceitas(codigo); R.codigo = codigo;
+      try { (lembrar ? localStorage : sessionStorage).setItem(RKEY, codigo); } catch { /* ignora */ }
+      render();
+    } catch (e) {
+      if (btn) { btn.disabled = false; btn.textContent = 'Acessar receitas'; }
+      if (erro) erro.textContent = e.message === 'codigo' ? 'Código não reconhecido. Confira o e-mail da compra.' : 'Não foi possível carregar agora. Tente de novo em instantes.';
+    }
+  }
+  async function baixarPdf() {
+    const d = R.dados; if (!d || !d.pdf) return;
+    const btn = $('#receitas-pdf'); if (btn) { btn.disabled = true; btn.textContent = 'Preparando PDF...'; }
+    try {
+      const res = await fetch('/receitas/' + d.pdf, { headers: authHeader(R.codigo), credentials: 'omit' });
+      if (!res.ok) throw new Error();
+      const blob = await res.blob(), url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = (d.titulo || 'receitas').replace(/[^\wÀ-ɏ ]+/g, '').trim().replace(/\s+/g, '-') + '.pdf';
+      document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 10000);
+    } catch { toast('Não foi possível baixar o PDF agora.'); }
+    if (btn) { btn.disabled = false; btn.textContent = '⬇ Baixar o ebook em PDF'; }
+  }
+  function sairReceitas() { R.dados = null; R.codigo = null; try { sessionStorage.removeItem(RKEY); localStorage.removeItem(RKEY); } catch { /* ignora */ } render(); }
 
   /* ---------- Pausas: cronômetro ---------- */
   const P = { on: false, fase: 'trabalho', rest: 20 * 60, t: null };
@@ -300,6 +408,7 @@
     app.innerHTML = views[r]();
     document.querySelectorAll('[data-nav]').forEach(a => { if (a.dataset.nav === r) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
     if (r === 'pausas') { pausaRender(); notifStatus(); }
+    if (r === 'receitas' && !R.dados && R.codigo) { carregarReceitas(R.codigo).then(d => { R.dados = d; if (rota() === 'receitas') render(); }).catch(() => { R.codigo = null; }); }
     window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
   }
   app.addEventListener('click', e => {
@@ -310,6 +419,12 @@
     else if (id === 'repetir-plano') { S.inicioPlano = hoje(); S.diasConcluidos = []; S.semanas = (S.semanas || 0) + 1; save(S); render(); toast('Nova semana iniciada. Bom começo!'); }
     else if (id === 'pausa-toggle') pausaToggle();
     else if (id === 'pausa-reset') pausaReset();
+    else if (id === 'receitas-pdf') baixarPdf();
+    else if (id === 'receitas-sair') sairReceitas();
+    else if (e.target.closest('[data-cat]')) { R.cat = e.target.closest('[data-cat]').dataset.cat; render(); }
+  });
+  app.addEventListener('submit', e => {
+    if (e.target.id === 'receitas-form') { e.preventDefault(); const v = $('#receitas-codigo').value.trim(); if (v) entrarReceitas(v, true); }
   });
   app.addEventListener('keydown', e => {
     if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[data-ex][role=button]')) { e.preventDefault(); abrirPlayer(e.target.dataset.ex); }
