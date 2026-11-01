@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 200 20% 98%;
+    --foreground: 210 40% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 40% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 40% 12%;
+
+    --primary: 192 70% 40%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 200 30% 94%;
+    --secondary-foreground: 210 40% 12%;
+
+    --muted: 200 20% 96%;
+    --muted-foreground: 210 10% 50%;
+
+    --accent: 170 50% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 200 20% 90%;
+    --input: 200 20% 90%;
+    --ring: 192 70% 40%;
+
+    --radius: 0.75rem;
+
+    --ocean-dark: 200 60% 15%;
+    --ocean-medium: 200 50% 25%;
+    --teal: 170 50% 45%;
+    --teal-light: 170 40% 92%;
+    --warm: 30 60% 52%;
+    --warm-light: 35 70% 95%;
+    --success: 152 60% 42%;
+    --success-light: 152 50% 94%;
+
+    --font-heading: 'Plus Jakarta Sans', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+@layer utilities {
+  .gradient-hero {
+    background: linear-gradient(160deg, hsl(200 60% 12%), hsl(200 50% 20%), hsl(192 70% 32%));
+  }
+
+  .gradient-card {
+    background: linear-gradient(135deg, hsl(0 0% 100%), hsl(200 30% 97%));
+  }
+
+  .gradient-accent {
+    background: linear-gradient(135deg, hsl(192 70% 38%), hsl(170 50% 42%));
+  }
+
+  .gradient-result-green {
+    background: linear-gradient(135deg, hsl(152 50% 94%), hsl(170 40% 92%));
+  }
+
+  .gradient-result-yellow {
+    background: linear-gradient(135deg, hsl(40 80% 95%), hsl(35 70% 92%));
+  }
+
+  .gradient-result-red {
+    background: linear-gradient(135deg, hsl(0 70% 96%), hsl(0 50% 93%));
+  }
+
+  .glass-card {
+    background: hsla(0, 0%, 100%, 0.92);
+    backdrop-filter: blur(16px);
+    border: 1px solid hsla(200, 20%, 90%, 0.7);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(192 70% 40%), hsl(170 50% 45%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .shadow-premium {
+    box-shadow: 0 4px 32px -8px hsla(200, 50%, 25%, 0.10), 0 2px 12px -4px hsla(200, 50%, 25%, 0.06);
+  }
+
+  .shadow-glow {
+    box-shadow: 0 0 40px hsla(192, 70%, 40%, 0.18), 0 4px 24px hsla(192, 70%, 40%, 0.12);
+  }
+
+  .shadow-score {
+    box-shadow: 0 2px 16px -4px hsla(192, 70%, 40%, 0.15);
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes scale-in {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.5s ease-out forwards;
+  }
+
+  .animate-fade-up-delay {
+    animation: fade-up 0.5s ease-out 0.15s forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-up-delay-2 {
+    animation: fade-up 0.5s ease-out 0.3s forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-up-delay-3 {
+    animation: fade-up 0.5s ease-out 0.45s forwards;
+    opacity: 0;
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.4s ease-out forwards;
+  }
+
+  .animate-pulse-soft {
+    animation: pulse-soft 2s ease-in-out infinite;
+  }
+
+  /* Mobile touch targets */
+  @media (max-width: 640px) {
+    .touch-target {
+      min-height: 48px;
+    }
+  }
+
+  /* Score circle */
+  .score-ring {
+    stroke-dasharray: 283;
+    transition: stroke-dashoffset 1s ease-out;
+  }
+}

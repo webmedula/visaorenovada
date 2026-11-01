@@ -7,11 +7,12 @@ Código do site (www) e do app (autoavaliação). Cada um é um serviço separad
 | Serviço | Domínio | Dockerfile | Porta |
 |---|---|---|---|
 | `site` | www.visaorenovada.com.br (+ visaorenovada.com.br, que redireciona para www) | `services/site/Dockerfile` | 80 |
-| `app` | app.visaorenovada.com.br | `services/app/Dockerfile` | 80 |
+| `app` | app.visaorenovada.com.br (exercícios) e /avaliacao/ (autoavaliação) | `services/app/Dockerfile` | 80 |
 
 ```
 services/site/public/   HTML e JS do site (página do livro)
-services/app/public/    app: exercícios guiados, plano de 21 dias, pausas 20-20-20 e autoavaliação (/avaliacao)
+services/app/public/    app: exercícios guiados, plano de 7 dias e pausas 20-20-20 (HTML/JS puro)
+services/app/avaliacao/ Autoavaliação Visual Inteligente (React/Vite, vinda do Lovable), servida em /avaliacao/
 services/app/public/assets/exercicios.js   conteúdo dos exercícios e do plano (edite aqui para ajustar ao livro)
 shared/                 CSS e logo usados pelos dois (copiados para /assets no build)
 docker-compose.yml      só para testar localmente
