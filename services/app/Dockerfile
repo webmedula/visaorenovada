@@ -16,8 +16,12 @@ RUN apk add --no-cache openssl \
 
 # Etapa 3: nginx servindo o app de exercícios (estático), a autoavaliação e as receitas
 FROM nginx:1.27-alpine
+RUN apk add --no-cache openssl
 COPY services/app/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=senha /htpasswd /etc/nginx/receitas.htpasswd
+# Código das receitas também pode vir da variável de ambiente RECEITAS_CODIGO (lida na partida)
+COPY services/app/receitas-codigo.sh /docker-entrypoint.d/40-receitas-codigo.sh
+RUN chmod +x /docker-entrypoint.d/40-receitas-codigo.sh
 COPY services/app/receitas/ /usr/share/nginx/html/receitas/
 COPY services/app/public/ /usr/share/nginx/html/
 COPY shared/ /usr/share/nginx/html/assets/
