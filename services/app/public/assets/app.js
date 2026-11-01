@@ -106,7 +106,7 @@
           <a class="card" href="#pausas" style="text-decoration:none;color:inherit">
             <h3>⏱️ Lembrete 20-20-20</h3><p>A cada 20 minutos, 20 segundos olhando para algo a 6 metros. Deixe o cronômetro aberto enquanto trabalha.</p>
           </a>
-          <a class="card" href="/avaliacao" style="text-decoration:none;color:inherit">
+          <a class="card" href="/avaliacao/" style="text-decoration:none;color:inherit">
             <h3>📋 Autoavaliação (Bônus 2)</h3><p>Responda à autoavaliação visual e receba uma leitura do seu perfil com orientações práticas.</p>
           </a>
         </div>`;
