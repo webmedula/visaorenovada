@@ -1,124 +1,3112 @@
 {
-  "titulo": "Receitas Anti-Fadiga Ocular",
-  "subtitulo": "Bônus 3 do livro Visão Renovada",
-  "autor": "Dr. Ethan Cole",
-  "versao": "2026-11-01",
-  "introducao": "Uma alimentação rica em antioxidantes e nutrientes específicos é um pilar importante da saúde ocular. Cinco receitas fáceis de preparar para ajudar a nutrir os olhos de dentro para fora.",
-  "pdf": "",
-  "categorias": [
-    { "id": "bebidas", "nome": "Bebidas" },
-    { "id": "refeicoes", "nome": "Refeições" },
-    { "id": "lanches", "nome": "Lanches" }
-  ],
-  "receitas": [
+ "titulo": "Cozinha Visão Renovada",
+ "subtitulo": "50 receitas e um cardápio de 30 dias para nutrir seus olhos",
+ "autor": "Visão Renovada (complemento do livro do Dr. Ethan Cole)",
+ "versao": "2026-11-01",
+ "introducao": "No livro, você aprendeu a cuidar dos olhos com pausas, exercícios, ergonomia e bons hábitos. Estas receitas cuidam do pilar que acontece três vezes por dia, na mesa: 50 receitas simples, um cardápio de 30 dias e listas de compras semanais. Nenhum alimento sozinho muda a sua visão; o que faz diferença é a repetição de boas escolhas.",
+ "categorias": [
+  {
+   "id": "cafe",
+   "nome": "Café da manhã",
+   "descricao": "Começar o dia com ovos, frutas alaranjadas, aveia e sementes é o jeito mais simples de colocar luteína, vitamina A e ômega-3 na rotina antes mesmo de ligar a primeira tela.",
+   "cor": "#c98a1e"
+  },
+  {
+   "id": "almoco",
+   "nome": "Almoço e jantar",
+   "descricao": "Pratos de comida de verdade, com peixe, folhas verde-escuras, leguminosas e legumes coloridos. Muitas receitas rendem para o dia seguinte e ajudam na marmita.",
+   "cor": "#0f5c5a"
+  },
+  {
+   "id": "lanche",
+   "nome": "Lanches",
+   "descricao": "Para a pausa do meio da tarde, aquela em que você também faz a regra 20-20-20. Trocas práticas para o salgadinho e o biscoito de pacote.",
+   "cor": "#b5532f"
+  },
+  {
+   "id": "bebida",
+   "nome": "Sucos e vitaminas",
+   "descricao": "Bebidas que somam vitamina C, betacaroteno e, principalmente, água. A lágrima também depende da sua hidratação.",
+   "cor": "#4c7d3a"
+  }
+ ],
+ "nutrientes": [
+  {
+   "nome": "Luteína",
+   "cor": "#5a8f3a",
+   "funcao": "Pigmento amarelo que se concentra na mácula, o centro da retina responsável pela visão de detalhes. Funciona como um filtro natural da luz azul e como antioxidante.",
+   "onde_encontrar": "couve, espinafre, rúcula, agrião, brócolis, abobrinha, gema de ovo"
+  },
+  {
+   "nome": "Zeaxantina",
+   "cor": "#e2b11a",
+   "funcao": "Parceira da luteína, também se acumula na mácula e tem a mesma função de filtro e proteção.",
+   "onde_encontrar": "milho, gema de ovo, pimentão amarelo e laranja, folhas verde-escuras"
+  },
+  {
+   "nome": "Vitamina A",
+   "cor": "#d9622b",
+   "funcao": "Indispensável para enxergar com pouca luz e para manter a córnea, a superfície do olho, saudável e lubrificada.",
+   "onde_encontrar": "ovos, leite e queijos; e, como betacaroteno, nos vegetais alaranjados e verde-escuros"
+  },
+  {
+   "nome": "Betacaroteno",
+   "cor": "#ee8a24",
+   "funcao": "Pigmento laranja que o corpo transforma em vitamina A conforme precisa.",
+   "onde_encontrar": "cenoura, abóbora, batata-doce, manga, mamão, damasco seco, couve"
+  },
+  {
+   "nome": "Vitamina C",
+   "cor": "#f2c14e",
+   "funcao": "Antioxidante presente em concentração alta dentro do próprio olho. Ajuda a proteger as células do desgaste diário.",
+   "onde_encontrar": "acerola, goiaba, laranja, kiwi, morango, pimentão, brócolis"
+  },
+  {
+   "nome": "Vitamina E",
+   "cor": "#8a9a3b",
+   "funcao": "Antioxidante que protege as gorduras das membranas das células, incluindo as da retina.",
+   "onde_encontrar": "amêndoas, sementes de girassol, castanhas, abacate, azeite"
+  },
+  {
+   "nome": "Zinco",
+   "cor": "#8b5a3c",
+   "funcao": "Mineral que ajuda a levar a vitamina A do fígado até a retina e participa de enzimas protetoras do olho.",
+   "onde_encontrar": "carnes, frango, ovos, feijão, lentilha, grão-de-bico, sementes de abóbora, castanha-de-caju"
+  },
+  {
+   "nome": "Ômega-3",
+   "cor": "#e07a6f",
+   "funcao": "Gordura boa. O tipo DHA faz parte da estrutura da retina e o ômega-3 está ligado ao conforto do filme lacrimal.",
+   "onde_encontrar": "sardinha, salmão, atum, cavala; na forma vegetal, linhaça, chia e nozes"
+  },
+  {
+   "nome": "Antioxidantes",
+   "cor": "#6b3a6e",
+   "funcao": "Os pigmentos roxos e vermelhos das frutas ajudam a combater o estresse oxidativo do corpo como um todo.",
+   "onde_encontrar": "açaí, frutas vermelhas, uva, beterraba, tomate"
+  },
+  {
+   "nome": "Hidratação",
+   "cor": "#3f8fb0",
+   "funcao": "A lágrima é feita principalmente de água. Beber pouco favorece o olho seco, sobretudo em ambientes com ar-condicionado.",
+   "onde_encontrar": "água, melancia, pepino, sucos naturais, sopas"
+  }
+ ],
+ "regras": [
+  {
+   "titulo": "Gordura boa junto",
+   "texto": "Luteína, zeaxantina, betacaroteno e vitaminas A e E se dissolvem em gordura. Um fio de azeite na salada, o abacate, a gema ou as castanhas ajudam o corpo a aproveitá-los."
+  },
+  {
+   "titulo": "Cozinhe pouco os verdes",
+   "texto": "Folhas e brócolis ficam melhores no vapor ou salteados rapidamente, até ficarem verde vivo. Cozimento longo leva parte das vitaminas embora."
+  },
+  {
+   "titulo": "Pinte o prato",
+   "texto": "Tente ter pelo menos três cores por refeição: um verde-escuro, um laranja ou vermelho e uma proteína. Cores diferentes, nutrientes diferentes."
+  },
+  {
+   "titulo": "Peixe duas vezes por semana",
+   "texto": "Sardinha, salmão, atum ou outro peixe. Em lata também vale, e a sardinha costuma ser a opção mais barata."
+  },
+  {
+   "titulo": "Água à vista",
+   "texto": "Uma garrafa ou jarra na mesa de trabalho. A hidratação é parte do cuidado com a lágrima, como você viu no livro."
+  },
+  {
+   "titulo": "Regularidade, não perfeição",
+   "texto": "Seguir o cardápio na maior parte dos dias já é ótimo. Trocou uma refeição? Tudo bem. Volte na próxima."
+  }
+ ],
+ "receitas": [
+  {
+   "id": "ovos-mexidos-cremosos-com-espinafre",
+   "numero": 1,
+   "nome": "Ovos mexidos cremosos com espinafre",
+   "categoria": "cafe",
+   "tempo_min": 10,
+   "tempo": "10 min",
+   "porcoes": 1,
+   "rendimento": "1 porção",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "2 ovos",
+    "1 xícara de espinafre fresco picado",
+    "1 colher (chá) de azeite ou manteiga",
+    "1 colher (sopa) de leite ou requeijão (opcional)",
+    "Sal e pimenta-do-reino a gosto"
+   ],
+   "preparo": [
+    "Aqueça o azeite em frigideira antiderrapante em fogo baixo e murche o espinafre por 1 minuto.",
+    "Bata os ovos com o leite, o sal e a pimenta.",
+    "Despeje na frigideira e mexa devagar com uma espátula, sem parar, até ficar cremoso.",
+    "Desligue o fogo um pouco antes do ponto: o calor da panela termina o cozimento."
+   ],
+   "beneficios": "A gema e o espinafre são duas das fontes mais conhecidas de luteína e zeaxantina, os pigmentos que se concentram na mácula, a região central da retina. Como esses pigmentos se dissolvem em gordura, a própria gema e o fio de azeite ajudam o corpo a aproveitá-los.",
+   "nutrientes": [
+    "Luteína",
+    "Zeaxantina",
+    "Vitamina A"
+   ],
+   "dica": "Troque o espinafre por couve em tiras finas ou rúcula, e varie com tomate picado no fim.",
+   "pagina_pdf": 10
+  },
+  {
+   "id": "mingau-de-aveia-com-manga-e-linhaca",
+   "numero": 2,
+   "nome": "Mingau de aveia com manga e linhaça",
+   "categoria": "cafe",
+   "tempo_min": 10,
+   "tempo": "10 min",
+   "porcoes": 1,
+   "rendimento": "1 porção",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "4 colheres (sopa) de aveia em flocos",
+    "1 xícara de leite (animal ou vegetal)",
+    "1/2 manga picada",
+    "1 colher (sopa) de linhaça dourada triturada",
+    "Canela a gosto"
+   ],
+   "preparo": [
+    "Leve a aveia e o leite ao fogo baixo, mexendo, por 4 a 5 minutos, até engrossar.",
+    "Transfira para uma tigela e polvilhe a canela.",
+    "Cubra com a manga picada e a linhaça triturada na hora de servir."
+   ],
+   "beneficios": "A manga é rica em betacaroteno, que o corpo transforma em vitamina A, necessária para enxergar bem com pouca luz. A linhaça triturada traz ômega-3 de origem vegetal. Moer a linhaça é importante: inteira, a semente passa pelo intestino sem ser aproveitada.",
+   "nutrientes": [
+    "Betacaroteno",
+    "Ômega-3",
+    "Vitamina C"
+   ],
+   "dica": "No calor, faça a versão fria: deixe a aveia cozida na geladeira e coma com a manga gelada.",
+   "pagina_pdf": 11
+  },
+  {
+   "id": "tapioca-com-ovo-e-couve-refogada",
+   "numero": 3,
+   "nome": "Tapioca com ovo e couve refogada",
+   "categoria": "cafe",
+   "tempo_min": 15,
+   "tempo": "15 min",
+   "porcoes": 1,
+   "rendimento": "1 porção",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "3 colheres (sopa) de goma de tapioca hidratada",
+    "1 ovo",
+    "1 folha de couve em tiras finas",
+    "1/2 dente de alho picado",
+    "1 colher (chá) de azeite",
+    "Sal a gosto"
+   ],
+   "preparo": [
+    "Refogue o alho no azeite, junte a couve e o sal e mexa por 1 a 2 minutos. Reserve.",
+    "Na mesma frigideira, faça o ovo mexido ou frito, do jeito que preferir.",
+    "Espalhe a goma em frigideira quente e seca, sem apertar, até as bolinhas se unirem.",
+    "Recheie com o ovo e a couve, dobre e sirva."
+   ],
+   "beneficios": "A couve está entre as folhas mais ricas em luteína, e o ovo soma mais luteína, vitamina A e zinco. Refogar rapidamente a couve no azeite mantém a cor verde viva e facilita a absorção dos pigmentos.",
+   "nutrientes": [
+    "Luteína",
+    "Vitamina A",
+    "Zinco"
+   ],
+   "dica": "A goma pronta dura cerca de uma semana na geladeira, bem fechada. Varie o recheio com espinafre ou ricota.",
+   "pagina_pdf": 12
+  },
+  {
+   "id": "panqueca-de-banana-e-aveia-com-morangos",
+   "numero": 4,
+   "nome": "Panqueca de banana e aveia com morangos",
+   "categoria": "cafe",
+   "tempo_min": 15,
+   "tempo": "15 min",
+   "porcoes": 1,
+   "rendimento": "1 porção",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "1 banana madura",
+    "1 ovo",
+    "3 colheres (sopa) de aveia em flocos",
+    "1 pitada de canela",
+    "5 morangos picados",
+    "1 colher (chá) de mel (opcional)"
+   ],
+   "preparo": [
+    "Amasse bem a banana com um garfo e misture o ovo, a aveia e a canela.",
+    "Aqueça uma frigideira antiderrapante untada com um fio de óleo.",
+    "Despeje pequenas porções da massa e doure 2 minutos de cada lado.",
+    "Sirva com os morangos por cima e, se quiser, um fio de mel."
+   ],
+   "beneficios": "O morango é uma fruta rica em vitamina C, um antioxidante que também está presente no próprio olho e ajuda a proteger as células do desgaste do dia a dia. Ovo e aveia completam a refeição com proteína e zinco.",
+   "nutrientes": [
+    "Vitamina C",
+    "Zinco"
+   ],
+   "dica": "Faça massa dobrada e congele as panquecas já prontas, separadas por papel-manteiga.",
+   "pagina_pdf": 13
+  },
+  {
+   "id": "torrada-de-abacate-ovo-e-tomate",
+   "numero": 5,
+   "nome": "Torrada de abacate, ovo e tomate",
+   "categoria": "cafe",
+   "tempo_min": 10,
+   "tempo": "10 min",
+   "porcoes": 1,
+   "rendimento": "1 porção",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "1 fatia de pão integral",
+    "1/2 abacate pequeno",
+    "1 ovo cozido ou pochê",
+    "4 tomates-cereja",
+    "Limão, sal e pimenta-do-reino a gosto"
+   ],
+   "preparo": [
+    "Toste o pão.",
+    "Amasse o abacate com gotas de limão, sal e pimenta.",
+    "Espalhe sobre o pão, cubra com o ovo em fatias e os tomates cortados ao meio."
+   ],
+   "beneficios": "O abacate fornece vitamina E e gordura boa, que ajuda a absorver a luteína da gema. O tomate soma vitamina C e outros pigmentos antioxidantes. É um café da manhã que reúne vários nutrientes dos olhos em poucos minutos.",
+   "nutrientes": [
+    "Vitamina E",
+    "Luteína",
+    "Vitamina C"
+   ],
+   "dica": "Abacate muito maduro? Use no lugar da manteiga no pão e guarde o resto com o caroço e gotas de limão.",
+   "pagina_pdf": 14
+  },
+  {
+   "id": "granola-caseira-de-castanhas-e-sementes",
+   "numero": 6,
+   "nome": "Granola caseira de castanhas e sementes",
+   "categoria": "cafe",
+   "tempo_min": 35,
+   "tempo": "35 min",
+   "porcoes": 10,
+   "rendimento": "10 porções",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "2 xícaras de aveia em flocos grossos",
+    "1/2 xícara de amêndoas ou castanhas picadas",
+    "1/4 xícara de sementes de girassol",
+    "1/4 xícara de sementes de abóbora",
+    "2 colheres (sopa) de chia",
+    "3 colheres (sopa) de mel",
+    "2 colheres (sopa) de óleo de coco ou azeite suave",
+    "Canela a gosto"
+   ],
+   "preparo": [
+    "Misture todos os ingredientes secos numa tigela.",
+    "Junte o mel e o óleo e misture até tudo ficar levemente úmido.",
+    "Espalhe em assadeira forrada e asse a 160 °C por 20 a 25 minutos, mexendo na metade.",
+    "Deixe esfriar completamente (ela fica crocante ao esfriar) e guarde em pote fechado por até 15 dias."
+   ],
+   "beneficios": "Amêndoas e sementes de girassol estão entre as melhores fontes de vitamina E, antioxidante que protege as gorduras das células, inclusive as da retina. As sementes de abóbora trazem zinco, mineral que ajuda a levar a vitamina A até os olhos.",
+   "nutrientes": [
+    "Vitamina E",
+    "Zinco",
+    "Ômega-3"
+   ],
+   "dica": "Adicione uvas-passas ou coco em lascas só depois de assar, para não queimarem.",
+   "pagina_pdf": 15
+  },
+  {
+   "id": "iogurte-com-mamao-granola-e-chia",
+   "numero": 7,
+   "nome": "Iogurte com mamão, granola e chia",
+   "categoria": "cafe",
+   "tempo_min": 5,
+   "tempo": "5 min",
+   "porcoes": 1,
+   "rendimento": "1 porção",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "1 pote de iogurte natural (170 g)",
+    "1 fatia de mamão em cubos",
+    "2 colheres (sopa) da granola caseira",
+    "1 colher (chá) de chia"
+   ],
+   "preparo": [
+    "Coloque o iogurte numa tigela.",
+    "Cubra com o mamão, a granola e a chia.",
+    "Se preferir mais doce, use mamão bem maduro em vez de adoçar."
+   ],
+   "beneficios": "O mamão oferece betacaroteno e vitamina C ao mesmo tempo. A granola e a chia somam vitamina E e ômega-3 vegetal. O iogurte traz proteína e um pouco de gordura, que ajuda a aproveitar os carotenoides da fruta.",
+   "nutrientes": [
+    "Betacaroteno",
+    "Vitamina C",
+    "Vitamina E"
+   ],
+   "dica": "Monte em potes na noite anterior, deixando a granola num saquinho à parte para não amolecer.",
+   "pagina_pdf": 16
+  },
+  {
+   "id": "cuscuz-com-ovo-e-pimentao",
+   "numero": 8,
+   "nome": "Cuscuz com ovo e pimentão",
+   "categoria": "cafe",
+   "tempo_min": 15,
+   "tempo": "15 min",
+   "porcoes": 2,
+   "rendimento": "2 porções",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "1 xícara de flocão de milho",
+    "1/2 xícara de água com 1 pitada de sal",
+    "2 ovos",
+    "1/2 pimentão amarelo ou vermelho em cubos",
+    "1/2 cebola picada",
+    "1 colher (chá) de azeite",
+    "Cheiro-verde a gosto"
+   ],
+   "preparo": [
+    "Hidrate o flocão com a água salgada por 10 minutos e cozinhe na cuscuzeira por 8 a 10 minutos.",
+    "Enquanto isso, refogue a cebola e o pimentão no azeite.",
+    "Junte os ovos batidos e mexa até firmar.",
+    "Sirva o cuscuz com os ovos e o cheiro-verde por cima."
+   ],
+   "beneficios": "O milho é uma das fontes naturais de zeaxantina, pigmento irmão da luteína que também se concentra na mácula. O pimentão colorido é rico em vitamina C e o ovo completa com luteína e zinco.",
+   "nutrientes": [
+    "Zeaxantina",
+    "Vitamina C",
+    "Zinco"
+   ],
+   "dica": "Acrescente cenoura ralada ao flocão antes de cozinhar: fica colorido e mais nutritivo.",
+   "pagina_pdf": 17
+  },
+  {
+   "id": "crepioca-de-espinafre-com-ricota",
+   "numero": 9,
+   "nome": "Crepioca de espinafre com ricota",
+   "categoria": "cafe",
+   "tempo_min": 10,
+   "tempo": "10 min",
+   "porcoes": 1,
+   "rendimento": "1 porção",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "1 ovo",
+    "2 colheres (sopa) de goma de tapioca",
+    "1/2 xícara de espinafre picado",
+    "2 colheres (sopa) de ricota amassada",
+    "Sal e orégano a gosto"
+   ],
+   "preparo": [
+    "Bata o ovo com a goma, o sal e metade do espinafre.",
+    "Despeje em frigideira antiderrapante quente e cozinhe até firmar.",
+    "Vire, recheie com a ricota e o restante do espinafre, dobre e deixe mais 1 minuto."
+   ],
+   "beneficios": "Espinafre e gema juntos fazem desta crepioca uma boa dose de luteína logo cedo. A ricota é um queijo leve que acrescenta proteína e um pouco de vitamina A.",
+   "nutrientes": [
+    "Luteína",
+    "Vitamina A"
+   ],
+   "dica": "Use couve ou rúcula no lugar do espinafre e troque a ricota por queijo branco.",
+   "pagina_pdf": 18
+  },
+  {
+   "id": "aveia-dormida-com-morango-e-chia",
+   "numero": 10,
+   "nome": "Aveia dormida com morango e chia",
+   "categoria": "cafe",
+   "tempo_min": 5,
+   "tempo": "5 min + geladeira",
+   "porcoes": 1,
+   "rendimento": "1 porção",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "4 colheres (sopa) de aveia em flocos",
+    "1 colher (sopa) de chia",
+    "1/2 xícara de leite",
+    "3 colheres (sopa) de iogurte natural",
+    "6 morangos picados"
+   ],
+   "preparo": [
+    "À noite, misture a aveia, a chia, o leite e o iogurte num pote com tampa.",
+    "Leve à geladeira até a manhã seguinte.",
+    "Na hora de comer, cubra com os morangos."
+   ],
+   "beneficios": "Uma opção pronta para dias corridos. A chia é fonte de ômega-3 vegetal e o morango, de vitamina C. Por ficar pronta na geladeira, ajuda a manter a regularidade, que é o que mais conta.",
+   "nutrientes": [
+    "Vitamina C",
+    "Ômega-3"
+   ],
+   "dica": "Varie as frutas: manga, mamão ou kiwi também combinam com a chia.",
+   "pagina_pdf": 19
+  },
+  {
+   "id": "muffin-salgado-de-ovos-e-legumes",
+   "numero": 11,
+   "nome": "Muffin salgado de ovos e legumes",
+   "categoria": "cafe",
+   "tempo_min": 30,
+   "tempo": "30 min",
+   "porcoes": null,
+   "rendimento": "6 unidades",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "6 ovos",
+    "1 cenoura ralada fina",
+    "1 abobrinha pequena ralada e espremida",
+    "1 xícara de espinafre picado",
+    "3 colheres (sopa) de queijo ralado",
+    "Sal, pimenta e orégano a gosto"
+   ],
+   "preparo": [
+    "Bata os ovos com os temperos e misture os legumes e o queijo.",
+    "Distribua em forminhas de muffin untadas (ou de silicone).",
+    "Asse a 180 °C por 20 minutos, até firmar.",
+    "Guarde na geladeira por até 4 dias e aqueça na hora."
+   ],
+   "beneficios": "Cenoura (betacaroteno), espinafre e abobrinha (luteína) e ovos (luteína, zinco e vitamina A) num formato fácil de levar. Feito no domingo, resolve o café da manhã de vários dias.",
+   "nutrientes": [
+    "Luteína",
+    "Betacaroteno",
+    "Zinco"
+   ],
+   "dica": "Congele os muffins prontos por até 1 mês e aqueça no forno ou na frigideira tampada.",
+   "pagina_pdf": 20
+  },
+  {
+   "id": "torrada-de-ricota-tomate-e-rucula",
+   "numero": 12,
+   "nome": "Torrada de ricota, tomate e rúcula",
+   "categoria": "cafe",
+   "tempo_min": 5,
+   "tempo": "5 min",
+   "porcoes": 1,
+   "rendimento": "1 porção",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "1 fatia de pão integral",
+    "2 colheres (sopa) de ricota amassada",
+    "Um punhado de rúcula",
+    "3 tomates-cereja",
+    "1 colher (chá) de sementes de abóbora",
+    "Fio de azeite e sal"
+   ],
+   "preparo": [
+    "Toste o pão e espalhe a ricota temperada com sal.",
+    "Cubra com a rúcula, os tomates em rodelas e as sementes.",
+    "Finalize com o fio de azeite."
+   ],
+   "beneficios": "A rúcula é uma folha verde-escura com luteína, o tomate traz vitamina C e as sementes de abóbora acrescentam zinco. O azeite dá sabor e ajuda a absorver os pigmentos.",
+   "nutrientes": [
+    "Luteína",
+    "Vitamina C",
+    "Zinco"
+   ],
+   "dica": "Troque a rúcula por agrião e a semente de abóbora por gergelim.",
+   "pagina_pdf": 21
+  },
+  {
+   "id": "salmao-assado-com-pure-de-abobora-e-brocolis",
+   "numero": 13,
+   "nome": "Salmão assado com purê de abóbora e brócolis",
+   "categoria": "almoco",
+   "tempo_min": 35,
+   "tempo": "35 min",
+   "porcoes": 2,
+   "rendimento": "2 porções",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "2 postas de salmão",
+    "2 xícaras de abóbora cabotiá em cubos",
+    "1 brócolis pequeno em floretes",
+    "1 limão",
+    "1 dente de alho",
+    "Azeite, sal e pimenta-do-reino"
+   ],
+   "preparo": [
+    "Tempere o salmão com limão, sal e pimenta e asse a 200 °C por 15 a 18 minutos.",
+    "Cozinhe a abóbora no vapor até ficar macia e amasse com alho refogado no azeite e sal.",
+    "Cozinhe o brócolis no vapor por 4 a 5 minutos, até ficar verde vivo e ainda firme.",
+    "Monte o prato e regue tudo com um fio de azeite."
+   ],
+   "beneficios": "O salmão é um peixe gordo, fonte de ômega-3 do tipo DHA, que faz parte da estrutura da retina e está ligado ao conforto do filme lacrimal. A abóbora traz betacaroteno e o brócolis, luteína e vitamina C.",
+   "nutrientes": [
+    "Ômega-3",
+    "Betacaroteno",
+    "Luteína"
+   ],
+   "dica": "Sem salmão? Use sardinha fresca, cavala ou truta. O purê também fica ótimo com batata-doce.",
+   "pagina_pdf": 23
+  },
+  {
+   "id": "sardinha-assada-com-batata-doce-e-salada-de-agriao",
+   "numero": 14,
+   "nome": "Sardinha assada com batata-doce e salada de agrião",
+   "categoria": "almoco",
+   "tempo_min": 40,
+   "tempo": "40 min",
+   "porcoes": 2,
+   "rendimento": "2 porções",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "6 sardinhas frescas limpas (ou 1 lata de sardinha em azeite)",
+    "2 batatas-doces médias",
+    "1 maço de agrião",
+    "1 limão",
+    "Alho, azeite, sal e páprica"
+   ],
+   "preparo": [
+    "Corte a batata-doce em rodelas, tempere com azeite, sal e páprica e asse a 200 °C por 25 minutos.",
+    "Tempere as sardinhas com alho, limão e sal e coloque na assadeira nos últimos 12 a 15 minutos.",
+    "Se usar sardinha em lata, apenas aqueça no forno nos últimos 5 minutos.",
+    "Sirva com o agrião temperado com limão e azeite."
+   ],
+   "beneficios": "A sardinha é uma das fontes de ômega-3 mais acessíveis no Brasil, fresca ou em lata. A batata-doce alaranjada fornece betacaroteno e o agrião, luteína e vitamina C.",
+   "nutrientes": [
+    "Ômega-3",
+    "Betacaroteno",
+    "Luteína"
+   ],
+   "dica": "A sardinha em lata de boa qualidade tem espinhas macias que podem ser comidas e somam cálcio.",
+   "pagina_pdf": 24
+  },
+  {
+   "id": "frango-salteado-com-brocolis-cenoura-e-gergelim",
+   "numero": 15,
+   "nome": "Frango salteado com brócolis, cenoura e gergelim",
+   "categoria": "almoco",
+   "tempo_min": 25,
+   "tempo": "25 min",
+   "porcoes": 2,
+   "rendimento": "2 porções",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "300 g de peito ou sobrecoxa de frango em tiras",
+    "1 xícara de brócolis em floretes",
+    "1 cenoura em palitos finos",
+    "1/2 pimentão vermelho em tiras",
+    "1 colher (sopa) de shoyu",
+    "1 colher (chá) de gengibre ralado",
+    "1 colher (sopa) de gergelim",
+    "Azeite ou óleo"
+   ],
+   "preparo": [
+    "Doure o frango em frigideira grande bem quente com um fio de óleo. Reserve.",
+    "Na mesma frigideira, salteie a cenoura, o brócolis e o pimentão por 3 a 4 minutos, mantendo-os crocantes.",
+    "Volte o frango, junte o shoyu e o gengibre e mexa por 1 minuto.",
+    "Finalize com o gergelim."
+   ],
+   "beneficios": "O frango é fonte de zinco e proteína; a cenoura e o pimentão vermelho somam betacaroteno e vitamina C; o brócolis traz luteína. Saltear rápido preserva melhor as vitaminas do que um cozimento longo.",
+   "nutrientes": [
+    "Zinco",
+    "Betacaroteno",
+    "Luteína"
+   ],
+   "dica": "Corte todos os legumes do mesmo tamanho para cozinharem por igual e ficarem crocantes.",
+   "pagina_pdf": 25
+  },
+  {
+   "id": "arroz-feijao-e-couve-com-ovo",
+   "numero": 16,
+   "nome": "Arroz, feijão e couve com ovo",
+   "categoria": "almoco",
+   "tempo_min": 30,
+   "tempo": "30 min",
+   "porcoes": 2,
+   "rendimento": "2 porções",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "2 xícaras de arroz cozido (de preferência integral)",
+    "2 conchas de feijão cozido",
+    "4 folhas de couve em tiras finas",
+    "2 ovos",
+    "2 dentes de alho",
+    "Azeite e sal"
+   ],
+   "preparo": [
+    "Aqueça o arroz e o feijão.",
+    "Refogue o alho no azeite, junte a couve e o sal e mexa por 1 a 2 minutos.",
+    "Frite ou cozinhe os ovos.",
+    "Monte o prato com arroz, feijão, couve e ovo."
+   ],
+   "beneficios": "O prato brasileiro mais clássico já é amigo dos olhos: o feijão é fonte de zinco, a couve é uma das folhas com mais luteína e o ovo soma luteína, zeaxantina e vitamina A.",
+   "nutrientes": [
+    "Zinco",
+    "Luteína",
+    "Vitamina A"
+   ],
+   "dica": "Cozinhe feijão em quantidade e congele em porções: uma semana de almoço fica pronta num dia.",
+   "pagina_pdf": 26
+  },
+  {
+   "id": "escondidinho-de-batata-doce-com-carne-moida",
+   "numero": 17,
+   "nome": "Escondidinho de batata-doce com carne moída",
+   "categoria": "almoco",
+   "tempo_min": 45,
+   "tempo": "45 min",
+   "porcoes": 4,
+   "rendimento": "4 porções",
+   "dificuldade": "média",
+   "ingredientes": [
+    "500 g de batata-doce alaranjada",
+    "400 g de carne moída magra",
+    "1 cebola picada",
+    "2 tomates picados",
+    "1/2 xícara de cheiro-verde",
+    "3 colheres (sopa) de queijo ralado",
+    "Alho, azeite, sal e pimenta"
+   ],
+   "preparo": [
+    "Cozinhe a batata-doce e amasse com um fio de azeite e sal.",
+    "Refogue a cebola e o alho, junte a carne e doure. Acrescente o tomate e cozinhe 10 minutos. Finalize com o cheiro-verde.",
+    "Em refratário, coloque a carne e cubra com o purê e o queijo.",
+    "Gratine a 200 °C por 15 minutos."
+   ],
+   "beneficios": "A carne vermelha é uma das fontes de zinco mais bem aproveitadas pelo corpo. A batata-doce alaranjada substitui a batata comum e traz betacaroteno, matéria-prima da vitamina A.",
+   "nutrientes": [
+    "Zinco",
+    "Betacaroteno"
+   ],
+   "dica": "Monte em marmitas individuais e congele. Para aquecer, forno ou micro-ondas.",
+   "pagina_pdf": 27
+  },
+  {
+   "id": "sopa-creme-de-abobora-com-gengibre",
+   "numero": 18,
+   "nome": "Sopa creme de abóbora com gengibre",
+   "categoria": "almoco",
+   "tempo_min": 35,
+   "tempo": "35 min",
+   "porcoes": 4,
+   "rendimento": "4 porções",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "800 g de abóbora cabotiá em cubos",
+    "1 cebola",
+    "2 dentes de alho",
+    "1 colher (chá) de gengibre ralado",
+    "4 xícaras de água ou caldo caseiro",
+    "2 colheres (sopa) de sementes de abóbora tostadas",
+    "Azeite e sal"
+   ],
+   "preparo": [
+    "Refogue a cebola, o alho e o gengibre no azeite.",
+    "Junte a abóbora e a água e cozinhe até ficar bem macia, cerca de 20 minutos.",
+    "Bata no liquidificador (com cuidado, pois está quente) e acerte o sal.",
+    "Sirva com as sementes de abóbora tostadas e um fio de azeite."
+   ],
+   "beneficios": "A abóbora de polpa bem alaranjada é rica em betacaroteno. As sementes da própria abóbora, tostadas por cima, acrescentam zinco e crocância. Ótima opção de jantar leve.",
+   "nutrientes": [
+    "Betacaroteno",
+    "Zinco"
+   ],
+   "dica": "Congele em porções. Para variar, troque metade da abóbora por cenoura.",
+   "pagina_pdf": 28
+  },
+  {
+   "id": "lentilha-ensopada-com-espinafre-e-cenoura",
+   "numero": 19,
+   "nome": "Lentilha ensopada com espinafre e cenoura",
+   "categoria": "almoco",
+   "tempo_min": 35,
+   "tempo": "35 min",
+   "porcoes": 4,
+   "rendimento": "4 porções",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "1 xícara de lentilha",
+    "1 cenoura em cubos",
+    "2 xícaras de espinafre",
+    "1 cebola e 2 dentes de alho picados",
+    "1 tomate picado",
+    "1 colher (chá) de cominho",
+    "Azeite e sal"
+   ],
+   "preparo": [
+    "Refogue a cebola e o alho no azeite, junte o cominho, o tomate e a cenoura.",
+    "Acrescente a lentilha e água para cobrir com folga. Cozinhe por 20 a 25 minutos.",
+    "Desligue o fogo, junte o espinafre e tampe por 2 minutos para murchar.",
+    "Acerte o sal e sirva com arroz ou sozinha."
+   ],
+   "beneficios": "A lentilha é uma leguminosa com zinco e proteína vegetal. O espinafre entra no fim do preparo para manter a cor e a luteína, e a cenoura completa com betacaroteno.",
+   "nutrientes": [
+    "Zinco",
+    "Luteína",
+    "Betacaroteno"
+   ],
+   "dica": "Lentilha não precisa de remolho. Sobrou? Bata com um pouco de água e vira sopa creme.",
+   "pagina_pdf": 29
+  },
+  {
+   "id": "moqueca-leve-de-peixe-com-pimentoes",
+   "numero": 20,
+   "nome": "Moqueca leve de peixe com pimentões",
+   "categoria": "almoco",
+   "tempo_min": 40,
+   "tempo": "40 min",
+   "porcoes": 4,
+   "rendimento": "4 porções",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "600 g de peixe em postas (pescada, cação ou robalo)",
+    "1 pimentão vermelho e 1 amarelo em rodelas",
+    "2 tomates em rodelas",
+    "1 cebola em rodelas",
+    "200 ml de leite de coco",
+    "1 colher (sopa) de azeite de dendê (opcional) ou azeite",
+    "Limão, alho, coentro e sal"
+   ],
+   "preparo": [
+    "Tempere o peixe com limão, alho e sal por 15 minutos.",
+    "Numa panela larga, faça camadas de cebola, tomate, pimentões e peixe.",
+    "Regue com o leite de coco e o dendê, tampe e cozinhe em fogo médio por 20 minutos, sem mexer.",
+    "Finalize com coentro e sirva com arroz."
+   ],
+   "beneficios": "O peixe acrescenta proteína e ômega-3. Os pimentões vermelho e amarelo estão entre os vegetais mais ricos em vitamina C e trazem carotenoides que dão a cor viva ao prato.",
+   "nutrientes": [
+    "Ômega-3",
+    "Vitamina C",
+    "Betacaroteno"
+   ],
+   "dica": "Na moqueca, não mexa com colher: gire a panela segurando pelas alças para não quebrar o peixe.",
+   "pagina_pdf": 30
+  },
+  {
+   "id": "fritada-de-forno-com-espinafre-milho-e-queijo",
+   "numero": 21,
+   "nome": "Fritada de forno com espinafre, milho e queijo",
+   "categoria": "almoco",
+   "tempo_min": 30,
+   "tempo": "30 min",
+   "porcoes": 4,
+   "rendimento": "4 porções",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "6 ovos",
+    "2 xícaras de espinafre picado",
+    "1/2 xícara de milho verde",
+    "1/2 cebola picada",
+    "1/2 xícara de queijo minas em cubos",
+    "Sal, pimenta e noz-moscada"
+   ],
+   "preparo": [
+    "Refogue a cebola e o espinafre rapidamente.",
+    "Bata os ovos com os temperos e misture o refogado, o milho e o queijo.",
+    "Despeje em forma untada e asse a 180 °C por 20 minutos, até firmar e dourar.",
+    "Sirva com uma salada verde."
+   ],
+   "beneficios": "Esta fritada junta três das principais fontes de luteína e zeaxantina: gema, espinafre e milho. É prática para o jantar e as sobras vão bem no almoço do dia seguinte.",
+   "nutrientes": [
+    "Luteína",
+    "Zeaxantina",
+    "Zinco"
+   ],
+   "dica": "Corte em quadrados e leve na marmita com folhas verdes por baixo.",
+   "pagina_pdf": 31
+  },
+  {
+   "id": "salada-morna-de-grao-de-bico-pimentao-e-rucula",
+   "numero": 22,
+   "nome": "Salada morna de grão-de-bico, pimentão e rúcula",
+   "categoria": "almoco",
+   "tempo_min": 20,
+   "tempo": "20 min",
+   "porcoes": 2,
+   "rendimento": "2 porções",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "2 xícaras de grão-de-bico cozido",
+    "1 pimentão vermelho em tiras",
+    "1 cebola roxa em pétalas",
+    "2 xícaras de rúcula",
+    "Suco de 1 limão",
+    "Azeite, sal, páprica e cominho"
+   ],
+   "preparo": [
+    "Aqueça o azeite e salteie o pimentão e a cebola por 3 minutos.",
+    "Junte o grão-de-bico com a páprica e o cominho e aqueça bem.",
+    "Desligue o fogo, misture a rúcula e tempere com limão e sal."
+   ],
+   "beneficios": "O grão-de-bico é fonte de zinco e proteína vegetal. O pimentão vermelho traz vitamina C e carotenoides, e a rúcula soma luteína. O azeite e o limão completam o tempero e a absorção.",
+   "nutrientes": [
+    "Zinco",
+    "Vitamina C",
+    "Luteína"
+   ],
+   "dica": "Use grão-de-bico em conserva bem lavado para fazer em 10 minutos.",
+   "pagina_pdf": 32
+  },
+  {
+   "id": "salada-de-feijao-fradinho-com-atum",
+   "numero": 23,
+   "nome": "Salada de feijão-fradinho com atum",
+   "categoria": "almoco",
+   "tempo_min": 15,
+   "tempo": "15 min",
+   "porcoes": 2,
+   "rendimento": "2 porções",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "2 xícaras de feijão-fradinho cozido",
+    "1 lata de atum em água ou azeite, escorrido",
+    "1 tomate em cubos",
+    "1/2 pimentão verde em cubos",
+    "1/2 cebola roxa picada",
+    "Cheiro-verde, limão, azeite e sal"
+   ],
+   "preparo": [
+    "Misture o feijão, o atum, o tomate, o pimentão e a cebola.",
+    "Tempere com limão, azeite, sal e cheiro-verde.",
+    "Deixe descansar 10 minutos na geladeira antes de servir."
+   ],
+   "beneficios": "O atum acrescenta ômega-3 e proteína; o feijão-fradinho, zinco. Tomate e pimentão garantem vitamina C. Uma refeição fria, rápida e boa para levar na marmita.",
+   "nutrientes": [
+    "Ômega-3",
+    "Zinco",
+    "Vitamina C"
+   ],
+   "dica": "Troque o atum por sardinha em lata ou ovo cozido picado.",
+   "pagina_pdf": 33
+  },
+  {
+   "id": "kibe-de-forno-recheado-com-espinafre",
+   "numero": 24,
+   "nome": "Kibe de forno recheado com espinafre",
+   "categoria": "almoco",
+   "tempo_min": 60,
+   "tempo": "60 min",
+   "porcoes": 6,
+   "rendimento": "6 porções",
+   "dificuldade": "média",
+   "ingredientes": [
+    "1 xícara de trigo para kibe",
+    "500 g de carne moída magra",
+    "1 cebola ralada",
+    "Hortelã picada a gosto",
+    "2 xícaras de espinafre refogado",
+    "1/2 xícara de ricota",
+    "Sal, pimenta síria e azeite"
+   ],
+   "preparo": [
+    "Hidrate o trigo em água quente por 30 minutos e esprema bem.",
+    "Misture o trigo com a carne, a cebola, a hortelã, o sal e a pimenta.",
+    "Em forma untada, faça uma camada de massa, cubra com o espinafre misturado à ricota e feche com o restante da massa.",
+    "Risque losangos, regue com azeite e asse a 200 °C por 35 a 40 minutos."
+   ],
+   "beneficios": "A carne traz zinco, que participa do transporte da vitamina A até a retina. O recheio de espinafre com ricota acrescenta luteína de um jeito que costuma agradar até quem torce o nariz para verdura.",
+   "nutrientes": [
+    "Zinco",
+    "Luteína"
+   ],
+   "dica": "Congele o kibe já assado, em porções; ele aquece bem no forno.",
+   "pagina_pdf": 34
+  },
+  {
+   "id": "macarrao-integral-ao-pesto-de-couve-e-castanha",
+   "numero": 25,
+   "nome": "Macarrão integral ao pesto de couve e castanha",
+   "categoria": "almoco",
+   "tempo_min": 20,
+   "tempo": "20 min",
+   "porcoes": 2,
+   "rendimento": "2 porções",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "200 g de macarrão integral",
+    "3 folhas de couve sem o talo",
+    "1/2 xícara de manjericão",
+    "1/4 xícara de castanha-de-caju ou castanha-do-pará",
+    "1 dente de alho",
+    "1/3 xícara de azeite",
+    "2 colheres (sopa) de queijo parmesão ralado"
+   ],
+   "preparo": [
+    "Cozinhe o macarrão em água com sal.",
+    "Bata no liquidificador ou processador a couve, o manjericão, a castanha, o alho, o azeite e o queijo, até virar uma pasta.",
+    "Misture o pesto ao macarrão escorrido com um pouco da água do cozimento."
+   ],
+   "beneficios": "O pesto leva couve crua, rica em luteína, e castanhas, que trazem vitamina E e zinco. O azeite, além do sabor, ajuda a absorver os pigmentos das folhas.",
+   "nutrientes": [
+    "Luteína",
+    "Vitamina E"
+   ],
+   "dica": "O pesto dura 4 dias na geladeira coberto por um fio de azeite, ou 2 meses no congelador.",
+   "pagina_pdf": 35
+  },
+  {
+   "id": "caldo-verde-leve",
+   "numero": 26,
+   "nome": "Caldo verde leve",
+   "categoria": "almoco",
+   "tempo_min": 35,
+   "tempo": "35 min",
+   "porcoes": 4,
+   "rendimento": "4 porções",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "4 batatas médias",
+    "1 cebola e 2 dentes de alho",
+    "6 folhas de couve em tiras bem finas",
+    "1 litro de água",
+    "100 g de frango desfiado ou linguiça magra (opcional)",
+    "Azeite e sal"
+   ],
+   "preparo": [
+    "Refogue a cebola e o alho no azeite, junte as batatas e a água e cozinhe até desmancharem.",
+    "Bata no liquidificador e volte à panela.",
+    "Junte o frango ou a linguiça, se usar, e a couve. Cozinhe só por 2 a 3 minutos.",
+    "Acerte o sal e sirva com um fio de azeite."
+   ],
+   "beneficios": "A couve entra no fim para manter a cor e os nutrientes. É uma forma acolhedora de colocar folhas verde-escuras no jantar, principalmente nos dias frios.",
+   "nutrientes": [
+    "Luteína",
+    "Vitamina C"
+   ],
+   "dica": "Corte a couve em tiras bem finas: enrole as folhas como um charuto e fatie com faca afiada.",
+   "pagina_pdf": 36
+  },
+  {
+   "id": "tilapia-com-crosta-de-castanha-e-legumes-assados",
+   "numero": 27,
+   "nome": "Tilápia com crosta de castanha e legumes assados",
+   "categoria": "almoco",
+   "tempo_min": 35,
+   "tempo": "35 min",
+   "porcoes": 2,
+   "rendimento": "2 porções",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "2 filés de tilápia",
+    "1/3 xícara de castanha-do-pará ou amêndoas picadas",
+    "1 cenoura em rodelas",
+    "1 abobrinha em meias-luas",
+    "1/2 pimentão amarelo em tiras",
+    "Limão, azeite, sal e ervas"
+   ],
+   "preparo": [
+    "Tempere os filés com limão e sal.",
+    "Espalhe os legumes na assadeira com azeite e sal e asse a 200 °C por 15 minutos.",
+    "Coloque os filés sobre os legumes, cubra com a castanha picada e um fio de azeite.",
+    "Volte ao forno por mais 12 a 15 minutos."
+   ],
+   "beneficios": "A crosta de castanhas traz vitamina E e zinco; a cenoura e o pimentão, betacaroteno e vitamina C. A tilápia é um peixe magro, com menos ômega-3 que salmão ou sardinha, mas ainda é uma boa troca pela carne.",
+   "nutrientes": [
+    "Vitamina E",
+    "Betacaroteno",
+    "Ômega-3"
+   ],
+   "dica": "Use castanha-do-pará com moderação: duas ou três unidades por dia já bastam.",
+   "pagina_pdf": 37
+  },
+  {
+   "id": "galinhada-com-milho-e-cenoura",
+   "numero": 28,
+   "nome": "Galinhada com milho e cenoura",
+   "categoria": "almoco",
+   "tempo_min": 45,
+   "tempo": "45 min",
+   "porcoes": 4,
+   "rendimento": "4 porções",
+   "dificuldade": "média",
+   "ingredientes": [
+    "500 g de sobrecoxa de frango em pedaços",
+    "1 e 1/2 xícara de arroz",
+    "1 cenoura em cubos",
+    "1 xícara de milho verde",
+    "1 cebola, 2 dentes de alho",
+    "1 colher (chá) de açafrão-da-terra (cúrcuma)",
+    "Cheiro-verde, azeite e sal"
+   ],
+   "preparo": [
+    "Doure o frango no azeite. Junte a cebola, o alho e a cúrcuma.",
+    "Acrescente o arroz e a cenoura e refogue por 1 minuto.",
+    "Cubra com 3 xícaras de água quente, acerte o sal e cozinhe tampado em fogo baixo por 20 minutos.",
+    "Junte o milho nos últimos 5 minutos e finalize com cheiro-verde."
+   ],
+   "beneficios": "Um prato de panela única que reúne zinco (frango), zeaxantina (milho) e betacaroteno (cenoura). Para deixar mais verde, sirva com uma salada de folhas escuras.",
+   "nutrientes": [
+    "Zinco",
+    "Zeaxantina",
+    "Betacaroteno"
+   ],
+   "dica": "Sobrou galinhada? Ela vira um ótimo bolinho de arroz assado com ovo e queijo.",
+   "pagina_pdf": 38
+  },
+  {
+   "id": "abobrinha-recheada-com-carne-e-tomate",
+   "numero": 29,
+   "nome": "Abobrinha recheada com carne e tomate",
+   "categoria": "almoco",
+   "tempo_min": 40,
+   "tempo": "40 min",
+   "porcoes": 2,
+   "rendimento": "2 porções",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "2 abobrinhas médias",
+    "250 g de carne moída magra",
+    "1 tomate picado",
+    "1/2 cebola picada",
+    "2 colheres (sopa) de queijo ralado",
+    "Alho, azeite, sal e orégano"
+   ],
+   "preparo": [
+    "Corte as abobrinhas ao meio no comprimento e retire o miolo com uma colher. Pique o miolo.",
+    "Refogue a cebola e o alho, junte a carne e doure. Acrescente o tomate e o miolo picado e cozinhe 8 minutos.",
+    "Recheie as abobrinhas, cubra com o queijo e asse a 200 °C por 20 minutos."
+   ],
+   "beneficios": "A carne fornece zinco; a abobrinha, principalmente a casca verde, tem luteína; o tomate traz vitamina C. Um jantar leve que aproveita o legume inteiro.",
+   "nutrientes": [
+    "Zinco",
+    "Luteína",
+    "Vitamina C"
+   ],
+   "dica": "Use o mesmo recheio em pimentões ou berinjelas para variar.",
+   "pagina_pdf": 39
+  },
+  {
+   "id": "falafel-de-forno-com-molho-de-iogurte",
+   "numero": 30,
+   "nome": "Falafel de forno com molho de iogurte",
+   "categoria": "almoco",
+   "tempo_min": 40,
+   "tempo": "40 min",
+   "porcoes": 4,
+   "rendimento": "4 porções",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "2 xícaras de grão-de-bico demolhado por 12 horas (cru)",
+    "1/2 cebola",
+    "2 dentes de alho",
+    "1 xícara de salsinha e coentro",
+    "1 colher (chá) de cominho",
+    "2 colheres (sopa) de azeite",
+    "Molho: 1 iogurte natural, limão, hortelã e sal"
+   ],
+   "preparo": [
+    "Escorra bem o grão-de-bico e processe com a cebola, o alho, as ervas, o cominho, o azeite e o sal, até formar uma massa grossa.",
+    "Modele bolinhos achatados e asse em assadeira untada a 200 °C por 25 minutos, virando na metade.",
+    "Misture os ingredientes do molho e sirva com salada de folhas escuras e tomate."
+   ],
+   "beneficios": "O grão-de-bico é fonte de zinco e proteína vegetal. A grande quantidade de salsinha e coentro acrescenta luteína e vitamina C, de um jeito saboroso.",
+   "nutrientes": [
+    "Zinco",
+    "Luteína"
+   ],
+   "dica": "Congele os bolinhos crus em assadeira e depois guarde em saco; asse direto do congelador.",
+   "pagina_pdf": 40
+  },
+  {
+   "id": "homus-com-palitos-de-cenoura-e-pimentao",
+   "numero": 31,
+   "nome": "Homus com palitos de cenoura e pimentão",
+   "categoria": "lanche",
+   "tempo_min": 15,
+   "tempo": "15 min",
+   "porcoes": 4,
+   "rendimento": "4 porções",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "2 xícaras de grão-de-bico cozido",
+    "2 colheres (sopa) de tahine (pasta de gergelim)",
+    "Suco de 1 limão",
+    "1 dente de alho",
+    "3 colheres (sopa) de azeite",
+    "2 cenouras e 1 pimentão em palitos"
+   ],
+   "preparo": [
+    "Bata o grão-de-bico, o tahine, o limão, o alho, o azeite e o sal, adicionando água gelada aos poucos até ficar cremoso.",
+    "Sirva com os palitos de cenoura e pimentão.",
+    "Guarde o homus na geladeira por até 4 dias."
+   ],
+   "beneficios": "O homus junta zinco (grão-de-bico e gergelim) e gordura boa, que ajuda a aproveitar o betacaroteno da cenoura crua. O pimentão garante vitamina C.",
+   "nutrientes": [
+    "Zinco",
+    "Betacaroteno",
+    "Vitamina C"
+   ],
+   "dica": "Varie: bata com cenoura assada ou beterraba cozida para um homus colorido.",
+   "pagina_pdf": 42
+  },
+  {
+   "id": "chips-de-couve-assados",
+   "numero": 32,
+   "nome": "Chips de couve assados",
+   "categoria": "lanche",
+   "tempo_min": 20,
+   "tempo": "20 min",
+   "porcoes": 2,
+   "rendimento": "2 porções",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "6 folhas de couve",
+    "1 colher (sopa) de azeite",
+    "Sal e páprica a gosto"
+   ],
+   "preparo": [
+    "Lave e seque muito bem as folhas. Retire o talo e rasgue em pedaços médios.",
+    "Massageie com o azeite, o sal e a páprica.",
+    "Espalhe sem amontoar e asse a 150 °C por 12 a 15 minutos, até ficarem crocantes, sem deixar escurecer."
+   ],
+   "beneficios": "Uma forma crocante de comer couve, uma das folhas mais ricas em luteína. Bom para substituir salgadinhos de pacote enquanto você trabalha no computador.",
+   "nutrientes": [
+    "Luteína",
+    "Vitamina A"
+   ],
+   "dica": "O segredo é secar muito bem as folhas: qualquer umidade deixa os chips murchos.",
+   "pagina_pdf": 43
+  },
+  {
+   "id": "ovos-cozidos-com-tomate-cereja-e-oregano",
+   "numero": 33,
+   "nome": "Ovos cozidos com tomate-cereja e orégano",
+   "categoria": "lanche",
+   "tempo_min": 12,
+   "tempo": "12 min",
+   "porcoes": 1,
+   "rendimento": "1 porção",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "2 ovos",
+    "6 tomates-cereja",
+    "Fio de azeite, sal e orégano"
+   ],
+   "preparo": [
+    "Cozinhe os ovos por 9 a 10 minutos em água fervente e esfrie em água fria.",
+    "Descasque, corte ao meio e sirva com os tomates.",
+    "Tempere com azeite, sal e orégano."
+   ],
+   "beneficios": "Prático e fácil de levar. A gema é uma das fontes mais bem absorvidas de luteína e zeaxantina, justamente por já vir acompanhada de gordura. O tomate soma vitamina C.",
+   "nutrientes": [
+    "Luteína",
+    "Zeaxantina",
+    "Vitamina C"
+   ],
+   "dica": "Ovos cozidos com casca duram até 5 dias na geladeira. Cozinhe vários de uma vez.",
+   "pagina_pdf": 44
+  },
+  {
+   "id": "muffin-de-cenoura-e-aveia",
+   "numero": 34,
+   "nome": "Muffin de cenoura e aveia",
+   "categoria": "lanche",
+   "tempo_min": 35,
+   "tempo": "35 min",
+   "porcoes": null,
+   "rendimento": "8 unidades",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "2 cenouras médias raladas",
+    "2 bananas maduras amassadas",
+    "2 ovos",
+    "1/4 xícara de óleo",
+    "1 e 1/2 xícara de aveia em flocos finos",
+    "1/3 xícara de nozes picadas",
+    "1 colher (sopa) de fermento em pó",
+    "Canela a gosto"
+   ],
+   "preparo": [
+    "Misture as bananas, os ovos e o óleo.",
+    "Junte a cenoura, a aveia, as nozes e a canela. Por último, o fermento.",
+    "Distribua em forminhas e asse a 180 °C por 20 a 25 minutos."
+   ],
+   "beneficios": "A cenoura é o símbolo da vitamina A por um bom motivo: é rica em betacaroteno. A banana adoça sem açúcar refinado, e as nozes acrescentam ômega-3 vegetal e vitamina E.",
+   "nutrientes": [
+    "Betacaroteno",
+    "Vitamina E"
+   ],
+   "dica": "Troque as nozes por castanhas ou sementes de girassol.",
+   "pagina_pdf": 45
+  },
+  {
+   "id": "pate-de-sardinha-com-torradas",
+   "numero": 35,
+   "nome": "Patê de sardinha com torradas",
+   "categoria": "lanche",
+   "tempo_min": 10,
+   "tempo": "10 min",
+   "porcoes": 4,
+   "rendimento": "4 porções",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "1 lata de sardinha em azeite, escorrida",
+    "3 colheres (sopa) de ricota ou requeijão",
+    "Suco de 1/2 limão",
+    "1 colher (sopa) de cebolinha picada",
+    "1/2 tomate picado sem sementes",
+    "Torradas integrais"
+   ],
+   "preparo": [
+    "Amasse a sardinha com um garfo (as espinhas de lata são macias e podem ficar).",
+    "Misture a ricota, o limão, a cebolinha e o tomate.",
+    "Sirva com torradas ou palitos de legumes."
+   ],
+   "beneficios": "A sardinha em lata é uma das fontes mais práticas e baratas de ômega-3 do tipo DHA. Em forma de patê, fica fácil incluí-la no lanche algumas vezes por semana.",
+   "nutrientes": [
+    "Ômega-3",
+    "Vitamina C"
+   ],
+   "dica": "Ótimo também como recheio de tapioca ou sanduíche com folhas de alface.",
+   "pagina_pdf": 46
+  },
+  {
+   "id": "grao-de-bico-crocante-com-paprica",
+   "numero": 36,
+   "nome": "Grão-de-bico crocante com páprica",
+   "categoria": "lanche",
+   "tempo_min": 35,
+   "tempo": "35 min",
+   "porcoes": 4,
+   "rendimento": "4 porções",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "2 xícaras de grão-de-bico cozido e bem seco",
+    "1 colher (sopa) de azeite",
+    "1 colher (chá) de páprica defumada",
+    "Sal e alho em pó a gosto"
+   ],
+   "preparo": [
+    "Seque muito bem o grão-de-bico com um pano.",
+    "Misture com o azeite e os temperos.",
+    "Asse a 200 °C por 25 a 30 minutos, chacoalhando a assadeira na metade, até ficar crocante."
+   ],
+   "beneficios": "Um petisco crocante que troca o salgadinho de pacote por uma fonte de zinco e proteína vegetal. Guarde em pote aberto para não amolecer.",
+   "nutrientes": [
+    "Zinco"
+   ],
+   "dica": "Troque a páprica por curry, ou por canela com uma pitada de açúcar mascavo para uma versão doce.",
+   "pagina_pdf": 47
+  },
+  {
+   "id": "barrinha-caseira-de-aveia-castanha-e-damasco",
+   "numero": 37,
+   "nome": "Barrinha caseira de aveia, castanha e damasco",
+   "categoria": "lanche",
+   "tempo_min": 30,
+   "tempo": "30 min",
+   "porcoes": null,
+   "rendimento": "10 unidades",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "1 e 1/2 xícara de aveia em flocos",
+    "1/2 xícara de castanhas picadas",
+    "1/2 xícara de damascos secos picados",
+    "2 colheres (sopa) de sementes de abóbora",
+    "1/3 xícara de pasta de amendoim",
+    "1/4 xícara de mel"
+   ],
+   "preparo": [
+    "Aqueça a pasta de amendoim com o mel em fogo baixo, só até amolecer.",
+    "Misture com os ingredientes secos.",
+    "Pressione numa forma forrada com papel-manteiga e leve à geladeira por 2 horas.",
+    "Corte em barras e guarde na geladeira."
+   ],
+   "beneficios": "O damasco seco é uma das frutas secas com mais betacaroteno. Castanhas, amendoim e sementes de abóbora somam vitamina E e zinco. Lembre que é um lanche calórico: uma barrinha basta.",
+   "nutrientes": [
+    "Vitamina E",
+    "Betacaroteno",
+    "Zinco"
+   ],
+   "dica": "Embale uma a uma em papel-manteiga para levar na bolsa.",
+   "pagina_pdf": 48
+  },
+  {
+   "id": "salada-de-frutas-citrica-com-hortela",
+   "numero": 38,
+   "nome": "Salada de frutas cítrica com hortelã",
+   "categoria": "lanche",
+   "tempo_min": 10,
+   "tempo": "10 min",
+   "porcoes": 2,
+   "rendimento": "2 porções",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "1 laranja em gomos",
+    "1 kiwi em cubos",
+    "1/2 manga em cubos",
+    "6 morangos",
+    "Folhas de hortelã",
+    "Suco de 1/2 laranja"
+   ],
+   "preparo": [
+    "Corte todas as frutas e misture numa tigela.",
+    "Regue com o suco de laranja e finalize com a hortelã.",
+    "Sirva gelada."
+   ],
+   "beneficios": "Laranja, kiwi e morango são fontes de vitamina C, e a manga traz betacaroteno. Comer as frutas inteiras mantém as fibras que se perdem quando viram suco.",
+   "nutrientes": [
+    "Vitamina C",
+    "Betacaroteno"
+   ],
+   "dica": "Prepare só na hora de comer para as frutas não escurecerem e manterem a vitamina C.",
+   "pagina_pdf": 49
+  },
+  {
+   "id": "guacamole-com-chips-de-batata-doce",
+   "numero": 39,
+   "nome": "Guacamole com chips de batata-doce",
+   "categoria": "lanche",
+   "tempo_min": 35,
+   "tempo": "35 min",
+   "porcoes": 2,
+   "rendimento": "2 porções",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "1 abacate maduro (ou 1/2 abacate grande)",
+    "1 tomate picado sem sementes",
+    "1/4 cebola roxa picada",
+    "Coentro, limão e sal",
+    "1 batata-doce em rodelas finas",
+    "Azeite"
+   ],
+   "preparo": [
+    "Espalhe a batata-doce em assadeira com azeite e sal e asse a 200 °C por 20 a 25 minutos, virando na metade.",
+    "Amasse o abacate e misture o tomate, a cebola, o coentro, o limão e o sal.",
+    "Sirva o guacamole com os chips."
+   ],
+   "beneficios": "O abacate traz vitamina E e gordura boa, que ajuda a absorver o betacaroteno da batata-doce. Tomate e limão somam vitamina C.",
+   "nutrientes": [
+    "Vitamina E",
+    "Betacaroteno",
+    "Vitamina C"
+   ],
+   "dica": "Asse a batata-doce com casca, bem lavada: fica mais crocante e aproveita as fibras.",
+   "pagina_pdf": 50
+  },
+  {
+   "id": "pipoca-no-azeite-com-ervas",
+   "numero": 40,
+   "nome": "Pipoca no azeite com ervas",
+   "categoria": "lanche",
+   "tempo_min": 10,
+   "tempo": "10 min",
+   "porcoes": 2,
+   "rendimento": "2 porções",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "1/3 xícara de milho de pipoca",
+    "1 colher (sopa) de azeite",
+    "Sal, orégano e alecrim a gosto"
+   ],
+   "preparo": [
+    "Aqueça o azeite na panela com 3 grãos de milho. Quando estourarem, junte o restante e tampe.",
+    "Chacoalhe a panela de vez em quando até os estouros diminuírem.",
+    "Tempere com sal e as ervas."
+   ],
+   "beneficios": "Feita em casa, sem manteiga em excesso nem tempero pronto, a pipoca é um grão integral. O milho é uma das fontes de zeaxantina. Uma alternativa à pipoca de micro-ondas para o lanche da tarde.",
+   "nutrientes": [
+    "Zeaxantina"
+   ],
+   "dica": "Polvilhe páprica ou levedura nutricional por cima para variar o sabor.",
+   "pagina_pdf": 51
+  },
+  {
+   "id": "suco-de-laranja-cenoura-e-gengibre",
+   "numero": 41,
+   "nome": "Suco de laranja, cenoura e gengibre",
+   "categoria": "bebida",
+   "tempo_min": 5,
+   "tempo": "5 min",
+   "porcoes": null,
+   "rendimento": "2 copos",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "3 laranjas",
+    "1 cenoura média",
+    "1 pedaço pequeno de gengibre",
+    "Gelo a gosto"
+   ],
+   "preparo": [
+    "Esprema as laranjas.",
+    "Bata o suco com a cenoura picada e o gengibre.",
+    "Sirva sem coar, com gelo."
+   ],
+   "beneficios": "A dupla mais conhecida dos olhos: a cenoura traz betacaroteno e a laranja, vitamina C. Beber sem coar mantém as fibras da cenoura.",
+   "nutrientes": [
+    "Betacaroteno",
+    "Vitamina C"
+   ],
+   "dica": "Gengibre fresco é forte: comece com um pedaço do tamanho de uma unha e ajuste.",
+   "pagina_pdf": 53
+  },
+  {
+   "id": "suco-verde-de-couve-abacaxi-e-hortela",
+   "numero": 42,
+   "nome": "Suco verde de couve, abacaxi e hortelã",
+   "categoria": "bebida",
+   "tempo_min": 5,
+   "tempo": "5 min",
+   "porcoes": null,
+   "rendimento": "2 copos",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "2 rodelas de abacaxi",
+    "1 folha de couve",
+    "Folhas de hortelã",
+    "1 copo de água gelada"
+   ],
+   "preparo": [
+    "Bata tudo no liquidificador.",
+    "Se preferir, coe, mas o ideal é beber com as fibras.",
+    "Beba logo depois de pronto."
+   ],
+   "beneficios": "A couve leva luteína para o copo, e o abacaxi traz vitamina C e sabor. Um jeito simples para quem tem dificuldade de comer folhas no prato.",
+   "nutrientes": [
+    "Luteína",
+    "Vitamina C"
+   ],
+   "dica": "Congele abacaxi picado para o suco já sair gelado e mais encorpado.",
+   "pagina_pdf": 54
+  },
+  {
+   "id": "vitamina-de-manga-mamao-e-linhaca",
+   "numero": 43,
+   "nome": "Vitamina de manga, mamão e linhaça",
+   "categoria": "bebida",
+   "tempo_min": 5,
+   "tempo": "5 min",
+   "porcoes": null,
+   "rendimento": "2 copos",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "1/2 manga",
+    "1 fatia de mamão",
+    "1 colher (sopa) de linhaça triturada",
+    "1 copo de leite ou iogurte",
+    "Gelo a gosto"
+   ],
+   "preparo": [
+    "Bata todos os ingredientes no liquidificador até ficar cremoso.",
+    "Sirva em seguida."
+   ],
+   "beneficios": "Duas frutas alaranjadas ricas em betacaroteno e vitamina C, com ômega-3 vegetal da linhaça. O leite ou iogurte ajuda a absorver os carotenoides.",
+   "nutrientes": [
+    "Betacaroteno",
+    "Ômega-3",
+    "Vitamina C"
+   ],
+   "dica": "Use as frutas congeladas para virar um sorvete cremoso de colher.",
+   "pagina_pdf": 55
+  },
+  {
+   "id": "acai-batido-com-banana-e-morango",
+   "numero": 44,
+   "nome": "Açaí batido com banana e morango",
+   "categoria": "bebida",
+   "tempo_min": 5,
+   "tempo": "5 min",
+   "porcoes": 1,
+   "rendimento": "1 porção",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "100 g de polpa de açaí sem açúcar",
+    "1/2 banana congelada",
+    "5 morangos",
+    "1/2 copo de água ou leite"
+   ],
+   "preparo": [
+    "Bata a polpa com a banana, os morangos e o líquido.",
+    "Sirva na hora, sem xarope de guaraná e sem leite condensado."
+   ],
+   "beneficios": "O açaí puro é rico em pigmentos roxos antioxidantes. A banana dá cremosidade sem açúcar, e o morango acrescenta vitamina C.",
+   "nutrientes": [
+    "Antioxidantes",
+    "Vitamina C"
+   ],
+   "dica": "Congele a polpa em cubos de gelo para bater porções menores.",
+   "pagina_pdf": 56
+  },
+  {
+   "id": "suco-de-acerola-com-laranja",
+   "numero": 45,
+   "nome": "Suco de acerola com laranja",
+   "categoria": "bebida",
+   "tempo_min": 5,
+   "tempo": "5 min",
+   "porcoes": null,
+   "rendimento": "2 copos",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "1 xícara de acerola (fresca ou polpa)",
+    "Suco de 2 laranjas",
+    "1 copo de água gelada"
+   ],
+   "preparo": [
+    "Bata a acerola com o suco de laranja e a água.",
+    "Coe se preferir e beba logo, porque a vitamina C se perde com o tempo."
+   ],
+   "beneficios": "A acerola é uma das frutas mais ricas em vitamina C que existem, e é bem brasileira. A vitamina C é antioxidante e está naturalmente presente nos tecidos do olho.",
+   "nutrientes": [
+    "Vitamina C"
+   ],
+   "dica": "Polpa congelada de acerola é ótima e barata. Tenha sempre no congelador.",
+   "pagina_pdf": 57
+  },
+  {
+   "id": "agua-saborizada-de-pepino-limao-e-hortela",
+   "numero": 46,
+   "nome": "Água saborizada de pepino, limão e hortelã",
+   "categoria": "bebida",
+   "tempo_min": 5,
+   "tempo": "5 min + geladeira",
+   "porcoes": null,
+   "rendimento": "1 litro",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "1 litro de água",
+    "1/2 pepino em rodelas finas",
+    "1/2 limão em rodelas",
+    "Folhas de hortelã"
+   ],
+   "preparo": [
+    "Coloque tudo numa jarra com água.",
+    "Deixe na geladeira por pelo menos 1 hora.",
+    "Reabasteça com água ao longo do dia."
+   ],
+   "beneficios": "O livro lembra que a lágrima também depende da sua hidratação. Ter uma jarra saborizada à vista facilita beber água durante o trabalho no computador.",
+   "nutrientes": [
+    "Hidratação"
+   ],
+   "dica": "Varie com morango e manjericão, ou laranja e alecrim.",
+   "pagina_pdf": 58
+  },
+  {
+   "id": "suco-de-melancia-com-gengibre",
+   "numero": 47,
+   "nome": "Suco de melancia com gengibre",
+   "categoria": "bebida",
+   "tempo_min": 5,
+   "tempo": "5 min",
+   "porcoes": null,
+   "rendimento": "2 copos",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "3 xícaras de melancia em cubos",
+    "1 pedaço pequeno de gengibre",
+    "Folhas de hortelã (opcional)"
+   ],
+   "preparo": [
+    "Bata a melancia com o gengibre. Não precisa de água.",
+    "Sirva gelado."
+   ],
+   "beneficios": "A melancia é formada quase toda por água e ajuda na hidratação, além de trazer vitamina C e o licopeno, pigmento antioxidante que dá a cor vermelha.",
+   "nutrientes": [
+    "Hidratação",
+    "Vitamina C"
+   ],
+   "dica": "Coe e congele em forminhas de picolé para os dias quentes.",
+   "pagina_pdf": 59
+  },
+  {
+   "id": "creme-batido-de-abacate-com-cacau",
+   "numero": 48,
+   "nome": "Creme batido de abacate com cacau",
+   "categoria": "bebida",
+   "tempo_min": 5,
+   "tempo": "5 min",
+   "porcoes": 2,
+   "rendimento": "2 porções",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "1/2 abacate",
+    "1 banana",
+    "1 colher (sopa) de cacau em pó",
+    "1 copo de leite",
+    "Mel a gosto (opcional)"
+   ],
+   "preparo": [
+    "Bata tudo até ficar bem liso.",
+    "Sirva gelado como bebida, ou com menos leite, como creme de colher."
+   ],
+   "beneficios": "O abacate é fonte de vitamina E e de gordura boa. Uma sobremesa de lanche que mata a vontade de doce com ingredientes de verdade.",
+   "nutrientes": [
+    "Vitamina E"
+   ],
+   "dica": "Com menos leite, vira um mousse. Sirva com morangos.",
+   "pagina_pdf": 60
+  },
+  {
+   "id": "suco-de-goiaba-com-maracuja",
+   "numero": 49,
+   "nome": "Suco de goiaba com maracujá",
+   "categoria": "bebida",
+   "tempo_min": 5,
+   "tempo": "5 min",
+   "porcoes": null,
+   "rendimento": "2 copos",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "2 goiabas vermelhas",
+    "Polpa de 1 maracujá",
+    "2 copos de água gelada"
+   ],
+   "preparo": [
+    "Bata as goiabas e a polpa do maracujá com a água.",
+    "Coe para retirar as sementes."
+   ],
+   "beneficios": "A goiaba vermelha é muito rica em vitamina C e ainda traz carotenoides, que dão a cor rosada. O maracujá acrescenta sabor sem precisar de açúcar.",
+   "nutrientes": [
+    "Vitamina C",
+    "Betacaroteno"
+   ],
+   "dica": "A goiaba congelada em pedaços dispensa o gelo e deixa o suco mais grosso.",
+   "pagina_pdf": 61
+  },
+  {
+   "id": "suco-de-beterraba-cenoura-e-laranja",
+   "numero": 50,
+   "nome": "Suco de beterraba, cenoura e laranja",
+   "categoria": "bebida",
+   "tempo_min": 5,
+   "tempo": "5 min",
+   "porcoes": null,
+   "rendimento": "2 copos",
+   "dificuldade": "fácil",
+   "ingredientes": [
+    "1/2 beterraba pequena crua",
+    "1 cenoura",
+    "Suco de 3 laranjas",
+    "Gelo"
+   ],
+   "preparo": [
+    "Bata a beterraba e a cenoura picadas com o suco de laranja.",
+    "Sirva sem coar, bem gelado."
+   ],
+   "beneficios": "Cenoura e laranja formam a dupla betacaroteno e vitamina C. A beterraba dá a cor intensa e traz seus próprios pigmentos antioxidantes.",
+   "nutrientes": [
+    "Betacaroteno",
+    "Vitamina C"
+   ],
+   "dica": "Deixe a beterraba bem picada para o liquidificador triturar por completo.",
+   "pagina_pdf": 62
+  }
+ ],
+ "cardapio": [
+  {
+   "dia": 1,
+   "semana": 1,
+   "cafe": "ovos-mexidos-cremosos-com-espinafre",
+   "almoco": "salmao-assado-com-pure-de-abobora-e-brocolis",
+   "lanche": "homus-com-palitos-de-cenoura-e-pimentao",
+   "bebida": "suco-de-laranja-cenoura-e-gengibre",
+   "jantar": "sopa-creme-de-abobora-com-gengibre",
+   "jantar_texto": null
+  },
+  {
+   "dia": 2,
+   "semana": 1,
+   "cafe": "iogurte-com-mamao-granola-e-chia",
+   "almoco": "arroz-feijao-e-couve-com-ovo",
+   "lanche": "muffin-de-cenoura-e-aveia",
+   "bebida": "creme-batido-de-abacate-com-cacau",
+   "jantar": "fritada-de-forno-com-espinafre-milho-e-queijo",
+   "jantar_texto": null
+  },
+  {
+   "dia": 3,
+   "semana": 1,
+   "cafe": "torrada-de-ricota-tomate-e-rucula",
+   "almoco": "frango-salteado-com-brocolis-cenoura-e-gergelim",
+   "lanche": "barrinha-caseira-de-aveia-castanha-e-damasco",
+   "bebida": "suco-de-acerola-com-laranja",
+   "jantar": "caldo-verde-leve",
+   "jantar_texto": null
+  },
+  {
+   "dia": 4,
+   "semana": 1,
+   "cafe": "torrada-de-abacate-ovo-e-tomate",
+   "almoco": "moqueca-leve-de-peixe-com-pimentoes",
+   "lanche": "pipoca-no-azeite-com-ervas",
+   "bebida": "suco-verde-de-couve-abacaxi-e-hortela",
+   "jantar": null,
+   "jantar_texto": "Sobras do almoço de ontem + salada de folhas escuras"
+  },
+  {
+   "dia": 5,
+   "semana": 1,
+   "cafe": "muffin-salgado-de-ovos-e-legumes",
+   "almoco": "escondidinho-de-batata-doce-com-carne-moida",
+   "lanche": "ovos-cozidos-com-tomate-cereja-e-oregano",
+   "bebida": "suco-de-goiaba-com-maracuja",
+   "jantar": "lentilha-ensopada-com-espinafre-e-cenoura",
+   "jantar_texto": null
+  },
+  {
+   "dia": 6,
+   "semana": 1,
+   "cafe": "panqueca-de-banana-e-aveia-com-morangos",
+   "almoco": "salada-de-feijao-fradinho-com-atum",
+   "lanche": "grao-de-bico-crocante-com-paprica",
+   "bebida": "agua-saborizada-de-pepino-limao-e-hortela",
+   "jantar": "falafel-de-forno-com-molho-de-iogurte",
+   "jantar_texto": null
+  },
+  {
+   "dia": 7,
+   "semana": 1,
+   "cafe": "aveia-dormida-com-morango-e-chia",
+   "almoco": "galinhada-com-milho-e-cenoura",
+   "lanche": "guacamole-com-chips-de-batata-doce",
+   "bebida": "vitamina-de-manga-mamao-e-linhaca",
+   "jantar": "abobrinha-recheada-com-carne-e-tomate",
+   "jantar_texto": null
+  },
+  {
+   "dia": 8,
+   "semana": 2,
+   "cafe": "tapioca-com-ovo-e-couve-refogada",
+   "almoco": "sardinha-assada-com-batata-doce-e-salada-de-agriao",
+   "lanche": "chips-de-couve-assados",
+   "bebida": "suco-de-beterraba-cenoura-e-laranja",
+   "jantar": null,
+   "jantar_texto": "Sobras do almoço de ontem + salada de folhas escuras"
+  },
+  {
+   "dia": 9,
+   "semana": 2,
+   "cafe": "crepioca-de-espinafre-com-ricota",
+   "almoco": "kibe-de-forno-recheado-com-espinafre",
+   "lanche": "pate-de-sardinha-com-torradas",
+   "bebida": "suco-de-melancia-com-gengibre",
+   "jantar": "sopa-creme-de-abobora-com-gengibre",
+   "jantar_texto": null
+  },
+  {
+   "dia": 10,
+   "semana": 2,
+   "cafe": "mingau-de-aveia-com-manga-e-linhaca",
+   "almoco": "tilapia-com-crosta-de-castanha-e-legumes-assados",
+   "lanche": "salada-de-frutas-citrica-com-hortela",
+   "bebida": "acai-batido-com-banana-e-morango",
+   "jantar": "fritada-de-forno-com-espinafre-milho-e-queijo",
+   "jantar_texto": null
+  },
+  {
+   "dia": 11,
+   "semana": 2,
+   "cafe": "cuscuz-com-ovo-e-pimentao",
+   "almoco": "lentilha-ensopada-com-espinafre-e-cenoura",
+   "lanche": "homus-com-palitos-de-cenoura-e-pimentao",
+   "bebida": "suco-de-laranja-cenoura-e-gengibre",
+   "jantar": "caldo-verde-leve",
+   "jantar_texto": null
+  },
+  {
+   "dia": 12,
+   "semana": 2,
+   "cafe": "ovos-mexidos-cremosos-com-espinafre",
+   "almoco": "abobrinha-recheada-com-carne-e-tomate",
+   "lanche": "muffin-de-cenoura-e-aveia",
+   "bebida": "creme-batido-de-abacate-com-cacau",
+   "jantar": null,
+   "jantar_texto": "Sobras do almoço de ontem + salada de folhas escuras"
+  },
+  {
+   "dia": 13,
+   "semana": 2,
+   "cafe": "iogurte-com-mamao-granola-e-chia",
+   "almoco": "macarrao-integral-ao-pesto-de-couve-e-castanha",
+   "lanche": "barrinha-caseira-de-aveia-castanha-e-damasco",
+   "bebida": "suco-de-acerola-com-laranja",
+   "jantar": "lentilha-ensopada-com-espinafre-e-cenoura",
+   "jantar_texto": null
+  },
+  {
+   "dia": 14,
+   "semana": 2,
+   "cafe": "torrada-de-ricota-tomate-e-rucula",
+   "almoco": "falafel-de-forno-com-molho-de-iogurte",
+   "lanche": "pipoca-no-azeite-com-ervas",
+   "bebida": "suco-verde-de-couve-abacaxi-e-hortela",
+   "jantar": "falafel-de-forno-com-molho-de-iogurte",
+   "jantar_texto": null
+  },
+  {
+   "dia": 15,
+   "semana": 3,
+   "cafe": "torrada-de-abacate-ovo-e-tomate",
+   "almoco": "salada-morna-de-grao-de-bico-pimentao-e-rucula",
+   "lanche": "ovos-cozidos-com-tomate-cereja-e-oregano",
+   "bebida": "suco-de-goiaba-com-maracuja",
+   "jantar": "abobrinha-recheada-com-carne-e-tomate",
+   "jantar_texto": null
+  },
+  {
+   "dia": 16,
+   "semana": 3,
+   "cafe": "muffin-salgado-de-ovos-e-legumes",
+   "almoco": "salmao-assado-com-pure-de-abobora-e-brocolis",
+   "lanche": "grao-de-bico-crocante-com-paprica",
+   "bebida": "agua-saborizada-de-pepino-limao-e-hortela",
+   "jantar": null,
+   "jantar_texto": "Sobras do almoço de ontem + salada de folhas escuras"
+  },
+  {
+   "dia": 17,
+   "semana": 3,
+   "cafe": "panqueca-de-banana-e-aveia-com-morangos",
+   "almoco": "arroz-feijao-e-couve-com-ovo",
+   "lanche": "guacamole-com-chips-de-batata-doce",
+   "bebida": "vitamina-de-manga-mamao-e-linhaca",
+   "jantar": "sopa-creme-de-abobora-com-gengibre",
+   "jantar_texto": null
+  },
+  {
+   "dia": 18,
+   "semana": 3,
+   "cafe": "aveia-dormida-com-morango-e-chia",
+   "almoco": "frango-salteado-com-brocolis-cenoura-e-gergelim",
+   "lanche": "chips-de-couve-assados",
+   "bebida": "suco-de-beterraba-cenoura-e-laranja",
+   "jantar": "fritada-de-forno-com-espinafre-milho-e-queijo",
+   "jantar_texto": null
+  },
+  {
+   "dia": 19,
+   "semana": 3,
+   "cafe": "tapioca-com-ovo-e-couve-refogada",
+   "almoco": "moqueca-leve-de-peixe-com-pimentoes",
+   "lanche": "pate-de-sardinha-com-torradas",
+   "bebida": "suco-de-melancia-com-gengibre",
+   "jantar": "caldo-verde-leve",
+   "jantar_texto": null
+  },
+  {
+   "dia": 20,
+   "semana": 3,
+   "cafe": "crepioca-de-espinafre-com-ricota",
+   "almoco": "escondidinho-de-batata-doce-com-carne-moida",
+   "lanche": "salada-de-frutas-citrica-com-hortela",
+   "bebida": "acai-batido-com-banana-e-morango",
+   "jantar": null,
+   "jantar_texto": "Sobras do almoço de ontem + salada de folhas escuras"
+  },
+  {
+   "dia": 21,
+   "semana": 3,
+   "cafe": "mingau-de-aveia-com-manga-e-linhaca",
+   "almoco": "salada-de-feijao-fradinho-com-atum",
+   "lanche": "homus-com-palitos-de-cenoura-e-pimentao",
+   "bebida": "suco-de-laranja-cenoura-e-gengibre",
+   "jantar": "lentilha-ensopada-com-espinafre-e-cenoura",
+   "jantar_texto": null
+  },
+  {
+   "dia": 22,
+   "semana": 4,
+   "cafe": "cuscuz-com-ovo-e-pimentao",
+   "almoco": "galinhada-com-milho-e-cenoura",
+   "lanche": "muffin-de-cenoura-e-aveia",
+   "bebida": "creme-batido-de-abacate-com-cacau",
+   "jantar": "falafel-de-forno-com-molho-de-iogurte",
+   "jantar_texto": null
+  },
+  {
+   "dia": 23,
+   "semana": 4,
+   "cafe": "ovos-mexidos-cremosos-com-espinafre",
+   "almoco": "sardinha-assada-com-batata-doce-e-salada-de-agriao",
+   "lanche": "barrinha-caseira-de-aveia-castanha-e-damasco",
+   "bebida": "suco-de-acerola-com-laranja",
+   "jantar": "abobrinha-recheada-com-carne-e-tomate",
+   "jantar_texto": null
+  },
+  {
+   "dia": 24,
+   "semana": 4,
+   "cafe": "iogurte-com-mamao-granola-e-chia",
+   "almoco": "kibe-de-forno-recheado-com-espinafre",
+   "lanche": "pipoca-no-azeite-com-ervas",
+   "bebida": "suco-verde-de-couve-abacaxi-e-hortela",
+   "jantar": null,
+   "jantar_texto": "Sobras do almoço de ontem + salada de folhas escuras"
+  },
+  {
+   "dia": 25,
+   "semana": 4,
+   "cafe": "torrada-de-ricota-tomate-e-rucula",
+   "almoco": "tilapia-com-crosta-de-castanha-e-legumes-assados",
+   "lanche": "ovos-cozidos-com-tomate-cereja-e-oregano",
+   "bebida": "suco-de-goiaba-com-maracuja",
+   "jantar": "sopa-creme-de-abobora-com-gengibre",
+   "jantar_texto": null
+  },
+  {
+   "dia": 26,
+   "semana": 4,
+   "cafe": "torrada-de-abacate-ovo-e-tomate",
+   "almoco": "lentilha-ensopada-com-espinafre-e-cenoura",
+   "lanche": "grao-de-bico-crocante-com-paprica",
+   "bebida": "agua-saborizada-de-pepino-limao-e-hortela",
+   "jantar": "fritada-de-forno-com-espinafre-milho-e-queijo",
+   "jantar_texto": null
+  },
+  {
+   "dia": 27,
+   "semana": 4,
+   "cafe": "muffin-salgado-de-ovos-e-legumes",
+   "almoco": "abobrinha-recheada-com-carne-e-tomate",
+   "lanche": "guacamole-com-chips-de-batata-doce",
+   "bebida": "vitamina-de-manga-mamao-e-linhaca",
+   "jantar": "caldo-verde-leve",
+   "jantar_texto": null
+  },
+  {
+   "dia": 28,
+   "semana": 4,
+   "cafe": "panqueca-de-banana-e-aveia-com-morangos",
+   "almoco": "macarrao-integral-ao-pesto-de-couve-e-castanha",
+   "lanche": "chips-de-couve-assados",
+   "bebida": "suco-de-beterraba-cenoura-e-laranja",
+   "jantar": null,
+   "jantar_texto": "Sobras do almoço de ontem + salada de folhas escuras"
+  },
+  {
+   "dia": 29,
+   "semana": 4,
+   "cafe": "aveia-dormida-com-morango-e-chia",
+   "almoco": "falafel-de-forno-com-molho-de-iogurte",
+   "lanche": "pate-de-sardinha-com-torradas",
+   "bebida": "suco-de-melancia-com-gengibre",
+   "jantar": "lentilha-ensopada-com-espinafre-e-cenoura",
+   "jantar_texto": null
+  },
+  {
+   "dia": 30,
+   "semana": 4,
+   "cafe": "tapioca-com-ovo-e-couve-refogada",
+   "almoco": "salada-morna-de-grao-de-bico-pimentao-e-rucula",
+   "lanche": "salada-de-frutas-citrica-com-hortela",
+   "bebida": "acai-batido-com-banana-e-morango",
+   "jantar": "falafel-de-forno-com-molho-de-iogurte",
+   "jantar_texto": null
+  }
+ ],
+ "listas_compras": [
+  {
+   "semana": 1,
+   "dias": [
+    1,
+    7
+   ],
+   "secoes": [
     {
-      "id": "smoothie-visao-power",
-      "nome": "Smoothie “Visão Power”",
-      "categoria": "bebidas",
-      "tempo_min": 5,
-      "porcoes": 1,
-      "dificuldade": "fácil",
-      "ingredientes": [
-        "1 xícara de espinafre fresco",
-        "1/2 xícara de mirtilos (blueberry)",
-        "1/2 cenoura pequena",
-        "1/2 banana congelada",
-        "1 colher de sopa de sementes de chia",
-        "1 xícara de água de coco ou leite vegetal"
-      ],
-      "preparo": [
-        "Bata todos os ingredientes no liquidificador até obter uma mistura homogênea.",
-        "Sirva imediatamente."
-      ],
-      "beneficios": "Rica em vitamina A, luteína e antioxidantes, nutrientes associados à proteção da retina e ao combate ao estresse oxidativo.",
-      "nutrientes": ["vitamina A", "luteína", "antioxidantes"]
+     "nome": "Verduras e legumes",
+     "itens": [
+      {
+       "item": "Espinafre",
+       "receitas": 4
+      },
+      {
+       "item": "Couve-manteiga",
+       "receitas": 3
+      },
+      {
+       "item": "Rúcula",
+       "receitas": 1
+      },
+      {
+       "item": "Brócolis",
+       "receitas": 2
+      },
+      {
+       "item": "Cenoura",
+       "receitas": 7
+      },
+      {
+       "item": "Abóbora cabotiá",
+       "receitas": 2
+      },
+      {
+       "item": "Batata-doce",
+       "receitas": 2
+      },
+      {
+       "item": "Batata",
+       "receitas": 1
+      },
+      {
+       "item": "Abobrinha",
+       "receitas": 2
+      },
+      {
+       "item": "Pimentão vermelho / amarelo",
+       "receitas": 3
+      },
+      {
+       "item": "Pimentão verde",
+       "receitas": 1
+      },
+      {
+       "item": "Tomate",
+       "receitas": 6
+      },
+      {
+       "item": "Tomate-cereja",
+       "receitas": 3
+      },
+      {
+       "item": "Pepino",
+       "receitas": 1
+      },
+      {
+       "item": "Milho verde",
+       "receitas": 2
+      },
+      {
+       "item": "Cebola roxa",
+       "receitas": 2
+      },
+      {
+       "item": "Gengibre",
+       "receitas": 3
+      },
+      {
+       "item": "Cheiro-verde, coentro, salsinha",
+       "receitas": 6
+      },
+      {
+       "item": "Hortelã e manjericão",
+       "receitas": 3
+      },
+      {
+       "item": "Limão",
+       "receitas": 8
+      }
+     ]
     },
     {
-      "id": "salada-olhos-brilhantes",
-      "nome": "Salada “Olhos Brilhantes”",
-      "categoria": "refeicoes",
-      "tempo_min": 20,
-      "porcoes": 2,
-      "dificuldade": "fácil",
-      "ingredientes": [
-        "Folhas verdes escuras, como rúcula, agrião e couve",
-        "Salmão grelhado",
-        "Tomates cereja cortados ao meio",
-        "Pepino em rodelas",
-        "Nozes picadas",
-        "Molho de azeite extravirgem, limão, sal e pimenta-do-reino"
-      ],
-      "preparo": [
-        "Monte a salada com as folhas, o salmão, os tomates, o pepino e as nozes.",
-        "Regue com o molho e sirva."
-      ],
-      "beneficios": "O salmão fornece ômega-3, enquanto o tomate e as folhas verdes acrescentam antioxidantes importantes para o conforto ocular.",
-      "nutrientes": ["ômega-3", "antioxidantes"]
+     "nome": "Frutas",
+     "itens": [
+      {
+       "item": "Laranja",
+       "receitas": 3
+      },
+      {
+       "item": "Manga",
+       "receitas": 1
+      },
+      {
+       "item": "Mamão",
+       "receitas": 2
+      },
+      {
+       "item": "Banana",
+       "receitas": 3
+      },
+      {
+       "item": "Morango",
+       "receitas": 2
+      },
+      {
+       "item": "Abacate",
+       "receitas": 3
+      },
+      {
+       "item": "Abacaxi",
+       "receitas": 1
+      },
+      {
+       "item": "Acerola (fresca ou polpa)",
+       "receitas": 1
+      },
+      {
+       "item": "Goiaba vermelha",
+       "receitas": 1
+      },
+      {
+       "item": "Maracujá",
+       "receitas": 1
+      },
+      {
+       "item": "Damasco seco",
+       "receitas": 1
+      }
+     ]
     },
     {
-      "id": "omelete-foco-total",
-      "nome": "Omelete “Foco Total”",
-      "categoria": "refeicoes",
-      "tempo_min": 15,
-      "porcoes": 1,
-      "dificuldade": "fácil",
-      "ingredientes": [
-        "2 ovos grandes",
-        "1/4 de xícara de pimentão vermelho picado",
-        "1/4 de xícara de cebola picada",
-        "1/4 de xícara de queijo cottage ou ricota",
-        "Sal e pimenta a gosto"
-      ],
-      "preparo": [
-        "Bata os ovos com sal e pimenta.",
-        "Refogue o pimentão e a cebola, adicione os ovos e cozinhe.",
-        "Quando estiver quase pronto, acrescente o queijo, dobre a omelete e sirva."
-      ],
-      "beneficios": "A gema do ovo é fonte de luteína e zeaxantina, enquanto o pimentão vermelho contribui com vitamina C.",
-      "nutrientes": ["luteína", "zeaxantina", "vitamina C"]
+     "nome": "Peixes, carnes e ovos",
+     "itens": [
+      {
+       "item": "Ovos",
+       "receitas": 8
+      },
+      {
+       "item": "Salmão",
+       "receitas": 1
+      },
+      {
+       "item": "Atum em lata",
+       "receitas": 1
+      },
+      {
+       "item": "Peixe para moqueca",
+       "receitas": 1
+      },
+      {
+       "item": "Frango (peito ou sobrecoxa)",
+       "receitas": 3
+      },
+      {
+       "item": "Carne moída magra",
+       "receitas": 2
+      }
+     ]
     },
     {
-      "id": "suco-verde-detox-visual",
-      "nome": "Suco Verde “Detox Visual”",
-      "categoria": "bebidas",
-      "tempo_min": 5,
-      "porcoes": 1,
-      "dificuldade": "fácil",
-      "ingredientes": [
-        "1 maçã verde",
-        "1 folha de couve",
-        "1/2 pepino",
-        "Suco de 1/2 limão",
-        "Gengibre a gosto",
-        "1 copo de água"
-      ],
-      "preparo": [
-        "Bata todos os ingredientes no liquidificador.",
-        "Coe se preferir, mas o ideal é consumir com as fibras. Beba fresco."
-      ],
-      "beneficios": "Rico em vitaminas e minerais que ajudam a combater inflamações e a manter a hidratação ocular.",
-      "nutrientes": ["vitaminas", "minerais", "hidratação"]
+     "nome": "Laticínios",
+     "itens": [
+      {
+       "item": "Leite (animal ou vegetal)",
+       "receitas": 4
+      },
+      {
+       "item": "Iogurte natural",
+       "receitas": 4
+      },
+      {
+       "item": "Ricota",
+       "receitas": 1
+      },
+      {
+       "item": "Queijo minas",
+       "receitas": 1
+      },
+      {
+       "item": "Queijo ralado / parmesão",
+       "receitas": 3
+      }
+     ]
     },
     {
-      "id": "mix-sementes-olhar-afiado",
-      "nome": "Mix de Sementes “Olhar Afiado”",
-      "categoria": "lanches",
-      "tempo_min": 5,
-      "porcoes": 8,
-      "dificuldade": "fácil",
-      "ingredientes": [
-        "1/4 de xícara de sementes de abóbora",
-        "1/4 de xícara de sementes de girassol",
-        "1/4 de xícara de amêndoas",
-        "1/4 de xícara de nozes"
-      ],
-      "preparo": [
-        "Misture todas as sementes e armazene em um pote hermético.",
-        "Consuma uma colher de sopa como lanche ou adicione a iogurtes e saladas."
-      ],
-      "beneficios": "Reúne fontes de vitamina E, zinco e ômega-3, nutrientes associados à proteção das células oculares e à saúde da retina.",
-      "nutrientes": ["vitamina E", "zinco", "ômega-3"]
+     "nome": "Grãos, leguminosas e sementes",
+     "itens": [
+      {
+       "item": "Aveia em flocos",
+       "receitas": 5
+      },
+      {
+       "item": "Arroz (de preferência integral)",
+       "receitas": 2
+      },
+      {
+       "item": "Pão integral",
+       "receitas": 2
+      },
+      {
+       "item": "Feijão",
+       "receitas": 1
+      },
+      {
+       "item": "Feijão-fradinho",
+       "receitas": 1
+      },
+      {
+       "item": "Lentilha",
+       "receitas": 1
+      },
+      {
+       "item": "Grão-de-bico",
+       "receitas": 3
+      },
+      {
+       "item": "Milho de pipoca",
+       "receitas": 1
+      },
+      {
+       "item": "Linhaça dourada",
+       "receitas": 1
+      },
+      {
+       "item": "Chia",
+       "receitas": 3
+      },
+      {
+       "item": "Sementes de abóbora",
+       "receitas": 4
+      },
+      {
+       "item": "Sementes de girassol",
+       "receitas": 1
+      },
+      {
+       "item": "Gergelim / tahine",
+       "receitas": 2
+      },
+      {
+       "item": "Castanhas, amêndoas ou nozes",
+       "receitas": 3
+      },
+      {
+       "item": "Pasta de amendoim",
+       "receitas": 1
+      }
+     ]
+    },
+    {
+     "nome": "Despensa",
+     "itens": [
+      {
+       "item": "Leite de coco",
+       "receitas": 1
+      },
+      {
+       "item": "Mel",
+       "receitas": 4
+      },
+      {
+       "item": "Cacau em pó",
+       "receitas": 1
+      },
+      {
+       "item": "Shoyu",
+       "receitas": 1
+      },
+      {
+       "item": "Cúrcuma, páprica, cominho, canela",
+       "receitas": 7
+      }
+     ]
     }
-  ],
-  "aviso": "Conteúdo educativo. Não substitui orientação de médico ou nutricionista. Em caso de alergias, restrições alimentares ou condições de saúde, consulte um profissional."
+   ]
+  },
+  {
+   "semana": 2,
+   "dias": [
+    8,
+    14
+   ],
+   "secoes": [
+    {
+     "nome": "Verduras e legumes",
+     "itens": [
+      {
+       "item": "Espinafre",
+       "receitas": 6
+      },
+      {
+       "item": "Couve-manteiga",
+       "receitas": 5
+      },
+      {
+       "item": "Rúcula",
+       "receitas": 1
+      },
+      {
+       "item": "Agrião",
+       "receitas": 1
+      },
+      {
+       "item": "Cenoura",
+       "receitas": 7
+      },
+      {
+       "item": "Abóbora cabotiá",
+       "receitas": 1
+      },
+      {
+       "item": "Batata-doce",
+       "receitas": 1
+      },
+      {
+       "item": "Batata",
+       "receitas": 1
+      },
+      {
+       "item": "Abobrinha",
+       "receitas": 2
+      },
+      {
+       "item": "Pimentão vermelho / amarelo",
+       "receitas": 3
+      },
+      {
+       "item": "Tomate",
+       "receitas": 4
+      },
+      {
+       "item": "Tomate-cereja",
+       "receitas": 1
+      },
+      {
+       "item": "Beterraba",
+       "receitas": 1
+      },
+      {
+       "item": "Milho verde",
+       "receitas": 1
+      },
+      {
+       "item": "Gengibre",
+       "receitas": 3
+      },
+      {
+       "item": "Cheiro-verde, coentro, salsinha",
+       "receitas": 3
+      },
+      {
+       "item": "Hortelã e manjericão",
+       "receitas": 7
+      },
+      {
+       "item": "Limão",
+       "receitas": 6
+      }
+     ]
+    },
+    {
+     "nome": "Frutas",
+     "itens": [
+      {
+       "item": "Laranja",
+       "receitas": 4
+      },
+      {
+       "item": "Manga",
+       "receitas": 2
+      },
+      {
+       "item": "Mamão",
+       "receitas": 1
+      },
+      {
+       "item": "Banana",
+       "receitas": 3
+      },
+      {
+       "item": "Morango",
+       "receitas": 2
+      },
+      {
+       "item": "Kiwi",
+       "receitas": 1
+      },
+      {
+       "item": "Abacate",
+       "receitas": 1
+      },
+      {
+       "item": "Abacaxi",
+       "receitas": 1
+      },
+      {
+       "item": "Acerola (fresca ou polpa)",
+       "receitas": 1
+      },
+      {
+       "item": "Melancia",
+       "receitas": 1
+      },
+      {
+       "item": "Polpa de açaí sem açúcar",
+       "receitas": 1
+      },
+      {
+       "item": "Damasco seco",
+       "receitas": 1
+      }
+     ]
+    },
+    {
+     "nome": "Peixes, carnes e ovos",
+     "itens": [
+      {
+       "item": "Ovos",
+       "receitas": 6
+      },
+      {
+       "item": "Sardinha (fresca ou em lata)",
+       "receitas": 2
+      },
+      {
+       "item": "Tilápia",
+       "receitas": 1
+      },
+      {
+       "item": "Frango (peito ou sobrecoxa)",
+       "receitas": 1
+      },
+      {
+       "item": "Carne moída magra",
+       "receitas": 2
+      }
+     ]
+    },
+    {
+     "nome": "Laticínios",
+     "itens": [
+      {
+       "item": "Leite (animal ou vegetal)",
+       "receitas": 4
+      },
+      {
+       "item": "Iogurte natural",
+       "receitas": 3
+      },
+      {
+       "item": "Ricota",
+       "receitas": 4
+      },
+      {
+       "item": "Queijo minas",
+       "receitas": 1
+      },
+      {
+       "item": "Queijo ralado / parmesão",
+       "receitas": 2
+      }
+     ]
+    },
+    {
+     "nome": "Grãos, leguminosas e sementes",
+     "itens": [
+      {
+       "item": "Aveia em flocos",
+       "receitas": 3
+      },
+      {
+       "item": "Macarrão integral",
+       "receitas": 1
+      },
+      {
+       "item": "Pão integral",
+       "receitas": 2
+      },
+      {
+       "item": "Goma de tapioca",
+       "receitas": 2
+      },
+      {
+       "item": "Flocão de milho",
+       "receitas": 1
+      },
+      {
+       "item": "Trigo para kibe",
+       "receitas": 1
+      },
+      {
+       "item": "Lentilha",
+       "receitas": 2
+      },
+      {
+       "item": "Grão-de-bico",
+       "receitas": 3
+      },
+      {
+       "item": "Milho de pipoca",
+       "receitas": 1
+      },
+      {
+       "item": "Linhaça dourada",
+       "receitas": 1
+      },
+      {
+       "item": "Chia",
+       "receitas": 1
+      },
+      {
+       "item": "Sementes de abóbora",
+       "receitas": 3
+      },
+      {
+       "item": "Gergelim / tahine",
+       "receitas": 1
+      },
+      {
+       "item": "Castanhas, amêndoas ou nozes",
+       "receitas": 4
+      },
+      {
+       "item": "Pasta de amendoim",
+       "receitas": 1
+      }
+     ]
+    },
+    {
+     "nome": "Despensa",
+     "itens": [
+      {
+       "item": "Mel",
+       "receitas": 2
+      },
+      {
+       "item": "Cacau em pó",
+       "receitas": 1
+      },
+      {
+       "item": "Cúrcuma, páprica, cominho, canela",
+       "receitas": 8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "semana": 3,
+   "dias": [
+    15,
+    21
+   ],
+   "secoes": [
+    {
+     "nome": "Verduras e legumes",
+     "itens": [
+      {
+       "item": "Espinafre",
+       "receitas": 4
+      },
+      {
+       "item": "Couve-manteiga",
+       "receitas": 4
+      },
+      {
+       "item": "Rúcula",
+       "receitas": 1
+      },
+      {
+       "item": "Brócolis",
+       "receitas": 2
+      },
+      {
+       "item": "Cenoura",
+       "receitas": 6
+      },
+      {
+       "item": "Abóbora cabotiá",
+       "receitas": 2
+      },
+      {
+       "item": "Batata-doce",
+       "receitas": 2
+      },
+      {
+       "item": "Batata",
+       "receitas": 1
+      },
+      {
+       "item": "Abobrinha",
+       "receitas": 2
+      },
+      {
+       "item": "Pimentão vermelho / amarelo",
+       "receitas": 4
+      },
+      {
+       "item": "Pimentão verde",
+       "receitas": 1
+      },
+      {
+       "item": "Tomate",
+       "receitas": 7
+      },
+      {
+       "item": "Tomate-cereja",
+       "receitas": 2
+      },
+      {
+       "item": "Pepino",
+       "receitas": 1
+      },
+      {
+       "item": "Beterraba",
+       "receitas": 1
+      },
+      {
+       "item": "Milho verde",
+       "receitas": 1
+      },
+      {
+       "item": "Cebola roxa",
+       "receitas": 3
+      },
+      {
+       "item": "Gengibre",
+       "receitas": 4
+      },
+      {
+       "item": "Cheiro-verde, coentro, salsinha",
+       "receitas": 4
+      },
+      {
+       "item": "Hortelã e manjericão",
+       "receitas": 3
+      },
+      {
+       "item": "Limão",
+       "receitas": 9
+      }
+     ]
+    },
+    {
+     "nome": "Frutas",
+     "itens": [
+      {
+       "item": "Laranja",
+       "receitas": 4
+      },
+      {
+       "item": "Manga",
+       "receitas": 3
+      },
+      {
+       "item": "Mamão",
+       "receitas": 1
+      },
+      {
+       "item": "Banana",
+       "receitas": 2
+      },
+      {
+       "item": "Morango",
+       "receitas": 4
+      },
+      {
+       "item": "Kiwi",
+       "receitas": 1
+      },
+      {
+       "item": "Abacate",
+       "receitas": 2
+      },
+      {
+       "item": "Goiaba vermelha",
+       "receitas": 1
+      },
+      {
+       "item": "Maracujá",
+       "receitas": 1
+      },
+      {
+       "item": "Melancia",
+       "receitas": 1
+      },
+      {
+       "item": "Polpa de açaí sem açúcar",
+       "receitas": 1
+      }
+     ]
+    },
+    {
+     "nome": "Peixes, carnes e ovos",
+     "itens": [
+      {
+       "item": "Ovos",
+       "receitas": 8
+      },
+      {
+       "item": "Salmão",
+       "receitas": 1
+      },
+      {
+       "item": "Sardinha (fresca ou em lata)",
+       "receitas": 1
+      },
+      {
+       "item": "Atum em lata",
+       "receitas": 1
+      },
+      {
+       "item": "Peixe para moqueca",
+       "receitas": 1
+      },
+      {
+       "item": "Frango (peito ou sobrecoxa)",
+       "receitas": 2
+      },
+      {
+       "item": "Carne moída magra",
+       "receitas": 2
+      }
+     ]
+    },
+    {
+     "nome": "Laticínios",
+     "itens": [
+      {
+       "item": "Leite (animal ou vegetal)",
+       "receitas": 4
+      },
+      {
+       "item": "Iogurte natural",
+       "receitas": 2
+      },
+      {
+       "item": "Ricota",
+       "receitas": 2
+      },
+      {
+       "item": "Queijo minas",
+       "receitas": 1
+      },
+      {
+       "item": "Queijo ralado / parmesão",
+       "receitas": 3
+      }
+     ]
+    },
+    {
+     "nome": "Grãos, leguminosas e sementes",
+     "itens": [
+      {
+       "item": "Aveia em flocos",
+       "receitas": 3
+      },
+      {
+       "item": "Arroz (de preferência integral)",
+       "receitas": 1
+      },
+      {
+       "item": "Pão integral",
+       "receitas": 2
+      },
+      {
+       "item": "Goma de tapioca",
+       "receitas": 2
+      },
+      {
+       "item": "Feijão",
+       "receitas": 1
+      },
+      {
+       "item": "Feijão-fradinho",
+       "receitas": 1
+      },
+      {
+       "item": "Lentilha",
+       "receitas": 1
+      },
+      {
+       "item": "Grão-de-bico",
+       "receitas": 3
+      },
+      {
+       "item": "Linhaça dourada",
+       "receitas": 2
+      },
+      {
+       "item": "Chia",
+       "receitas": 1
+      },
+      {
+       "item": "Sementes de abóbora",
+       "receitas": 1
+      },
+      {
+       "item": "Gergelim / tahine",
+       "receitas": 2
+      }
+     ]
+    },
+    {
+     "nome": "Despensa",
+     "itens": [
+      {
+       "item": "Leite de coco",
+       "receitas": 1
+      },
+      {
+       "item": "Mel",
+       "receitas": 1
+      },
+      {
+       "item": "Shoyu",
+       "receitas": 1
+      },
+      {
+       "item": "Cúrcuma, páprica, cominho, canela",
+       "receitas": 6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "semana": 4,
+   "dias": [
+    22,
+    30
+   ],
+   "secoes": [
+    {
+     "nome": "Verduras e legumes",
+     "itens": [
+      {
+       "item": "Espinafre",
+       "receitas": 6
+      },
+      {
+       "item": "Couve-manteiga",
+       "receitas": 5
+      },
+      {
+       "item": "Rúcula",
+       "receitas": 2
+      },
+      {
+       "item": "Agrião",
+       "receitas": 1
+      },
+      {
+       "item": "Cenoura",
+       "receitas": 7
+      },
+      {
+       "item": "Abóbora cabotiá",
+       "receitas": 1
+      },
+      {
+       "item": "Batata-doce",
+       "receitas": 2
+      },
+      {
+       "item": "Batata",
+       "receitas": 1
+      },
+      {
+       "item": "Abobrinha",
+       "receitas": 4
+      },
+      {
+       "item": "Pimentão vermelho / amarelo",
+       "receitas": 3
+      },
+      {
+       "item": "Tomate",
+       "receitas": 6
+      },
+      {
+       "item": "Tomate-cereja",
+       "receitas": 3
+      },
+      {
+       "item": "Pepino",
+       "receitas": 1
+      },
+      {
+       "item": "Beterraba",
+       "receitas": 1
+      },
+      {
+       "item": "Milho verde",
+       "receitas": 2
+      },
+      {
+       "item": "Cebola roxa",
+       "receitas": 2
+      },
+      {
+       "item": "Gengibre",
+       "receitas": 2
+      },
+      {
+       "item": "Cheiro-verde, coentro, salsinha",
+       "receitas": 6
+      },
+      {
+       "item": "Hortelã e manjericão",
+       "receitas": 9
+      },
+      {
+       "item": "Limão",
+       "receitas": 10
+      }
+     ]
+    },
+    {
+     "nome": "Frutas",
+     "itens": [
+      {
+       "item": "Laranja",
+       "receitas": 3
+      },
+      {
+       "item": "Manga",
+       "receitas": 2
+      },
+      {
+       "item": "Mamão",
+       "receitas": 2
+      },
+      {
+       "item": "Banana",
+       "receitas": 4
+      },
+      {
+       "item": "Morango",
+       "receitas": 4
+      },
+      {
+       "item": "Kiwi",
+       "receitas": 1
+      },
+      {
+       "item": "Abacate",
+       "receitas": 3
+      },
+      {
+       "item": "Abacaxi",
+       "receitas": 1
+      },
+      {
+       "item": "Acerola (fresca ou polpa)",
+       "receitas": 1
+      },
+      {
+       "item": "Goiaba vermelha",
+       "receitas": 1
+      },
+      {
+       "item": "Maracujá",
+       "receitas": 1
+      },
+      {
+       "item": "Melancia",
+       "receitas": 1
+      },
+      {
+       "item": "Polpa de açaí sem açúcar",
+       "receitas": 1
+      },
+      {
+       "item": "Damasco seco",
+       "receitas": 1
+      }
+     ]
+    },
+    {
+     "nome": "Peixes, carnes e ovos",
+     "itens": [
+      {
+       "item": "Ovos",
+       "receitas": 9
+      },
+      {
+       "item": "Sardinha (fresca ou em lata)",
+       "receitas": 2
+      },
+      {
+       "item": "Tilápia",
+       "receitas": 1
+      },
+      {
+       "item": "Frango (peito ou sobrecoxa)",
+       "receitas": 2
+      },
+      {
+       "item": "Carne moída magra",
+       "receitas": 3
+      }
+     ]
+    },
+    {
+     "nome": "Laticínios",
+     "itens": [
+      {
+       "item": "Leite (animal ou vegetal)",
+       "receitas": 5
+      },
+      {
+       "item": "Iogurte natural",
+       "receitas": 6
+      },
+      {
+       "item": "Ricota",
+       "receitas": 3
+      },
+      {
+       "item": "Queijo minas",
+       "receitas": 1
+      },
+      {
+       "item": "Queijo ralado / parmesão",
+       "receitas": 4
+      }
+     ]
+    },
+    {
+     "nome": "Grãos, leguminosas e sementes",
+     "itens": [
+      {
+       "item": "Aveia em flocos",
+       "receitas": 4
+      },
+      {
+       "item": "Arroz (de preferência integral)",
+       "receitas": 1
+      },
+      {
+       "item": "Macarrão integral",
+       "receitas": 1
+      },
+      {
+       "item": "Pão integral",
+       "receitas": 3
+      },
+      {
+       "item": "Goma de tapioca",
+       "receitas": 1
+      },
+      {
+       "item": "Flocão de milho",
+       "receitas": 1
+      },
+      {
+       "item": "Trigo para kibe",
+       "receitas": 1
+      },
+      {
+       "item": "Lentilha",
+       "receitas": 2
+      },
+      {
+       "item": "Grão-de-bico",
+       "receitas": 5
+      },
+      {
+       "item": "Milho de pipoca",
+       "receitas": 1
+      },
+      {
+       "item": "Linhaça dourada",
+       "receitas": 1
+      },
+      {
+       "item": "Chia",
+       "receitas": 2
+      },
+      {
+       "item": "Sementes de abóbora",
+       "receitas": 3
+      },
+      {
+       "item": "Castanhas, amêndoas ou nozes",
+       "receitas": 4
+      },
+      {
+       "item": "Pasta de amendoim",
+       "receitas": 1
+      }
+     ]
+    },
+    {
+     "nome": "Despensa",
+     "itens": [
+      {
+       "item": "Mel",
+       "receitas": 3
+      },
+      {
+       "item": "Cacau em pó",
+       "receitas": 1
+      },
+      {
+       "item": "Cúrcuma, páprica, cominho, canela",
+       "receitas": 12
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "aviso": "Este livro traz receitas e informações gerais sobre alimentação. Ele não substitui consulta, diagnóstico ou tratamento com médico oftalmologista, nutricionista ou outro profissional de saúde, e nenhuma receita aqui trata, cura ou corrige problemas de visão ou de grau. Converse com seu médico ou nutricionista antes de mudar a alimentação se você tem diabetes, doença renal, alergias ou intolerâncias, está grávida ou amamentando, ou usa anticoagulantes como a varfarina (folhas verde-escuras são ricas em vitamina K e podem interferir na dose). Se notar mudança súbita na visão, dor nos olhos, flashes de luz ou manchas novas, procure atendimento médico imediatamente.",
+ "pdf": "receitas.pdf"
 }

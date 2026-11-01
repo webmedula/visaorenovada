@@ -145,3 +145,19 @@ button.btn{appearance:none}
 .receita-body li{margin:4px 0}
 .receita-body .beneficio{grid-column:1/-1;background:var(--brand-soft);border-radius:12px;padding:14px 16px;font-size:.92rem}
 @media(max-width:640px){.receita-body{grid-template-columns:1fr}}
+
+/* Receitas: cardápio, compras e guia */
+.receita .num{color:var(--muted);font-weight:500}
+.subtabs{gap:8px}
+.dia-card .ref{display:grid;grid-template-columns:64px 1fr;gap:8px;padding:5px 0;border-top:1px solid var(--line);font-size:.93rem}
+.dia-card .ref:first-of-type{border-top:0}
+.dia-card .rot{color:var(--muted);font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;padding-top:2px}
+.dia-card a{color:var(--brand);text-decoration:none;font-weight:600}
+.dia-card a:hover{text-decoration:underline}
+.checklist{list-style:none;margin:0;padding:0}
+.checklist li{margin:0}
+.checklist label{display:flex;align-items:baseline;gap:10px;padding:7px 0;border-top:1px solid var(--line);cursor:pointer;font-size:.95rem}
+.checklist li:first-child label{border-top:0}
+.checklist input{width:18px;height:18px;accent-color:var(--brand);flex:none;transform:translateY(3px)}
+.checklist small{color:var(--muted);margin-left:auto;white-space:nowrap;padding-left:8px}
+.checklist .done{color:var(--muted);text-decoration:line-through}
