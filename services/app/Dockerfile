@@ -2,7 +2,9 @@
 FROM node:20-alpine AS avaliacao
 WORKDIR /build
 COPY services/app/avaliacao/package.json services/app/avaliacao/package-lock.json ./
-RUN npm ci --no-audit --no-fund
+# O package-lock.json veio desatualizado do Lovable (faltam jspdf e deps de teste),
+# por isso `npm install` em vez de `npm ci`.
+RUN npm install --no-audit --no-fund --loglevel=error
 COPY services/app/avaliacao/ ./
 RUN npm run build
 
