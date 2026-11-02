@@ -25,6 +25,14 @@
   }
   function save(s) { try { localStorage.setItem(KEY, JSON.stringify(s)); } catch { /* modo privado etc. */ } }
   let S = load();
+  // Correção (nov/2026): uma versão antiga mostrava "Semana concluída" com o plano vazio,
+  // e o botão "Repetir a semana" inflava o contador de rodadas. Zera esse contador uma vez.
+  try {
+    if (!localStorage.getItem('vr-fix-plano-1')) {
+      if (!S.diasConcluidos.length) { S.semanas = 0; save(S); }
+      localStorage.setItem('vr-fix-plano-1', '1');
+    }
+  } catch { /* sem storage */ }
 
   function feitosHoje() { return S.feitos[hoje()] || []; }
   function marcarFeito(id) {
@@ -45,7 +53,7 @@
     return n;
   }
   function diaAtual() {
-    if (!S.inicioPlano) return null;
+    if (!S.inicioPlano || !NDIAS) return null;
     const n = Math.min(S.diasConcluidos.length + 1, NDIAS);
     return PLANO[n - 1];
   }
@@ -166,6 +174,7 @@
     },
 
     plano() {
+      if (!NDIAS) return bloqueio(); // plano não carregou: nunca mostrar "concluída"
       if (!S.inicioPlano) {
         return `
           <div class="page-head">
@@ -565,7 +574,7 @@
     const id = e.target.id;
     if (id === 'comecar-plano') { S.inicioPlano = hoje(); save(S); render(); toast('Plano iniciado. Bom começo!'); }
     else if (id === 'reiniciar-plano') { S.inicioPlano = hoje(); S.diasConcluidos = []; save(S); render(); toast('Plano reiniciado.'); }
-    else if (id === 'repetir-plano') { S.inicioPlano = hoje(); S.diasConcluidos = []; S.semanas = (S.semanas || 0) + 1; save(S); render(); toast('Nova semana iniciada. Bom começo!'); }
+    else if (id === 'repetir-plano' && NDIAS) { S.inicioPlano = hoje(); S.diasConcluidos = []; S.semanas = (S.semanas || 0) + 1; save(S); render(); toast('Nova semana iniciada. Bom começo!'); }
     else if (id === 'pausa-toggle') pausaToggle();
     else if (id === 'pausa-reset') pausaReset();
     else if (id === 'receitas-pdf') baixarPdf();
