@@ -161,3 +161,8 @@ button.btn{appearance:none}
 .checklist input{width:18px;height:18px;accent-color:var(--brand);flex:none;transform:translateY(3px)}
 .checklist small{color:var(--muted);margin-left:auto;white-space:nowrap;padding-left:8px}
 .checklist .done{color:var(--muted);text-decoration:line-through}
+
+/* Menu com cadeado enquanto o app não foi liberado pelo código (receitas têm código próprio) */
+.app-bloqueado .app-nav a[data-nav]:not([data-nav="receitas"])::after{content:"🔒";font-size:.75em;margin-left:4px}
+.app-bloqueado .tabbar a[data-nav]:not([data-nav="receitas"]) .ico{position:relative}
+.app-bloqueado .tabbar a[data-nav]:not([data-nav="receitas"]) .ico::after{content:"🔒";position:absolute;right:-10px;bottom:-4px;font-size:.6rem}
