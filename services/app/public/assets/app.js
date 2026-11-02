@@ -94,13 +94,20 @@
 
   /* ---------- Telas ---------- */
   const LIVRO_URL = 'https://www.visaorenovada.com.br/#oferta';
-  function bloqueio() {
+  // Título da tela de acesso conforme o item do menu clicado, para a pessoa ver que algo aconteceu.
+  const TITULOS_BLOQ = {
+    inicio: 'Os exercícios do livro, guiados passo a passo',
+    exercicios: '🔒 Os exercícios guiados são para quem tem o livro',
+    plano: '🔒 O plano de 7 dias é para quem tem o livro',
+    pausas: '🔒 O lembrete de pausas é para quem tem o livro'
+  };
+  function bloqueio(r) {
     if (A.carregando) return `<div class="card center mt"><p>Carregando seus exercícios...</p></div>`;
     const amostra = EX.filter(e => e.id === 'piscar');
     return `
       <div class="page-head">
         <span class="chip gold">App do livro Visão Renovada</span>
-        <h1 style="margin-top:10px">Os exercícios do livro, guiados passo a passo</h1>
+        <h1 style="margin-top:10px">${TITULOS_BLOQ[r] || TITULOS_BLOQ.inicio}</h1>
         <p class="lead">Os 8 exercícios do Capítulo 4, o plano de 7 dias e o lembrete de pausas 20-20-20 são para quem tem o livro. Digite o código de acesso que está na área de membros da compra.</p>
       </div>
       <div class="grid grid-2">
@@ -563,7 +570,10 @@
   function rota() { const h = (location.hash || '#inicio').slice(1); return views[h] ? h : 'inicio'; }
   function render() {
     const r = rota();
-    app.innerHTML = (A.ok || LIVRES.includes(r)) ? views[r]() : bloqueio();
+    const liberado = A.ok || LIVRES.includes(r);
+    app.innerHTML = liberado ? views[r]() : bloqueio(r);
+    document.body.classList.toggle('app-bloqueado', !A.ok && !A.carregando);
+    if (!liberado && !A.carregando && r !== 'inicio') toast('Disponível para quem tem o livro. Digite seu código de acesso.');
     document.querySelectorAll('[data-nav]').forEach(a => { if (a.dataset.nav === r) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
     if (r === 'pausas' && A.ok) { pausaRender(); notifStatus(); }
     if (r === 'receitas' && !R.dados && R.codigo) { carregarReceitas(R.codigo).then(d => { R.dados = d; if (rota() === 'receitas') render(); }).catch(() => { R.codigo = null; }); }
