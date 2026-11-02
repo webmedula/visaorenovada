@@ -1,11 +1,17 @@
 /* App Visão Renovada: rotas, estado local e player de exercícios guiados. */
 (function () {
   'use strict';
-  const EX = window.VR_EXERCICIOS || [];
-  const PLANO = window.VR_PLANO || [];
-  const GRUPOS = window.VR_GRUPOS || [];
-  const NDIAS = PLANO.length;
-  const byId = Object.fromEntries(EX.map(e => [e.id, e]));
+  // Começa com a amostra gratuita (amostra.js). O conteúdo completo vem de /conteudo/,
+  // liberado pelo código de acesso do app (entregue na área de membros da Kiwify).
+  let EX, PLANO, GRUPOS, NDIAS, byId;
+  function setData() {
+    EX = window.VR_EXERCICIOS || [];
+    PLANO = window.VR_PLANO || [];
+    GRUPOS = window.VR_GRUPOS || [];
+    NDIAS = PLANO.length;
+    byId = Object.fromEntries(EX.map(e => [e.id, e]));
+  }
+  setData();
   const $ = (s, r = document) => r.querySelector(s);
   const app = $('#app');
   const player = $('#player');
@@ -79,6 +85,41 @@
   }
 
   /* ---------- Telas ---------- */
+  const LIVRO_URL = 'https://www.visaorenovada.com.br/#oferta';
+  function bloqueio() {
+    if (A.carregando) return `<div class="card center mt"><p>Carregando seus exercícios...</p></div>`;
+    const amostra = EX.filter(e => e.id === 'piscar');
+    return `
+      <div class="page-head">
+        <span class="chip gold">App do livro Visão Renovada</span>
+        <h1 style="margin-top:10px">Os exercícios do livro, guiados passo a passo</h1>
+        <p class="lead">Os 8 exercícios do Capítulo 4, o plano de 7 dias e o lembrete de pausas 20-20-20 são para quem tem o livro. Digite o código de acesso que está na área de membros da compra.</p>
+      </div>
+      <div class="grid grid-2">
+        <form class="card" id="app-form" autocomplete="off">
+          <h3>Já tem o livro?</h3>
+          <p class="mb">O código está na área de membros da Kiwify, no módulo "App de exercícios".</p>
+          <label class="small" for="app-codigo">Código de acesso</label>
+          <input id="app-codigo" class="input" type="text" autocapitalize="characters" placeholder="Ex.: VR-XXXX" required>
+          <p class="small" id="app-erro" style="color:var(--warn);min-height:1.2em;margin:6px 0 10px"></p>
+          <button class="btn btn-primary" type="submit" id="app-entrar">Liberar o app</button>
+        </form>
+        <div class="card">
+          <h3>Ainda não tem o livro?</h3>
+          <p class="mb">O livro traz o método completo, os 3 bônus e o acesso a este app, por R$ 37 em pagamento único.</p>
+          <a class="btn btn-ghost" href="${LIVRO_URL}">Conhecer o livro</a>
+        </div>
+      </div>
+      <h2 class="mt" style="font-size:1.35rem">Experimente grátis</h2>
+      <div class="grid grid-2">
+        ${amostra.map(e => exCard(e)).join('')}
+        <a class="card" href="/avaliacao/" style="text-decoration:none;color:inherit">
+          <h3>📋 Autoavaliação visual</h3><p>Responda à autoavaliação e receba uma leitura do seu perfil com orientações práticas. Grátis.</p>
+        </a>
+      </div>`;
+  }
+  const LIVRES = ['receitas'];
+
   const views = {
     inicio() {
       const dia = diaAtual();
@@ -483,13 +524,39 @@
   });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && !player.hidden) { fecharPlayer(); render(); } });
 
+  /* ---------- Acesso ao app (código do livro) ---------- */
+  const A = { codigo: null, ok: false, carregando: false };
+  const AKEY = 'vr-app-codigo';
+  try { A.codigo = localStorage.getItem(AKEY); } catch { /* sem storage */ }
+  async function carregarConteudo(codigo) {
+    const auth = { Authorization: 'Basic ' + btoa(unescape(encodeURIComponent('membro:' + codigo))) };
+    const res = await fetch('/conteudo/exercicios.js', { headers: auth, credentials: 'omit', cache: 'no-store' });
+    if (res.status === 401 || res.status === 403) throw new Error('codigo');
+    if (!res.ok) throw new Error('rede');
+    const js = await res.text();
+    new Function(js)(); // define window.VR_EXERCICIOS, VR_PLANO e VR_GRUPOS
+    setData(); A.ok = true;
+  }
+  async function entrarApp(codigo) {
+    const btn = $('#app-entrar'), erro = $('#app-erro');
+    if (btn) { btn.disabled = true; btn.textContent = 'Verificando...'; }
+    try {
+      await carregarConteudo(codigo); A.codigo = codigo;
+      try { localStorage.setItem(AKEY, codigo); } catch { /* ignora */ }
+      render(); toast('App liberado. Bons exercícios!');
+    } catch (e) {
+      if (btn) { btn.disabled = false; btn.textContent = 'Liberar o app'; }
+      if (erro) erro.textContent = e.message === 'codigo' ? 'Código não reconhecido. Confira na área de membros da compra.' : 'Não foi possível verificar agora. Tente de novo em instantes.';
+    }
+  }
+
   /* ---------- Rotas ---------- */
   function rota() { const h = (location.hash || '#inicio').slice(1); return views[h] ? h : 'inicio'; }
   function render() {
     const r = rota();
-    app.innerHTML = views[r]();
+    app.innerHTML = (A.ok || LIVRES.includes(r)) ? views[r]() : bloqueio();
     document.querySelectorAll('[data-nav]').forEach(a => { if (a.dataset.nav === r) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
-    if (r === 'pausas') { pausaRender(); notifStatus(); }
+    if (r === 'pausas' && A.ok) { pausaRender(); notifStatus(); }
     if (r === 'receitas' && !R.dados && R.codigo) { carregarReceitas(R.codigo).then(d => { R.dados = d; if (rota() === 'receitas') render(); }).catch(() => { R.codigo = null; }); }
     window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
   }
@@ -519,11 +586,18 @@
     const sp = cb.nextElementSibling; if (sp) sp.classList.toggle('done', cb.checked);
   });
   app.addEventListener('submit', e => {
+    if (e.target.id === 'app-form') { e.preventDefault(); const v = $('#app-codigo').value.trim(); if (v) entrarApp(v); return; }
     if (e.target.id === 'receitas-form') { e.preventDefault(); const v = $('#receitas-codigo').value.trim(); if (v) entrarReceitas(v, true); }
   });
   app.addEventListener('keydown', e => {
     if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[data-ex][role=button]')) { e.preventDefault(); abrirPlayer(e.target.dataset.ex); }
   });
   window.addEventListener('hashchange', render);
+  if (A.codigo) {
+    A.carregando = true;
+    carregarConteudo(A.codigo)
+      .catch(e => { if (e.message === 'codigo') { A.codigo = null; try { localStorage.removeItem(AKEY); } catch { /* ignora */ } } })
+      .finally(() => { A.carregando = false; render(); });
+  }
   render();
 })();

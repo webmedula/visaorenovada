@@ -1,12 +1,16 @@
 #!/bin/sh
-# Roda na partida do container (pasta /docker-entrypoint.d/ da imagem nginx).
-# Se a variável de ambiente RECEITAS_CODIGO estiver definida (aba Ambiente do
-# Easypanel), ela vira o código de acesso da área de receitas. Sem ela, vale o
-# código definido no build (ARG RECEITAS_CODIGO do Dockerfile).
+# Define os códigos de acesso a partir das variáveis de ambiente (aba Ambiente do Easypanel).
+# RECEITAS_CODIGO: ebook de receitas. APP_CODIGO: exercícios, plano e pausas do app.
 set -e
 if [ -n "${RECEITAS_CODIGO:-}" ]; then
   printf 'leitor:%s\n' "$(openssl passwd -apr1 "$RECEITAS_CODIGO")" > /etc/nginx/receitas.htpasswd
-  echo "receitas-codigo: código de acesso definido pela variável de ambiente"
+  echo "receitas-codigo: código das receitas definido pela variável de ambiente"
 else
-  echo "receitas-codigo: usando o código definido no build"
+  echo "receitas-codigo: usando o código das receitas definido no build"
+fi
+if [ -n "${APP_CODIGO:-}" ]; then
+  printf 'membro:%s\n' "$(openssl passwd -apr1 "$APP_CODIGO")" > /etc/nginx/app.htpasswd
+  echo "receitas-codigo: código do app definido pela variável de ambiente"
+else
+  echo "receitas-codigo: usando o código do app definido no build"
 fi
