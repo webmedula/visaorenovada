@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /obrigado/
+
+Sitemap: https://www.visaorenovada.com.br/sitemap.xml
