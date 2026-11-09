@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Download, RotateCcw, BookOpen, CheckCircle2, AlertCircle, AlertTriangle, Shield, Eye, Activity, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CategoryKey, categoryLabels, CategoryResult } from "@/lib/questions";
@@ -64,6 +65,12 @@ const educationalContent = [
 ];
 
 export function ResultsSection({ catResults, testScores, tests, visualProfile, profile, onRestart }: Props) {
+  // Meta Pixel: marca quem chegou ao resultado (público para anúncios e medição do anúncio B)
+  useEffect(() => {
+    const w = window as unknown as { fbq?: (...args: unknown[]) => void };
+    w.fbq?.("trackCustom", "AvaliacaoConcluida");
+  }, []);
+
   const recommendations = getRecommendations(catResults, testScores, tests, { horasTela: profile.horasTela, idade: profile.idade });
   const categories: CategoryKey[] = ["fadiga", "ressecamento", "sobrecarga", "foco", "noturna"];
   const date = new Date().toLocaleDateString("pt-BR");
@@ -229,19 +236,27 @@ export function ResultsSection({ catResults, testScores, tests, visualProfile, p
           </div>
         </div>
 
-        {/* ===== PRÓXIMO PASSO ===== */}
-        <div className="glass-card rounded-3xl shadow-premium p-7 md:p-10">
-          <h3 className="font-heading text-base font-bold text-foreground mb-2">👁️ Próximo passo: pratique os exercícios do livro</h3>
-          <p className="text-sm text-muted-foreground font-body leading-relaxed mb-5">
-            O app Visão Renovada guia os 8 exercícios do método passo a passo, com cronômetro, plano de 7 dias e lembretes de pausa 20-20-20.
+        {/* ===== PRÓXIMO PASSO: LIVRO ===== */}
+        <div className="glass-card rounded-3xl shadow-premium p-7 md:p-10 border-2 border-primary/20">
+          <div className="flex items-center gap-2 text-primary mb-2">
+            <BookOpen className="w-5 h-5" />
+            <span className="text-xs font-heading font-bold uppercase tracking-wide">Próximo passo</span>
+          </div>
+          <h3 className="font-heading text-lg md:text-xl font-bold text-foreground mb-2">Cuide dos seus olhos no dia a dia com o livro Visão Renovada</h3>
+          <p className="text-sm text-muted-foreground font-body leading-relaxed mb-4">
+            Este resultado é só o começo. No livro você encontra 7 capítulos com hábitos, pausas e exercícios simples para o conforto visual, mais 3 bônus e o app que guia os exercícios passo a passo, com cronômetro e plano de 7 dias.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3">
-            <Button asChild className="flex-1 h-12 rounded-2xl font-heading font-bold">
-              <a href="/">Começar os exercícios</a>
-            </Button>
-            <Button asChild variant="outline" className="flex-1 h-12 rounded-2xl font-heading font-semibold">
-              <a href="https://www.visaorenovada.com.br/#oferta">Conhecer o livro</a>
-            </Button>
+          <ul className="text-sm text-foreground font-body space-y-1.5 mb-5">
+            <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />Livro digital (PDF) com 7 capítulos</li>
+            <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />3 bônus e acesso ao app de exercícios</li>
+            <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />R$ 37, pagamento único, no cartão, boleto ou Pix</li>
+          </ul>
+          <Button asChild className="w-full h-14 rounded-2xl gradient-accent text-accent-foreground font-heading font-bold text-base shadow-glow">
+            <a href="https://pay.kiwify.com.br/FjvsV5c">Quero o livro por R$ 37</a>
+          </Button>
+          <div className="flex flex-col sm:flex-row gap-3 mt-3 text-center text-sm font-body">
+            <a href="https://www.visaorenovada.com.br/" className="flex-1 text-muted-foreground underline underline-offset-4 hover:text-foreground">Ver tudo o que vem no livro</a>
+            <a href="/" className="flex-1 text-muted-foreground underline underline-offset-4 hover:text-foreground">Já tenho o livro: abrir o app</a>
           </div>
         </div>
 
