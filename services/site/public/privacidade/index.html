@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Política de privacidade · Visão Renovada</title>
+<meta name="description" content="Como o site e o app Visão Renovada tratam dados pessoais, conforme a LGPD.">
+<link rel="canonical" href="https://www.visaorenovada.com.br/privacidade/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/base.css">
+<style>
+  .logo{white-space:nowrap}
+  .legal{max-width:760px;padding-top:48px;padding-bottom:64px}
+  .legal h1{font-family:Fraunces,serif;font-size:clamp(2rem,4.4vw,2.8rem);line-height:1.1;margin:0 0 8px}
+  .legal h2{font-family:Fraunces,serif;font-size:1.35rem;margin:34px 0 8px}
+  .legal p,.legal li{line-height:1.65}
+  .legal ul{padding-left:1.2em}
+  .legal .upd{color:var(--muted);font-size:.92rem;margin-bottom:26px}
+</style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1433537212179263');
+fbq('track', 'PageView');
+// InitiateCheckout no clique de qualquer botão que leva ao checkout da Kiwify
+document.addEventListener('click', function (e) {
+  var a = e.target.closest && e.target.closest('a[href*="pay.kiwify.com.br"]');
+  if (!a) return;
+  var receitas = a.href.indexOf('yYT9nAV') > -1;
+  fbq('track', 'InitiateCheckout', {
+    content_name: receitas ? 'Cozinha Visão Renovada' : 'Livro Visão Renovada',
+    value: receitas ? 27 : 37, currency: 'BRL'
+  });
+});
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1433537212179263&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="/" aria-label="Visão Renovada, página inicial">
+      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><path d="M2 16c4-7 9-10 14-10s10 3 14 10c-4 7-9 10-14 10S6 23 2 16z" fill="none" stroke="#0f5c5a" stroke-width="2.4"/><circle cx="16" cy="16" r="5" fill="#e8a33d"/></svg>
+      Visão Renovada
+    </a>
+    <nav class="nav-links">
+      <a href="/privacidade/">Privacidade</a>
+      <a href="/termos/">Termos</a>
+      <a class="btn btn-dark" href="/#oferta">O livro</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap legal">
+<h1>Política de privacidade</h1>
+<p class="upd">Última atualização: 2 de novembro de 2026</p>
+<p>Esta política explica quais dados pessoais são tratados quando você visita o site <b>www.visaorenovada.com.br</b>, usa o app <b>app.visaorenovada.com.br</b> ou compra o livro Visão Renovada e o ebook Cozinha Visão Renovada. Ela segue a Lei Geral de Proteção de Dados (Lei 13.709/2018, LGPD).</p>
+
+<h2>Quem é o responsável</h2>
+<p>O controlador dos dados é a <b>WebMedula</b>, CNPJ 39.505.168/0001-94. Para falar sobre seus dados, veja a seção “Como falar com a gente” no fim desta página.</p>
+
+<h2>Quais dados tratamos e por quê</h2>
+<ul>
+  <li><b>Compra:</b> o pagamento e a entrega são feitos pela <b>Kiwify</b>, que coleta nome, e-mail, CPF e dados de pagamento. Recebemos da Kiwify os dados necessários para identificar a compra, liberar o acesso e prestar suporte (execução do contrato e obrigações legais). A Kiwify trata esses dados conforme a política de privacidade dela. Não temos acesso aos dados completos do seu cartão.</li>
+  <li><b>Medição de anúncios (Meta Pixel):</b> o site usa o Pixel da Meta (Facebook e Instagram). Ele registra as páginas visitadas e o clique nos botões de compra, com identificadores do navegador e cookies, para medir e melhorar nossos anúncios (legítimo interesse). Esses dados são tratados também pela Meta, conforme a política dela.</li>
+  <li><b>Registros do servidor:</b> como qualquer site, o servidor registra endereço IP, data, hora e navegador de cada acesso, por segurança e para corrigir erros. Esses registros são guardados por tempo limitado.</li>
+  <li><b>Fontes:</b> as fontes do site e do app são carregadas do Google Fonts, que recebe o endereço IP do seu navegador para entregar os arquivos.</li>
+</ul>
+
+<h2>O app e a autoavaliação</h2>
+<p>O app não pede cadastro. Seu progresso nos exercícios, o plano de 7 dias, a lista de compras marcada e o código de acesso ficam salvos <b>só no seu navegador</b> (armazenamento local) e não são enviados para nós. As respostas da autoavaliação também ficam no seu aparelho. O app não usa o Pixel da Meta.</p>
+
+<h2>Cookies</h2>
+<p>O site usa cookies da Meta para medição de anúncios. Você pode bloquear ou apagar cookies nas configurações do seu navegador e ajustar suas preferências de anúncios nas configurações da sua conta do Facebook ou Instagram. O site continua funcionando sem eles.</p>
+
+<h2>Compartilhamento</h2>
+<p>Não vendemos dados pessoais. Os dados só são compartilhados com os serviços citados acima (Kiwify, Meta, Google Fonts e o provedor de hospedagem) ou quando a lei exigir.</p>
+
+<h2>Por quanto tempo guardamos</h2>
+<p>Os dados da compra são mantidos enquanto você tiver acesso ao produto e pelo prazo exigido pela lei fiscal e de defesa do consumidor. Os demais são apagados quando deixam de ser necessários.</p>
+
+<h2>Seus direitos</h2>
+<p>Pela LGPD, você pode pedir confirmação de que tratamos seus dados, acesso, correção, anonimização ou exclusão, portabilidade, informação sobre compartilhamento e revogação de consentimento. Você também pode reclamar à Autoridade Nacional de Proteção de Dados (ANPD).</p>
+
+<h2 id="contato">Como falar com a gente</h2>
+<p>Use o e-mail de suporte do produtor que aparece no e-mail de confirmação da compra e na área de membros da Kiwify. Responderemos em até 15 dias.</p>
+
+<h2>Mudanças nesta política</h2>
+<p>Podemos atualizar esta política. A data no topo mostra a versão em vigor.</p>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo" style="color:#fff;margin-bottom:10px">Visão Renovada</div>
+        <p>Conteúdo educativo sobre conforto visual na era digital.</p>
+        <p>Vendido por WebMedula · CNPJ 39.505.168/0001-94</p>
+      </div>
+      <div><b style="color:#fff">Navegação</b><br><a href="/">O livro Visão Renovada</a><br><a href="/receitas/">Cozinha Visão Renovada</a><br><a href="https://app.visaorenovada.com.br/">App de exercícios</a><br><a href="https://app.visaorenovada.com.br/avaliacao/">Autoavaliação</a></div>
+      <div><b style="color:#fff">Legal</b><br><a href="/privacidade/">Política de privacidade</a><br><a href="/termos/">Termos de uso</a><br><a href="/termos/#contato">Contato</a></div>
+    </div>
+    <p class="disclaimer"><b>Aviso importante:</b> o conteúdo deste site, do livro e do app é educativo e não substitui consulta, diagnóstico ou tratamento com oftalmologista.</p>
+  </div>
+</footer>
+</body>
+</html>
